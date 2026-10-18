@@ -1,0 +1,20 @@
+period: {start: 2021-04, end: 2026-09}
+winter: {start: "04-01", end: "10-31"}
+windows: {wcm: ["07:00", "22:00"], am: ["07:00", "12:00"], pm: ["16:00", "22:00"]}
+k_top: 200                 # 200 个半小时 = H100
+eta_roundtrip: 0.88
+grid:
+  p_mw: [35, 135, 335, 500, 750, 1000, 1500]
+  d_h: [1, 2, 4]
+  basis: [gross, net]
+  window: [all, AM, PM]
+sensitivities:             # 只在 d = 2h 上跑
+  usable70: {soc_max_frac: 0.7}
+  solar3x: {solar_scale: 3.0, basis: [net]}
+sosa_reference:
+  bess_factor: {le_2h: 0.60, gt_2h: 0.80}
+  wind_cf: {2024: 0.314, 2025: 0.272}
+  solar_cf: {2024: 0.0149, 2025: 0.0714}
+gates:
+  max_reject_rate: 0.01
+  calibration_tol_pp: 2.0

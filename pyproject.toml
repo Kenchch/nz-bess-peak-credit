@@ -1,0 +1,30 @@
+[project]
+name = "bess"
+version = "0.1.0"
+description = "How much of a battery's MW counts at the North Island winter peak, as the fleet grows"
+authors = [
+    { name = "Feng Jiang", email = "148679986+Kenchch@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "pyarrow>=16",
+    "scipy>=1.13",
+    "pyyaml>=6.0",
+    "matplotlib>=3.9",
+]
+
+[project.scripts]
+bess = "bess.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]

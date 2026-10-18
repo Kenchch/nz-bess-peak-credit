@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Downloaded and derived data: rebuilt from data/manifest.csv
+data/raw/
+data/staging/
+data/series/
+
+# Every run writes here; outputs/current points at the last good one
+outputs/runs/
