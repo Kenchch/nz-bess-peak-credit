@@ -2,7 +2,7 @@
 
 Built by `uv run bess all` from an empty `data/` (every download matched its
 pin in `data/manifest.csv`), then `uv run bess analyse --accept-gap …` with the
-final wording of the G4 reason. Outputs: `outputs/runs/RUN_ID/`. The battery
+final wording of the G4 reason. Outputs: `outputs/runs/20261018T062143Z_93f56cf/`. The battery
 credit curve and p* come on Day 3; nothing here is a credit number yet.
 
 ## 1. Data and quality gates
@@ -46,7 +46,7 @@ window, national fleet):
 Three of four within 2 pp; **solar 2024 is not**, and the run carries on with
 `--accept-gap` and this reason:
 
-> REASON
+> Solar 2024 only: ours 4.98% vs SOSA 1.49% (+3.5 pp). Every demand/window/fleet definition gives 5.0-5.7% from the two farms then reporting (Kohira, Rangitaiki: 48 MW, 2.4-2.7 MW mean output in the top 200). SOSA's 1.49% implies a denominator near 160-180 MW, close to the solar fleet in force by mid-2025 (166 MW), not the one generating in 2024. Wind (both years) and solar 2025 are within 2 pp. Solar averaged 2-14 MW in the NI top 200 in 2024-2026, too little to move the battery analysis.
 
 What the other definitions showed (all in `calibration.md`):
 
@@ -76,10 +76,11 @@ at least one of their winter's top-200 half-hours, all six winters pooled
 **Headline: two hours of storage holds the median top-200 evening peak down
 by about 360 MW, but only about 230 MW on the widest tenth of days**
 (morning: 410 MW / 170 MW). Net demand gives almost the same curves (evening
-350 / 210 MW, morning 400 / 180 MW). At roughly the 2026 fleet size
+350 / 210 MW, morning 400 / 180 MW). Winter by winter, the median evening
+figure runs from 265 MW (2026) to 420 MW (2022). At roughly the 2026 fleet size
 (~335 MW), two hours covers a median evening peak but not the widest tenth.
 That is the shape behind a falling credit curve; Day 3's LP will put numbers
-on it. Figure: `outputs/runs/RUN_ID/peak_shape.png`.
+on it. Figure: `outputs/runs/20261018T062143Z_93f56cf/peak_shape.png`.
 
 ## 4. Top 200 on gross vs net demand
 
