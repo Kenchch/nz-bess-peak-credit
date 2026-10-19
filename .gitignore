@@ -16,3 +16,6 @@ outputs/current.old/
 
 # Trace runs (scripts/trace_pipeline.py): copies of staging and series
 outputs/trace/
+
+# Quarto render cache
+memo/.quarto/
