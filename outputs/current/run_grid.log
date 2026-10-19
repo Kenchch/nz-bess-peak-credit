@@ -1,0 +1,1261 @@
+16:29:52  run_grid: config
+16:29:52    grid {'p_mw': [35, 135, 335, 500, 750, 1000, 1500], 'd_h': [1, 2, 4], 'basis': ['gross', 'net'], 'window': ['all', 'AM', 'PM']}
+16:29:52    sensitivities {'usable70': {'soc_max_frac': 0.7}, 'solar3x': {'solar_scale': 3.0, 'basis': ['net']}, 'top50': {'k_top': 50, 'window': ['all']}} (d = 2 h only)
+16:29:52    credit {'add_back_bess': True, 'rated_energy': 'delivered', 'base_winters': [2021, 2022, 2023, 2024, 2025], 'check_winters': [2026], 'workers': None}; k_top 200; eta 0.88; workers 11
+16:29:52  input D:\fcc\nz-bess-peak-credit\data\series\ni_halfhourly.parquet: 60,144 winter half-hours, winters [2021, 2022, 2023, 2024, 2025, 2026]
+16:29:52    2021: 10,272 half-hours, window sizes {'all': 6420, 'AM': 2140, 'PM': 2568}, complete True; existing batteries at the gross top 200: mean 0.0 MW, max 0.0 MW; grid solar max 0.0 MW
+16:29:52    2022: 10,272 half-hours, window sizes {'all': 6420, 'AM': 2140, 'PM': 2568}, complete True; existing batteries at the gross top 200: mean 0.0 MW, max 0.0 MW; grid solar max 0.0 MW
+16:29:52    2023: 10,272 half-hours, window sizes {'all': 6420, 'AM': 2140, 'PM': 2568}, complete True; existing batteries at the gross top 200: mean 0.0 MW, max 0.0 MW; grid solar max 0.0 MW
+16:29:52    2024: 10,272 half-hours, window sizes {'all': 6420, 'AM': 2140, 'PM': 2568}, complete True; existing batteries at the gross top 200: mean 0.0 MW, max 0.0 MW; grid solar max 47.5 MW
+16:29:52    2025: 10,272 half-hours, window sizes {'all': 6420, 'AM': 2140, 'PM': 2568}, complete True; existing batteries at the gross top 200: mean 2.4 MW, max 99.8 MW; grid solar max 81.0 MW
+16:29:52    2026: 8,784 half-hours, window sizes {'all': 5490, 'AM': 1830, 'PM': 2196}, complete False; existing batteries at the gross top 200: mean 23.3 MW, max 100.6 MW; grid solar max 258.4 MW
+16:29:52  plan: 1,218 LPs (756 base + 462 sensitivity); rated energy is delivered
+16:29:57    [   1/1218] 2021 gross all base     P=   35 d=4 k=200  CC  0.971 (uncapped 0.971, 2 pass)  H100 4,433.8 -> 4,399.8   1.68s  ok
+16:29:57    [   2/1218] 2021 gross all base     P=   35 d=1 k=200  CC  0.442 (uncapped 0.442, 2 pass)  H100 4,433.8 -> 4,418.3   1.71s  ok
+16:29:57    [   3/1218] 2021 gross all base     P=  135 d=4 k=200  CC  0.908 (uncapped 0.908, 2 pass)  H100 4,433.8 -> 4,311.2   1.82s  ok
+16:29:57    [   4/1218] 2021 gross all base     P=  135 d=1 k=200  CC  0.389 (uncapped 0.389, 2 pass)  H100 4,433.8 -> 4,381.3   1.82s  ok
+16:29:58    [   5/1218] 2021 gross all base     P=  500 d=1 k=200  CC  0.293 (uncapped 0.293, 2 pass)  H100 4,433.8 -> 4,287.3   2.02s  ok
+16:29:58    [   6/1218] 2021 gross all base     P=  335 d=1 k=200  CC  0.322 (uncapped 0.322, 2 pass)  H100 4,433.8 -> 4,326.1   2.09s  ok
+16:29:58    [   7/1218] 2021 gross all base     P=  335 d=4 k=200  CC  0.793 (uncapped 0.793, 2 pass)  H100 4,433.8 -> 4,168.3   2.04s  ok
+16:29:59    [   8/1218] 2021 gross all base     P=   35 d=2 k=200  CC  0.738 (uncapped 0.738, 2 pass)  H100 4,433.8 -> 4,407.9   3.71s  ok
+16:29:59    [   9/1218] 2021 gross all base     P=  500 d=4 k=200  CC  0.657 (uncapped 0.657, 2 pass)  H100 4,433.8 -> 4,105.5   2.11s  ok
+16:30:00    [  10/1218] 2021 gross all base     P=  750 d=1 k=200  CC  0.260 (uncapped 0.260, 2 pass)  H100 4,433.8 -> 4,238.5   2.25s  ok
+16:30:00    [  11/1218] 2021 gross all base     P=  135 d=2 k=200  CC  0.660 (uncapped 0.660, 2 pass)  H100 4,433.8 -> 4,344.7   4.03s  ok
+16:30:00    [  12/1218] 2021 gross all base     P=  750 d=4 k=200  CC  0.533 (uncapped 0.533, 2 pass)  H100 4,433.8 -> 4,034.3   2.54s  ok
+16:30:01    [  13/1218] 2021 gross all base     P=  335 d=2 k=200  CC  0.538 (uncapped 0.538, 2 pass)  H100 4,433.8 -> 4,253.4   5.00s  ok
+16:30:01    [  14/1218] 2021 gross all base     P= 1000 d=1 k=200  CC  0.239 (uncapped 0.239, 2 pass)  H100 4,433.8 -> 4,195.1   3.28s  ok
+16:30:01    [  15/1218] 2021 gross all base     P= 1000 d=4 k=200  CC  0.468 (uncapped 0.468, 2 pass)  H100 4,433.8 -> 3,966.0   3.48s  ok
+16:30:01    [  16/1218] 2021 gross AM  base     P=   35 d=1 k=200  CC  0.403 (uncapped 0.403, 2 pass)  H100 4,264.5 -> 4,250.4   1.69s  ok
+16:30:02    [  17/1218] 2021 gross all base     P=  500 d=2 k=200  CC  0.477 (uncapped 0.477, 2 pass)  H100 4,433.8 -> 4,195.1   5.96s  ok
+16:30:02    [  18/1218] 2021 gross AM  base     P=   35 d=2 k=200  CC  0.683 (uncapped 0.683, 2 pass)  H100 4,264.5 -> 4,240.6   1.71s  ok
+16:30:02    [  19/1218] 2021 gross AM  base     P=   35 d=4 k=200  CC  0.960 (uncapped 0.960, 2 pass)  H100 4,264.5 -> 4,230.9   1.64s  ok
+16:30:03    [  20/1218] 2021 gross AM  base     P=  135 d=1 k=200  CC  0.365 (uncapped 0.365, 2 pass)  H100 4,264.5 -> 4,215.2   1.70s  ok
+16:30:03    [  21/1218] 2021 gross AM  base     P=  135 d=2 k=200  CC  0.638 (uncapped 0.638, 2 pass)  H100 4,264.5 -> 4,178.4   1.75s  ok
+16:30:03    [  22/1218] 2021 gross AM  base     P=  135 d=4 k=200  CC  0.946 (uncapped 0.946, 2 pass)  H100 4,264.5 -> 4,136.9   1.75s  ok
+16:30:03    [  23/1218] 2021 gross all base     P= 1500 d=1 k=200  CC  0.197 (uncapped 0.197, 2 pass)  H100 4,433.8 -> 4,138.4   3.86s  ok
+16:30:03    [  24/1218] 2021 gross all base     P= 1500 d=4 k=200  CC  0.402 (uncapped 0.402, 2 pass)  H100 4,433.8 -> 3,831.4   3.72s  ok
+16:30:04    [  25/1218] 2021 gross AM  base     P=  335 d=1 k=200  CC  0.319 (uncapped 0.319, 2 pass)  H100 4,264.5 -> 4,157.7   1.83s  ok
+16:30:04    [  26/1218] 2021 gross AM  base     P=  335 d=2 k=200  CC  0.570 (uncapped 0.570, 2 pass)  H100 4,264.5 -> 4,073.7   1.93s  ok
+16:30:04    [  27/1218] 2021 gross AM  base     P=  335 d=4 k=200  CC  0.917 (uncapped 0.917, 2 pass)  H100 4,264.5 -> 3,957.4   1.79s  ok
+16:30:04    [  28/1218] 2021 gross all base     P=  750 d=2 k=200  CC  0.394 (uncapped 0.394, 2 pass)  H100 4,433.8 -> 4,138.4   6.94s  ok
+16:30:05    [  29/1218] 2021 gross AM  base     P=  500 d=1 k=200  CC  0.300 (uncapped 0.300, 2 pass)  H100 4,264.5 -> 4,114.5   1.97s  ok
+16:30:05    [  30/1218] 2021 gross AM  base     P=  500 d=2 k=200  CC  0.532 (uncapped 0.532, 2 pass)  H100 4,264.5 -> 3,998.5   1.80s  ok
+16:30:05    [  31/1218] 2021 gross AM  base     P=  500 d=4 k=200  CC  0.901 (uncapped 0.901, 2 pass)  H100 4,264.5 -> 3,814.2   1.88s  ok
+16:30:05    [  32/1218] 2021 gross AM  base     P=  750 d=1 k=200  CC  0.280 (uncapped 0.280, 2 pass)  H100 4,264.5 -> 4,054.6   2.12s  ok
+16:30:05    [  33/1218] 2021 gross AM  base     P=  750 d=2 k=200  CC  0.494 (uncapped 0.494, 2 pass)  H100 4,264.5 -> 3,893.7   2.08s  ok
+16:30:06    [  34/1218] 2021 gross AM  base     P=  750 d=4 k=200  CC  0.882 (uncapped 0.882, 2 pass)  H100 4,264.5 -> 3,603.1   2.28s  ok
+16:30:06    [  35/1218] 2021 gross AM  base     P= 1000 d=1 k=200  CC  0.266 (uncapped 0.266, 2 pass)  H100 4,264.5 -> 3,998.5   2.48s  ok
+16:30:06    [  36/1218] 2021 gross AM  base     P= 1000 d=2 k=200  CC  0.471 (uncapped 0.471, 2 pass)  H100 4,264.5 -> 3,793.1   2.41s  ok
+16:30:07    [  37/1218] 2021 gross all base     P= 1000 d=2 k=200  CC  0.330 (uncapped 0.330, 2 pass)  H100 4,433.8 -> 4,103.3   9.23s  ok
+16:30:07    [  38/1218] 2021 gross PM  base     P=   35 d=1 k=200  CC  0.414 (uncapped 0.414, 2 pass)  H100 4,387.3 -> 4,372.9   1.79s  ok
+16:30:07    [  39/1218] 2021 gross PM  base     P=   35 d=2 k=200  CC  0.705 (uncapped 0.705, 2 pass)  H100 4,387.3 -> 4,362.7   1.84s  ok
+16:30:07    [  40/1218] 2021 gross AM  base     P= 1500 d=2 k=200  CC  0.448 (uncapped 0.448, 2 pass)  H100 4,264.5 -> 3,593.1   2.49s  ok
+16:30:08    [  41/1218] 2021 gross AM  base     P= 1500 d=1 k=200  CC  0.247 (uncapped 0.247, 2 pass)  H100 4,264.5 -> 3,893.7   2.87s  ok
+16:30:08    [  42/1218] 2021 gross PM  base     P=   35 d=4 k=200  CC  0.948 (uncapped 0.948, 2 pass)  H100 4,387.3 -> 4,354.2   1.89s  ok
+16:30:08    [  43/1218] 2021 gross PM  base     P=  135 d=1 k=200  CC  0.372 (uncapped 0.372, 2 pass)  H100 4,387.3 -> 4,337.1   2.18s  ok
+16:30:08    [  44/1218] 2021 gross AM  base     P= 1000 d=4 k=200  CC  0.824 (uncapped 0.867, 3 pass)  H100 4,264.5 -> 3,440.5   4.05s  ok
+16:30:09    [  45/1218] 2021 gross PM  base     P=  135 d=2 k=200  CC  0.651 (uncapped 0.651, 2 pass)  H100 4,387.3 -> 4,299.5   2.36s  ok
+16:30:09    [  46/1218] 2021 gross PM  base     P=  335 d=1 k=200  CC  0.324 (uncapped 0.324, 2 pass)  H100 4,387.3 -> 4,278.7   2.02s  ok
+16:30:09    [  47/1218] 2021 gross PM  base     P=  135 d=4 k=200  CC  0.935 (uncapped 0.935, 2 pass)  H100 4,387.3 -> 4,261.1   2.24s  ok
+16:30:09    [  48/1218] 2021 gross PM  base     P=  335 d=2 k=200  CC  0.572 (uncapped 0.572, 2 pass)  H100 4,387.3 -> 4,195.8   2.12s  ok
+16:30:10    [  49/1218] 2021 gross all base     P= 1500 d=2 k=200  CC  0.266 (uncapped 0.266, 2 pass)  H100 4,433.8 -> 4,034.2  10.30s  ok
+16:30:10    [  50/1218] 2021 gross PM  base     P=  500 d=2 k=200  CC  0.526 (uncapped 0.526, 2 pass)  H100 4,387.3 -> 4,124.3   2.11s  ok
+16:30:10    [  51/1218] 2021 gross PM  base     P=  335 d=4 k=200  CC  0.910 (uncapped 0.910, 2 pass)  H100 4,387.3 -> 4,082.6   2.58s  ok
+16:30:11    [  52/1218] 2021 gross PM  base     P=  500 d=1 k=200  CC  0.303 (uncapped 0.303, 2 pass)  H100 4,387.3 -> 4,236.0   3.25s  ok
+16:30:11    [  53/1218] 2021 gross AM  base     P= 1500 d=4 k=200  CC  0.602 (uncapped 0.847, 4 pass)  H100 4,264.5 -> 3,360.9   5.80s  ok
+16:30:11    [  54/1218] 2021 gross PM  base     P=  500 d=4 k=200  CC  0.877 (uncapped 0.877, 2 pass)  H100 4,387.3 -> 3,948.6   2.71s  ok
+16:30:11    [  55/1218] 2021 gross PM  base     P=  750 d=1 k=200  CC  0.279 (uncapped 0.279, 2 pass)  H100 4,387.3 -> 4,177.9   2.90s  ok
+16:30:11    [  56/1218] 2021 gross PM  base     P=  750 d=2 k=200  CC  0.482 (uncapped 0.482, 2 pass)  H100 4,387.3 -> 4,026.1   2.61s  ok
+16:30:12    [  57/1218] 2021 gross PM  base     P=  750 d=4 k=200  CC  0.831 (uncapped 0.831, 2 pass)  H100 4,387.3 -> 3,764.5   2.95s  ok
+16:30:13    [  58/1218] 2021 gross PM  base     P= 1000 d=2 k=200  CC  0.453 (uncapped 0.453, 2 pass)  H100 4,387.3 -> 3,934.5   3.26s  ok
+16:30:13    [  59/1218] 2021 gross PM  base     P= 1000 d=1 k=200  CC  0.263 (uncapped 0.263, 2 pass)  H100 4,387.3 -> 4,124.3   3.54s  ok
+16:30:13    [  60/1218] 2021 net   all base     P=   35 d=1 k=200  CC  0.437 (uncapped 0.437, 2 pass)  H100 4,235.6 -> 4,220.3   2.02s  ok
+16:30:13    [  61/1218] 2021 gross PM  base     P= 1500 d=1 k=200  CC  0.241 (uncapped 0.241, 2 pass)  H100 4,387.3 -> 4,026.1   3.22s  ok
+16:30:13    [  62/1218] 2021 gross PM  base     P= 1500 d=2 k=200  CC  0.417 (uncapped 0.417, 2 pass)  H100 4,387.3 -> 3,762.1   3.32s  ok
+16:30:13    [  63/1218] 2021 net   all base     P=   35 d=4 k=200  CC  0.974 (uncapped 0.974, 2 pass)  H100 4,235.6 -> 4,201.5   1.95s  ok
+16:30:13    [  64/1218] 2021 net   all base     P=  135 d=1 k=200  CC  0.392 (uncapped 0.392, 2 pass)  H100 4,235.6 -> 4,182.7   2.03s  ok
+16:30:15    [  65/1218] 2021 net   all base     P=  135 d=4 k=200  CC  0.918 (uncapped 0.918, 2 pass)  H100 4,235.6 -> 4,111.7   2.20s  ok
+16:30:15    [  66/1218] 2021 gross PM  base     P= 1000 d=4 k=200  CC  0.787 (uncapped 0.792, 3 pass)  H100 4,387.3 -> 3,600.1   5.40s  ok
+16:30:15    [  67/1218] 2021 net   all base     P=  335 d=1 k=200  CC  0.328 (uncapped 0.328, 2 pass)  H100 4,235.6 -> 4,125.7   2.45s  ok
+16:30:15    [  68/1218] 2021 net   all base     P=  335 d=4 k=200  CC  0.834 (uncapped 0.834, 2 pass)  H100 4,235.6 -> 3,956.4   2.23s  ok
+16:30:15    [  69/1218] 2021 net   all base     P=   35 d=2 k=200  CC  0.740 (uncapped 0.740, 2 pass)  H100 4,235.6 -> 4,209.7   4.26s  ok
+16:30:15    [  70/1218] 2021 net   all base     P=  500 d=1 k=200  CC  0.299 (uncapped 0.299, 2 pass)  H100 4,235.6 -> 4,086.2   2.30s  ok
+16:30:16    [  71/1218] 2021 net   all base     P=  500 d=4 k=200  CC  0.717 (uncapped 0.717, 2 pass)  H100 4,235.6 -> 3,877.0   2.48s  ok
+16:30:17    [  72/1218] 2021 net   all base     P=  135 d=2 k=200  CC  0.674 (uncapped 0.674, 2 pass)  H100 4,235.6 -> 4,144.6   4.46s  ok
+16:30:17    [  73/1218] 2021 net   all base     P=  750 d=1 k=200  CC  0.273 (uncapped 0.273, 2 pass)  H100 4,235.6 -> 4,031.1   2.61s  ok
+16:30:18    [  74/1218] 2021 gross PM  base     P= 1500 d=4 k=200  CC  0.610 (uncapped 0.751, 4 pass)  H100 4,387.3 -> 3,472.0   6.75s  ok
+16:30:18    [  75/1218] 2021 net   all base     P=  750 d=4 k=200  CC  0.585 (uncapped 0.585, 2 pass)  H100 4,235.6 -> 3,796.6   3.04s  ok
+16:30:19    [  76/1218] 2021 net   all base     P=  335 d=2 k=200  CC  0.560 (uncapped 0.560, 2 pass)  H100 4,235.6 -> 4,047.9   5.91s  ok
+16:30:19    [  77/1218] 2021 net   all base     P= 1000 d=1 k=200  CC  0.249 (uncapped 0.249, 2 pass)  H100 4,235.6 -> 3,986.1   3.74s  ok
+16:30:19    [  78/1218] 2021 net   all base     P= 1000 d=4 k=200  CC  0.508 (uncapped 0.508, 2 pass)  H100 4,235.6 -> 3,727.7   3.66s  ok
+16:30:19    [  79/1218] 2021 net   AM  base     P=   35 d=1 k=200  CC  0.352 (uncapped 0.352, 2 pass)  H100 4,060.3 -> 4,047.9   1.82s  ok
+16:30:20    [  80/1218] 2021 net   all base     P=  500 d=2 k=200  CC  0.499 (uncapped 0.499, 2 pass)  H100 4,235.6 -> 3,986.1   6.85s  ok
+16:30:20    [  81/1218] 2021 net   AM  base     P=   35 d=2 k=200  CC  0.639 (uncapped 0.639, 2 pass)  H100 4,060.3 -> 4,037.9   1.94s  ok
+16:30:21    [  82/1218] 2021 net   AM  base     P=   35 d=4 k=200  CC  0.953 (uncapped 0.953, 2 pass)  H100 4,060.3 -> 4,026.9   1.73s  ok
+16:30:21    [  83/1218] 2021 net   all base     P= 1500 d=1 k=200  CC  0.209 (uncapped 0.209, 2 pass)  H100 4,235.6 -> 3,922.4   4.75s  ok
+16:30:21    [  84/1218] 2021 net   AM  base     P=  135 d=1 k=200  CC  0.332 (uncapped 0.332, 2 pass)  H100 4,060.3 -> 4,015.5   1.91s  ok
+16:30:21    [  85/1218] 2021 net   AM  base     P=  135 d=2 k=200  CC  0.603 (uncapped 0.603, 2 pass)  H100 4,060.3 -> 3,978.9   1.91s  ok
+16:30:21    [  86/1218] 2021 net   AM  base     P=  135 d=4 k=200  CC  0.936 (uncapped 0.936, 2 pass)  H100 4,060.3 -> 3,933.9   2.06s  ok
+16:30:22    [  87/1218] 2021 net   AM  base     P=  335 d=1 k=200  CC  0.302 (uncapped 0.302, 2 pass)  H100 4,060.3 -> 3,959.2   2.12s  ok
+16:30:22    [  88/1218] 2021 net   AM  base     P=  335 d=2 k=200  CC  0.542 (uncapped 0.542, 2 pass)  H100 4,060.3 -> 3,878.6   2.16s  ok
+16:30:23    [  89/1218] 2021 net   AM  base     P=  335 d=4 k=200  CC  0.908 (uncapped 0.908, 2 pass)  H100 4,060.3 -> 3,755.9   2.05s  ok
+16:30:23    [  90/1218] 2021 net   AM  base     P=  500 d=1 k=200  CC  0.284 (uncapped 0.284, 2 pass)  H100 4,060.3 -> 3,918.3   2.27s  ok
+16:30:23    [  91/1218] 2021 net   AM  base     P=  500 d=4 k=200  CC  0.890 (uncapped 0.890, 2 pass)  H100 4,060.3 -> 3,615.2   2.00s  ok
+16:30:23    [  92/1218] 2021 net   AM  base     P=  500 d=2 k=200  CC  0.511 (uncapped 0.511, 2 pass)  H100 4,060.3 -> 3,804.9   2.14s  ok
+16:30:23    [  93/1218] 2021 net   all base     P=  750 d=2 k=200  CC  0.418 (uncapped 0.418, 2 pass)  H100 4,235.6 -> 3,922.4   8.03s  ok
+16:30:24    [  94/1218] 2021 net   AM  base     P=  750 d=1 k=200  CC  0.267 (uncapped 0.267, 2 pass)  H100 4,060.3 -> 3,860.3   2.31s  ok
+16:30:24    [  95/1218] 2021 net   all base     P= 1500 d=4 k=200  CC  0.421 (uncapped 0.429, 3 pass)  H100 4,235.6 -> 3,604.5   6.62s  ok
+16:30:25    [  96/1218] 2021 net   AM  base     P=  750 d=2 k=200  CC  0.479 (uncapped 0.479, 2 pass)  H100 4,060.3 -> 3,700.9   2.37s  ok
+16:30:25    [  97/1218] 2021 net   all base     P= 1000 d=2 k=200  CC  0.365 (uncapped 0.365, 2 pass)  H100 4,235.6 -> 3,871.0  10.04s  ok
+16:30:26    [  98/1218] 2021 net   AM  base     P= 1000 d=1 k=200  CC  0.255 (uncapped 0.255, 2 pass)  H100 4,060.3 -> 3,804.9   3.05s  ok
+16:30:26    [  99/1218] 2021 net   AM  base     P= 1000 d=2 k=200  CC  0.460 (uncapped 0.460, 2 pass)  H100 4,060.3 -> 3,600.5   3.02s  ok
+16:30:26    [ 100/1218] 2021 net   PM  base     P=   35 d=1 k=200  CC  0.403 (uncapped 0.403, 2 pass)  H100 4,181.7 -> 4,167.6   1.99s  ok
+16:30:26    [ 101/1218] 2021 net   AM  base     P= 1500 d=1 k=200  CC  0.240 (uncapped 0.240, 2 pass)  H100 4,060.3 -> 3,700.9   3.16s  ok
+16:30:27    [ 102/1218] 2021 net   AM  base     P=  750 d=4 k=200  CC  0.871 (uncapped 0.873, 3 pass)  H100 4,060.3 -> 3,406.9   4.22s  ok
+16:30:27    [ 103/1218] 2021 net   PM  base     P=   35 d=2 k=200  CC  0.708 (uncapped 0.708, 2 pass)  H100 4,181.7 -> 4,156.9   1.98s  ok
+16:30:27    [ 104/1218] 2021 net   AM  base     P= 1000 d=4 k=200  CC  0.798 (uncapped 0.858, 3 pass)  H100 4,060.3 -> 3,262.3   4.18s  ok
+16:30:27    [ 105/1218] 2021 net   PM  base     P=   35 d=4 k=200  CC  0.946 (uncapped 0.946, 2 pass)  H100 4,181.7 -> 4,148.6   1.92s  ok
+16:30:27    [ 106/1218] 2021 net   all base     P= 1500 d=2 k=200  CC  0.293 (uncapped 0.293, 2 pass)  H100 4,235.6 -> 3,796.1  10.76s  ok
+16:30:28    [ 107/1218] 2021 net   PM  base     P=  135 d=1 k=200  CC  0.361 (uncapped 0.361, 2 pass)  H100 4,181.7 -> 4,133.0   1.96s  ok
+16:30:28    [ 108/1218] 2021 net   AM  base     P= 1500 d=2 k=200  CC  0.440 (uncapped 0.440, 3 pass)  H100 4,060.3 -> 3,400.7   4.85s  ok
+16:30:28    [ 109/1218] 2021 net   PM  base     P=  135 d=2 k=200  CC  0.653 (uncapped 0.653, 2 pass)  H100 4,181.7 -> 4,093.5   2.07s  ok
+16:30:28    [ 110/1218] 2021 net   PM  base     P=  135 d=4 k=200  CC  0.935 (uncapped 0.935, 2 pass)  H100 4,181.7 -> 4,055.5   2.24s  ok
+16:30:29    [ 111/1218] 2021 net   PM  base     P=  335 d=1 k=200  CC  0.323 (uncapped 0.323, 2 pass)  H100 4,181.7 -> 4,073.5   2.38s  ok
+16:30:29    [ 112/1218] 2021 net   PM  base     P=  335 d=4 k=200  CC  0.909 (uncapped 0.909, 2 pass)  H100 4,181.7 -> 3,877.1   2.06s  ok
+16:30:29    [ 113/1218] 2021 net   PM  base     P=  335 d=2 k=200  CC  0.579 (uncapped 0.579, 2 pass)  H100 4,181.7 -> 3,987.9   2.45s  ok
+16:30:30    [ 114/1218] 2021 net   AM  base     P= 1500 d=4 k=200  CC  0.590 (uncapped 0.840, 4 pass)  H100 4,060.3 -> 3,175.2   6.02s  ok
+16:30:30    [ 115/1218] 2021 net   PM  base     P=  500 d=2 k=200  CC  0.534 (uncapped 0.534, 2 pass)  H100 4,181.7 -> 3,914.5   2.55s  ok
+16:30:30    [ 116/1218] 2021 net   PM  base     P=  500 d=4 k=200  CC  0.886 (uncapped 0.886, 2 pass)  H100 4,181.7 -> 3,738.7   2.50s  ok
+16:30:30    [ 117/1218] 2021 net   PM  base     P=  500 d=1 k=200  CC  0.304 (uncapped 0.304, 2 pass)  H100 4,181.7 -> 4,029.5   2.58s  ok
+16:30:30    [ 118/1218] 2021 net   PM  base     P=  750 d=1 k=200  CC  0.283 (uncapped 0.283, 2 pass)  H100 4,181.7 -> 3,969.4   2.77s  ok
+16:30:31    [ 119/1218] 2021 net   PM  base     P=  750 d=2 k=200  CC  0.491 (uncapped 0.491, 2 pass)  H100 4,181.7 -> 3,813.4   2.68s  ok
+16:30:31    [ 120/1218] 2021 net   PM  base     P=  750 d=4 k=200  CC  0.839 (uncapped 0.839, 2 pass)  H100 4,181.7 -> 3,552.3   2.90s  ok
+16:30:31    [ 121/1218] 2021 net   PM  base     P= 1000 d=1 k=200  CC  0.267 (uncapped 0.267, 2 pass)  H100 4,181.7 -> 3,914.5   2.91s  ok
+16:30:32    [ 122/1218] 2022 gross all base     P=   35 d=1 k=200  CC  0.466 (uncapped 0.466, 2 pass)  H100 4,399.3 -> 4,383.0   2.35s  ok
+16:30:32    [ 123/1218] 2021 net   PM  base     P= 1000 d=2 k=200  CC  0.461 (uncapped 0.461, 2 pass)  H100 4,181.7 -> 3,720.6   3.57s  ok
+16:30:32    [ 124/1218] 2022 gross all base     P=   35 d=4 k=200  CC  0.995 (uncapped 0.995, 2 pass)  H100 4,399.3 -> 4,364.4   1.95s  ok
+16:30:33    [ 125/1218] 2021 net   PM  base     P= 1500 d=1 k=200  CC  0.246 (uncapped 0.246, 2 pass)  H100 4,181.7 -> 3,813.4   3.66s  ok
+16:30:33    [ 126/1218] 2022 gross all base     P=  135 d=1 k=200  CC  0.430 (uncapped 0.430, 2 pass)  H100 4,399.3 -> 4,341.3   2.03s  ok
+16:30:33    [ 127/1218] 2021 net   PM  base     P= 1500 d=2 k=200  CC  0.422 (uncapped 0.422, 2 pass)  H100 4,181.7 -> 3,548.4   3.32s  ok
+16:30:33    [ 128/1218] 2022 gross all base     P=  135 d=4 k=200  CC  0.962 (uncapped 0.962, 2 pass)  H100 4,399.3 -> 4,269.4   2.02s  ok
+16:30:34    [ 129/1218] 2022 gross all base     P=   35 d=2 k=200  CC  0.808 (uncapped 0.808, 2 pass)  H100 4,399.3 -> 4,371.0   4.36s  ok
+16:30:34    [ 130/1218] 2022 gross all base     P=  335 d=1 k=200  CC  0.385 (uncapped 0.385, 2 pass)  H100 4,399.3 -> 4,270.3   2.19s  ok
+16:30:34    [ 131/1218] 2022 gross all base     P=  335 d=4 k=200  CC  0.883 (uncapped 0.883, 2 pass)  H100 4,399.3 -> 4,103.5   2.18s  ok
+16:30:35    [ 132/1218] 2022 gross all base     P=  500 d=1 k=200  CC  0.353 (uncapped 0.353, 2 pass)  H100 4,399.3 -> 4,222.6   2.36s  ok
+16:30:35    [ 133/1218] 2022 gross all base     P=  500 d=4 k=200  CC  0.778 (uncapped 0.778, 2 pass)  H100 4,399.3 -> 4,010.5   2.27s  ok
+16:30:36    [ 134/1218] 2022 gross all base     P=  750 d=1 k=200  CC  0.320 (uncapped 0.320, 2 pass)  H100 4,399.3 -> 4,159.6   2.59s  ok
+16:30:36    [ 135/1218] 2021 net   PM  base     P= 1000 d=4 k=200  CC  0.791 (uncapped 0.800, 4 pass)  H100 4,181.7 -> 3,390.4   7.25s  ok
+16:30:36    [ 136/1218] 2022 gross all base     P=  135 d=2 k=200  CC  0.758 (uncapped 0.758, 2 pass)  H100 4,399.3 -> 4,296.9   5.06s  ok
+16:30:37    [ 137/1218] 2022 gross all base     P=  750 d=4 k=200  CC  0.635 (uncapped 0.635, 2 pass)  H100 4,399.3 -> 3,923.4   3.02s  ok
+16:30:38    [ 138/1218] 2022 gross all base     P=  335 d=2 k=200  CC  0.654 (uncapped 0.654, 2 pass)  H100 4,399.3 -> 4,180.1   6.00s  ok
+16:30:38    [ 139/1218] 2022 gross all base     P= 1000 d=1 k=200  CC  0.291 (uncapped 0.291, 2 pass)  H100 4,399.3 -> 4,108.4   3.79s  ok
+16:30:39    [ 140/1218] 2021 net   PM  base     P= 1500 d=4 k=200  CC  0.595 (uncapped 0.756, 5 pass)  H100 4,181.7 -> 3,288.8   8.82s  ok
+16:30:39    [ 141/1218] 2022 gross AM  base     P=   35 d=1 k=200  CC  0.416 (uncapped 0.416, 2 pass)  H100 4,157.0 -> 4,142.5   1.93s  ok
+16:30:39    [ 142/1218] 2022 gross all base     P= 1000 d=4 k=200  CC  0.547 (uncapped 0.547, 2 pass)  H100 4,399.3 -> 3,852.0   4.02s  ok
+16:30:39    [ 143/1218] 2022 gross all base     P=  500 d=2 k=200  CC  0.582 (uncapped 0.582, 2 pass)  H100 4,399.3 -> 4,108.4   6.70s  ok
+16:30:40    [ 144/1218] 2022 gross AM  base     P=   35 d=2 k=200  CC  0.748 (uncapped 0.748, 2 pass)  H100 4,157.0 -> 4,130.8   1.75s  ok
+16:30:40    [ 145/1218] 2022 gross AM  base     P=   35 d=4 k=200  CC  0.990 (uncapped 0.990, 2 pass)  H100 4,157.0 -> 4,122.4   1.90s  ok
+16:30:40    [ 146/1218] 2022 gross all base     P= 1500 d=1 k=200  CC  0.239 (uncapped 0.239, 2 pass)  H100 4,399.3 -> 4,040.8   4.56s  ok
+16:30:41    [ 147/1218] 2022 gross all base     P= 1500 d=4 k=200  CC  0.457 (uncapped 0.457, 2 pass)  H100 4,399.3 -> 3,713.3   4.57s  ok
+16:30:41    [ 148/1218] 2022 gross AM  base     P=  135 d=1 k=200  CC  0.399 (uncapped 0.399, 2 pass)  H100 4,157.0 -> 4,103.2   2.07s  ok
+16:30:41    [ 149/1218] 2022 gross AM  base     P=  135 d=2 k=200  CC  0.704 (uncapped 0.704, 2 pass)  H100 4,157.0 -> 4,062.0   2.07s  ok
+16:30:41    [ 150/1218] 2022 gross AM  base     P=  135 d=4 k=200  CC  0.982 (uncapped 0.982, 2 pass)  H100 4,157.0 -> 4,024.4   2.06s  ok
+16:30:42    [ 151/1218] 2022 gross AM  base     P=  335 d=1 k=200  CC  0.363 (uncapped 0.363, 2 pass)  H100 4,157.0 -> 4,035.4   2.23s  ok
+16:30:42    [ 152/1218] 2022 gross AM  base     P=  335 d=2 k=200  CC  0.633 (uncapped 0.633, 2 pass)  H100 4,157.0 -> 3,945.1   2.09s  ok
+16:30:42    [ 153/1218] 2022 gross all base     P=  750 d=2 k=200  CC  0.478 (uncapped 0.478, 2 pass)  H100 4,399.3 -> 4,040.8   7.85s  ok
+16:30:42    [ 154/1218] 2022 gross AM  base     P=  335 d=4 k=200  CC  0.958 (uncapped 0.958, 2 pass)  H100 4,157.0 -> 3,836.1   2.05s  ok
+16:30:43    [ 155/1218] 2022 gross AM  base     P=  500 d=1 k=200  CC  0.338 (uncapped 0.338, 2 pass)  H100 4,157.0 -> 3,988.1   2.27s  ok
+16:30:43    [ 156/1218] 2022 gross AM  base     P=  500 d=4 k=200  CC  0.937 (uncapped 0.937, 2 pass)  H100 4,157.0 -> 3,688.5   2.02s  ok
+16:30:43    [ 157/1218] 2022 gross AM  base     P=  500 d=2 k=200  CC  0.580 (uncapped 0.580, 2 pass)  H100 4,157.0 -> 3,867.1   2.12s  ok
+16:30:44    [ 158/1218] 2022 gross AM  base     P=  750 d=1 k=200  CC  0.310 (uncapped 0.310, 2 pass)  H100 4,157.0 -> 3,924.9   2.48s  ok
+16:30:44    [ 159/1218] 2022 gross AM  base     P=  750 d=2 k=200  CC  0.529 (uncapped 0.529, 2 pass)  H100 4,157.0 -> 3,760.3   2.52s  ok
+16:30:44    [ 160/1218] 2022 gross AM  base     P=  750 d=4 k=200  CC  0.915 (uncapped 0.915, 2 pass)  H100 4,157.0 -> 3,470.6   2.77s  ok
+16:30:45    [ 161/1218] 2022 gross AM  base     P= 1000 d=2 k=200  CC  0.498 (uncapped 0.498, 2 pass)  H100 4,157.0 -> 3,659.3   2.94s  ok
+16:30:45    [ 162/1218] 2022 gross all base     P= 1000 d=2 k=200  CC  0.402 (uncapped 0.402, 2 pass)  H100 4,399.3 -> 3,997.4  10.00s  ok
+16:30:45    [ 163/1218] 2022 gross AM  base     P= 1000 d=1 k=200  CC  0.290 (uncapped 0.290, 2 pass)  H100 4,157.0 -> 3,867.1   3.17s  ok
+16:30:46    [ 164/1218] 2022 gross AM  base     P= 1500 d=2 k=200  CC  0.465 (uncapped 0.465, 2 pass)  H100 4,157.0 -> 3,459.1   2.91s  ok
+16:30:46    [ 165/1218] 2022 gross PM  base     P=   35 d=1 k=200  CC  0.396 (uncapped 0.396, 2 pass)  H100 4,364.3 -> 4,350.4   1.97s  ok
+16:30:46    [ 166/1218] 2022 gross AM  base     P= 1500 d=1 k=200  CC  0.264 (uncapped 0.264, 2 pass)  H100 4,157.0 -> 3,760.3   3.33s  ok
+16:30:46    [ 167/1218] 2022 gross PM  base     P=   35 d=2 k=200  CC  0.728 (uncapped 0.728, 2 pass)  H100 4,364.3 -> 4,338.8   2.08s  ok
+16:30:46    [ 168/1218] 2022 gross PM  base     P=   35 d=4 k=200  CC  0.988 (uncapped 0.988, 2 pass)  H100 4,364.3 -> 4,329.7   1.97s  ok
+16:30:46    [ 169/1218] 2022 gross AM  base     P= 1000 d=4 k=200  CC  0.864 (uncapped 0.894, 3 pass)  H100 4,157.0 -> 3,293.0   4.25s  ok
+16:30:47    [ 170/1218] 2022 gross all base     P= 1500 d=2 k=200  CC  0.317 (uncapped 0.317, 2 pass)  H100 4,399.3 -> 3,923.3  10.78s  ok
+16:30:47    [ 171/1218] 2022 gross PM  base     P=  135 d=1 k=200  CC  0.369 (uncapped 0.369, 2 pass)  H100 4,364.3 -> 4,314.4   2.15s  ok
+16:30:47    [ 172/1218] 2022 gross PM  base     P=  135 d=4 k=200  CC  0.979 (uncapped 0.979, 2 pass)  H100 4,364.3 -> 4,232.2   1.96s  ok
+16:30:47    [ 173/1218] 2022 gross PM  base     P=  135 d=2 k=200  CC  0.687 (uncapped 0.687, 2 pass)  H100 4,364.3 -> 4,271.5   2.19s  ok
+16:30:48    [ 174/1218] 2022 gross PM  base     P=  335 d=1 k=200  CC  0.345 (uncapped 0.345, 2 pass)  H100 4,364.3 -> 4,248.8   2.35s  ok
+16:30:48    [ 175/1218] 2022 gross PM  base     P=  335 d=4 k=200  CC  0.954 (uncapped 0.954, 2 pass)  H100 4,364.3 -> 4,044.8   2.11s  ok
+16:30:48    [ 176/1218] 2022 gross PM  base     P=  335 d=2 k=200  CC  0.623 (uncapped 0.623, 2 pass)  H100 4,364.3 -> 4,155.7   2.29s  ok
+16:30:49    [ 177/1218] 2022 gross PM  base     P=  500 d=1 k=200  CC  0.325 (uncapped 0.325, 2 pass)  H100 4,364.3 -> 4,201.7   2.52s  ok
+16:30:49    [ 178/1218] 2022 gross AM  base     P= 1500 d=4 k=200  CC  0.643 (uncapped 0.865, 4 pass)  H100 4,157.0 -> 3,192.6   5.88s  ok
+16:30:49    [ 179/1218] 2022 gross PM  base     P=  500 d=2 k=200  CC  0.581 (uncapped 0.581, 2 pass)  H100 4,364.3 -> 4,073.6   2.28s  ok
+16:30:49    [ 180/1218] 2022 gross PM  base     P=  500 d=4 k=200  CC  0.925 (uncapped 0.925, 2 pass)  H100 4,364.3 -> 3,901.9   2.33s  ok
+16:30:49    [ 181/1218] 2022 gross PM  base     P=  750 d=1 k=200  CC  0.306 (uncapped 0.306, 2 pass)  H100 4,364.3 -> 4,134.9   2.48s  ok
+16:30:50    [ 182/1218] 2022 gross PM  base     P=  750 d=2 k=200  CC  0.535 (uncapped 0.535, 2 pass)  H100 4,364.3 -> 3,963.4   2.54s  ok
+16:30:50    [ 183/1218] 2022 gross PM  base     P=  750 d=4 k=200  CC  0.885 (uncapped 0.885, 2 pass)  H100 4,364.3 -> 3,700.7   2.83s  ok
+16:30:50    [ 184/1218] 2022 gross PM  base     P= 1000 d=1 k=200  CC  0.291 (uncapped 0.291, 2 pass)  H100 4,364.3 -> 4,073.6   2.93s  ok
+16:30:51    [ 185/1218] 2022 net   all base     P=   35 d=1 k=200  CC  0.444 (uncapped 0.444, 2 pass)  H100 4,190.9 -> 4,175.4   1.85s  ok
+16:30:51    [ 186/1218] 2022 gross PM  base     P= 1000 d=2 k=200  CC  0.499 (uncapped 0.499, 2 pass)  H100 4,364.3 -> 3,865.7   2.79s  ok
+16:30:51    [ 187/1218] 2022 gross PM  base     P= 1500 d=1 k=200  CC  0.267 (uncapped 0.267, 2 pass)  H100 4,364.3 -> 3,963.4   2.68s  ok
+16:30:51    [ 188/1218] 2022 gross PM  base     P= 1000 d=4 k=200  CC  0.843 (uncapped 0.843, 2 pass)  H100 4,364.3 -> 3,520.9   2.87s  ok
+16:30:51    [ 189/1218] 2022 net   all base     P=   35 d=4 k=200  CC  0.996 (uncapped 0.996, 2 pass)  H100 4,190.9 -> 4,156.1   1.78s  ok
+16:30:52    [ 190/1218] 2022 net   all base     P=  135 d=1 k=200  CC  0.411 (uncapped 0.411, 2 pass)  H100 4,190.9 -> 4,135.5   1.87s  ok
+16:30:52    [ 191/1218] 2022 gross PM  base     P= 1500 d=2 k=200  CC  0.452 (uncapped 0.452, 2 pass)  H100 4,364.3 -> 3,685.9   3.11s  ok
+16:30:52    [ 192/1218] 2022 net   all base     P=  135 d=4 k=200  CC  0.980 (uncapped 0.980, 2 pass)  H100 4,190.9 -> 4,058.7   1.80s  ok
+16:30:53    [ 193/1218] 2022 net   all base     P=  335 d=1 k=200  CC  0.363 (uncapped 0.363, 2 pass)  H100 4,190.9 -> 4,069.3   2.10s  ok
+16:30:53    [ 194/1218] 2022 net   all base     P=  335 d=4 k=200  CC  0.875 (uncapped 0.875, 2 pass)  H100 4,190.9 -> 3,897.7   2.03s  ok
+16:30:53    [ 195/1218] 2022 net   all base     P=   35 d=2 k=200  CC  0.759 (uncapped 0.759, 2 pass)  H100 4,190.9 -> 4,164.4   4.06s  ok
+16:30:53    [ 196/1218] 2022 net   all base     P=  500 d=1 k=200  CC  0.331 (uncapped 0.331, 2 pass)  H100 4,190.9 -> 4,025.2   2.15s  ok
+16:30:54    [ 197/1218] 2022 net   all base     P=  500 d=4 k=200  CC  0.763 (uncapped 0.763, 2 pass)  H100 4,190.9 -> 3,809.2   2.11s  ok
+16:30:54    [ 198/1218] 2022 net   all base     P=  750 d=1 k=200  CC  0.295 (uncapped 0.295, 2 pass)  H100 4,190.9 -> 3,969.3   2.16s  ok
+16:30:54    [ 199/1218] 2022 net   all base     P=  135 d=2 k=200  CC  0.710 (uncapped 0.710, 2 pass)  H100 4,190.9 -> 4,095.0   4.16s  ok
+16:30:55    [ 200/1218] 2022 gross PM  base     P= 1500 d=4 k=200  CC  0.691 (uncapped 0.786, 4 pass)  H100 4,364.3 -> 3,327.6   5.90s  ok
+16:30:55    [ 201/1218] 2022 net   all base     P=  750 d=4 k=200  CC  0.624 (uncapped 0.624, 2 pass)  H100 4,190.9 -> 3,723.3   2.45s  ok
+16:30:56    [ 202/1218] 2022 net   all base     P= 1000 d=1 k=200  CC  0.271 (uncapped 0.271, 2 pass)  H100 4,190.9 -> 3,919.7   2.96s  ok
+16:30:56    [ 203/1218] 2022 net   all base     P=  335 d=2 k=200  CC  0.611 (uncapped 0.611, 2 pass)  H100 4,190.9 -> 3,986.1   5.10s  ok
+16:30:56    [ 204/1218] 2022 net   all base     P= 1000 d=4 k=200  CC  0.539 (uncapped 0.539, 2 pass)  H100 4,190.9 -> 3,652.2   3.26s  ok
+16:30:56    [ 205/1218] 2022 net   AM  base     P=   35 d=1 k=200  CC  0.367 (uncapped 0.367, 2 pass)  H100 3,955.1 -> 3,942.2   1.83s  ok
+16:30:57    [ 206/1218] 2022 net   all base     P=  500 d=2 k=200  CC  0.543 (uncapped 0.543, 2 pass)  H100 4,190.9 -> 3,919.7   5.80s  ok
+16:30:57    [ 207/1218] 2022 net   AM  base     P=   35 d=2 k=200  CC  0.662 (uncapped 0.662, 2 pass)  H100 3,955.1 -> 3,931.9   1.79s  ok
+16:30:57    [ 208/1218] 2022 net   AM  base     P=   35 d=4 k=200  CC  0.954 (uncapped 0.954, 2 pass)  H100 3,955.1 -> 3,921.7   1.72s  ok
+16:30:58    [ 209/1218] 2022 net   all base     P= 1500 d=1 k=200  CC  0.233 (uncapped 0.233, 2 pass)  H100 4,190.9 -> 3,841.9   3.95s  ok
+16:30:58    [ 210/1218] 2022 net   AM  base     P=  135 d=1 k=200  CC  0.342 (uncapped 0.342, 2 pass)  H100 3,955.1 -> 3,908.9   1.77s  ok
+16:30:58    [ 211/1218] 2022 net   all base     P= 1500 d=4 k=200  CC  0.449 (uncapped 0.451, 2 pass)  H100 4,190.9 -> 3,516.9   3.91s  ok
+16:30:58    [ 212/1218] 2022 net   AM  base     P=  135 d=2 k=200  CC  0.623 (uncapped 0.623, 2 pass)  H100 3,955.1 -> 3,870.9   1.72s  ok
+16:30:58    [ 213/1218] 2022 net   AM  base     P=  135 d=4 k=200  CC  0.937 (uncapped 0.937, 2 pass)  H100 3,955.1 -> 3,828.6   1.73s  ok
+16:30:59    [ 214/1218] 2022 net   AM  base     P=  335 d=1 k=200  CC  0.309 (uncapped 0.309, 2 pass)  H100 3,955.1 -> 3,851.6   1.90s  ok
+16:30:59    [ 215/1218] 2022 net   all base     P=  750 d=2 k=200  CC  0.465 (uncapped 0.465, 2 pass)  H100 4,190.9 -> 3,841.9   6.68s  ok
+16:30:59    [ 216/1218] 2022 net   AM  base     P=  335 d=2 k=200  CC  0.568 (uncapped 0.568, 2 pass)  H100 3,955.1 -> 3,764.7   1.93s  ok
+16:30:59    [ 217/1218] 2022 net   AM  base     P=  335 d=4 k=200  CC  0.914 (uncapped 0.914, 2 pass)  H100 3,955.1 -> 3,648.8   1.85s  ok
+16:31:00    [ 218/1218] 2022 net   AM  base     P=  500 d=1 k=200  CC  0.293 (uncapped 0.293, 2 pass)  H100 3,955.1 -> 3,808.3   2.03s  ok
+16:31:00    [ 219/1218] 2022 net   AM  base     P=  500 d=2 k=200  CC  0.542 (uncapped 0.542, 2 pass)  H100 3,955.1 -> 3,684.0   2.11s  ok
+16:31:00    [ 220/1218] 2022 net   AM  base     P=  500 d=4 k=200  CC  0.903 (uncapped 0.903, 2 pass)  H100 3,955.1 -> 3,503.5   1.92s  ok
+16:31:00    [ 221/1218] 2022 net   AM  base     P=  750 d=1 k=200  CC  0.281 (uncapped 0.281, 2 pass)  H100 3,955.1 -> 3,744.2   2.28s  ok
+16:31:00    [ 222/1218] 2022 net   AM  base     P=  750 d=2 k=200  CC  0.510 (uncapped 0.510, 2 pass)  H100 3,955.1 -> 3,572.4   2.31s  ok
+16:31:01    [ 223/1218] 2022 net   all base     P= 1000 d=2 k=200  CC  0.396 (uncapped 0.396, 2 pass)  H100 4,190.9 -> 3,795.4   7.97s  ok
+16:31:01    [ 224/1218] 2022 net   AM  base     P=  750 d=4 k=200  CC  0.889 (uncapped 0.889, 2 pass)  H100 3,955.1 -> 3,288.3   2.40s  ok
+16:31:01    [ 225/1218] 2022 net   AM  base     P= 1000 d=1 k=200  CC  0.271 (uncapped 0.271, 2 pass)  H100 3,955.1 -> 3,684.0   2.72s  ok
+16:31:01    [ 226/1218] 2022 net   AM  base     P= 1000 d=2 k=200  CC  0.486 (uncapped 0.486, 2 pass)  H100 3,955.1 -> 3,469.0   2.69s  ok
+16:31:02    [ 227/1218] 2022 net   PM  base     P=   35 d=1 k=200  CC  0.406 (uncapped 0.406, 2 pass)  H100 4,122.3 -> 4,108.1   1.72s  ok
+16:31:02    [ 228/1218] 2022 net   PM  base     P=   35 d=2 k=200  CC  0.682 (uncapped 0.682, 2 pass)  H100 4,122.3 -> 4,098.4   1.77s  ok
+16:31:02    [ 229/1218] 2022 net   AM  base     P= 1500 d=2 k=200  CC  0.458 (uncapped 0.458, 2 pass)  H100 3,955.1 -> 3,268.1   2.54s  ok
+16:31:02    [ 230/1218] 2022 net   AM  base     P= 1500 d=1 k=200  CC  0.255 (uncapped 0.255, 2 pass)  H100 3,955.1 -> 3,572.4   2.80s  ok
+16:31:02    [ 231/1218] 2022 net   PM  base     P=   35 d=4 k=200  CC  0.972 (uncapped 0.972, 2 pass)  H100 4,122.3 -> 4,088.3   1.67s  ok
+16:31:03    [ 232/1218] 2022 net   PM  base     P=  135 d=1 k=200  CC  0.369 (uncapped 0.369, 2 pass)  H100 4,122.3 -> 4,072.4   1.66s  ok
+16:31:03    [ 233/1218] 2022 net   all base     P= 1500 d=2 k=200  CC  0.312 (uncapped 0.312, 2 pass)  H100 4,190.9 -> 3,722.2   9.12s  ok
+16:31:03    [ 234/1218] 2022 net   PM  base     P=  135 d=2 k=200  CC  0.643 (uncapped 0.643, 2 pass)  H100 4,122.3 -> 4,035.4   1.81s  ok
+16:31:03    [ 235/1218] 2022 net   PM  base     P=  135 d=4 k=200  CC  0.958 (uncapped 0.958, 2 pass)  H100 4,122.3 -> 3,992.9   1.76s  ok
+16:31:04    [ 236/1218] 2022 net   PM  base     P=  335 d=1 k=200  CC  0.322 (uncapped 0.322, 2 pass)  H100 4,122.3 -> 4,014.4   1.86s  ok
+16:31:04    [ 237/1218] 2022 net   PM  base     P=  335 d=4 k=200  CC  0.925 (uncapped 0.925, 2 pass)  H100 4,122.3 -> 3,812.5   1.88s  ok
+16:31:04    [ 238/1218] 2022 net   PM  base     P=  335 d=2 k=200  CC  0.574 (uncapped 0.574, 2 pass)  H100 4,122.3 -> 3,930.1   2.01s  ok
+16:31:04    [ 239/1218] 2022 net   PM  base     P=  500 d=1 k=200  CC  0.302 (uncapped 0.302, 2 pass)  H100 4,122.3 -> 3,971.5   2.08s  ok
+16:31:05    [ 240/1218] 2022 net   PM  base     P=  500 d=2 k=200  CC  0.533 (uncapped 0.533, 2 pass)  H100 4,122.3 -> 3,856.0   2.15s  ok
+16:31:05    [ 241/1218] 2022 net   AM  base     P= 1000 d=4 k=200  CC  0.829 (uncapped 0.875, 4 pass)  H100 3,955.1 -> 3,125.9   5.43s  ok
+16:31:05    [ 242/1218] 2022 net   PM  base     P=  500 d=4 k=200  CC  0.892 (uncapped 0.892, 2 pass)  H100 4,122.3 -> 3,676.4   2.14s  ok
+16:31:05    [ 243/1218] 2022 net   PM  base     P=  750 d=1 k=200  CC  0.282 (uncapped 0.282, 2 pass)  H100 4,122.3 -> 3,911.1   2.19s  ok
+16:31:05    [ 244/1218] 2022 net   AM  base     P= 1500 d=4 k=200  CC  0.623 (uncapped 0.856, 4 pass)  H100 3,955.1 -> 3,020.1   5.37s  ok
+16:31:05    [ 245/1218] 2022 net   PM  base     P=  750 d=2 k=200  CC  0.490 (uncapped 0.490, 2 pass)  H100 4,122.3 -> 3,754.6   2.27s  ok
+16:31:06    [ 246/1218] 2022 net   PM  base     P=  750 d=4 k=200  CC  0.840 (uncapped 0.840, 2 pass)  H100 4,122.3 -> 3,492.2   2.43s  ok
+16:31:07    [ 247/1218] 2022 net   PM  base     P= 1000 d=1 k=200  CC  0.266 (uncapped 0.266, 2 pass)  H100 4,122.3 -> 3,856.0   2.68s  ok
+16:31:07    [ 248/1218] 2023 gross all base     P=   35 d=1 k=200  CC  0.497 (uncapped 0.497, 2 pass)  H100 4,454.2 -> 4,436.7   1.81s  ok
+16:31:07    [ 249/1218] 2022 net   PM  base     P= 1000 d=2 k=200  CC  0.461 (uncapped 0.461, 2 pass)  H100 4,122.3 -> 3,661.1   2.74s  ok
+16:31:07    [ 250/1218] 2022 net   PM  base     P= 1500 d=1 k=200  CC  0.245 (uncapped 0.245, 2 pass)  H100 4,122.3 -> 3,754.6   2.64s  ok
+16:31:07    [ 251/1218] 2023 gross all base     P=   35 d=4 k=200  CC  0.990 (uncapped 0.990, 2 pass)  H100 4,454.2 -> 4,419.5   1.85s  ok
+16:31:08    [ 252/1218] 2023 gross all base     P=  135 d=1 k=200  CC  0.460 (uncapped 0.460, 2 pass)  H100 4,454.2 -> 4,392.1   2.15s  ok
+16:31:08    [ 253/1218] 2022 net   PM  base     P= 1500 d=2 k=200  CC  0.423 (uncapped 0.423, 2 pass)  H100 4,122.3 -> 3,487.8   3.12s  ok
+16:31:09    [ 254/1218] 2023 gross all base     P=  135 d=4 k=200  CC  0.987 (uncapped 0.987, 2 pass)  H100 4,454.2 -> 4,320.8   2.09s  ok
+16:31:09    [ 255/1218] 2023 gross all base     P=  335 d=1 k=200  CC  0.408 (uncapped 0.408, 2 pass)  H100 4,454.2 -> 4,317.3   2.15s  ok
+16:31:09    [ 256/1218] 2023 gross all base     P=   35 d=2 k=200  CC  0.831 (uncapped 0.831, 2 pass)  H100 4,454.2 -> 4,425.1   3.97s  ok
+16:31:09    [ 257/1218] 2023 gross all base     P=  335 d=4 k=200  CC  0.953 (uncapped 0.953, 2 pass)  H100 4,454.2 -> 4,134.8   2.22s  ok
+16:31:09    [ 258/1218] 2023 gross all base     P=  500 d=1 k=200  CC  0.382 (uncapped 0.382, 2 pass)  H100 4,454.2 -> 4,263.3   2.28s  ok
+16:31:10    [ 259/1218] 2023 gross all base     P=  500 d=4 k=200  CC  0.850 (uncapped 0.850, 2 pass)  H100 4,454.2 -> 4,029.0   2.28s  ok
+16:31:10    [ 260/1218] 2023 gross all base     P=  135 d=2 k=200  CC  0.804 (uncapped 0.804, 2 pass)  H100 4,454.2 -> 4,345.6   4.42s  ok
+16:31:11    [ 261/1218] 2022 net   PM  base     P= 1000 d=4 k=200  CC  0.797 (uncapped 0.802, 4 pass)  H100 4,122.3 -> 3,325.1   6.85s  ok
+16:31:11    [ 262/1218] 2023 gross all base     P=  750 d=1 k=200  CC  0.351 (uncapped 0.351, 2 pass)  H100 4,454.2 -> 4,190.7   2.37s  ok
+16:31:11    [ 263/1218] 2022 net   PM  base     P= 1500 d=4 k=200  CC  0.641 (uncapped 0.758, 4 pass)  H100 4,122.3 -> 3,160.5   6.31s  ok
+16:31:12    [ 264/1218] 2023 gross all base     P=  335 d=2 k=200  CC  0.717 (uncapped 0.717, 2 pass)  H100 4,454.2 -> 4,214.1   5.29s  ok
+16:31:12    [ 265/1218] 2023 gross all base     P=  750 d=4 k=200  CC  0.703 (uncapped 0.703, 2 pass)  H100 4,454.2 -> 3,927.2   3.12s  ok
+16:31:13    [ 266/1218] 2023 gross all base     P= 1000 d=1 k=200  CC  0.323 (uncapped 0.323, 2 pass)  H100 4,454.2 -> 4,130.7   3.50s  ok
+16:31:13    [ 267/1218] 2023 gross AM  base     P=   35 d=1 k=200  CC  0.451 (uncapped 0.451, 2 pass)  H100 4,249.3 -> 4,233.5   2.00s  ok
+16:31:14    [ 268/1218] 2023 gross AM  base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,249.3 -> 4,214.3   1.84s  ok
+16:31:14    [ 269/1218] 2023 gross AM  base     P=   35 d=2 k=200  CC  0.795 (uncapped 0.795, 2 pass)  H100 4,249.3 -> 4,221.5   1.94s  ok
+16:31:14    [ 270/1218] 2023 gross all base     P= 1000 d=4 k=200  CC  0.598 (uncapped 0.598, 2 pass)  H100 4,454.2 -> 3,855.9   4.23s  ok
+16:31:14    [ 271/1218] 2023 gross all base     P=  500 d=2 k=200  CC  0.646 (uncapped 0.646, 2 pass)  H100 4,454.2 -> 4,131.2   6.85s  ok
+16:31:15    [ 272/1218] 2023 gross all base     P= 1500 d=1 k=200  CC  0.271 (uncapped 0.271, 2 pass)  H100 4,454.2 -> 4,047.3   4.51s  ok
+16:31:15    [ 273/1218] 2023 gross AM  base     P=  135 d=1 k=200  CC  0.410 (uncapped 0.410, 2 pass)  H100 4,249.3 -> 4,194.0   1.89s  ok
+16:31:15    [ 274/1218] 2023 gross AM  base     P=  135 d=2 k=200  CC  0.750 (uncapped 0.750, 2 pass)  H100 4,249.3 -> 4,148.1   1.90s  ok
+16:31:15    [ 275/1218] 2023 gross all base     P= 1500 d=4 k=200  CC  0.481 (uncapped 0.489, 2 pass)  H100 4,454.2 -> 3,732.2   4.25s  ok
+16:31:16    [ 276/1218] 2023 gross AM  base     P=  135 d=4 k=200  CC  0.998 (uncapped 0.998, 2 pass)  H100 4,249.3 -> 4,114.6   1.79s  ok
+16:31:16    [ 277/1218] 2023 gross AM  base     P=  335 d=1 k=200  CC  0.374 (uncapped 0.374, 2 pass)  H100 4,249.3 -> 4,123.9   1.96s  ok
+16:31:16    [ 278/1218] 2023 gross AM  base     P=  335 d=2 k=200  CC  0.679 (uncapped 0.679, 2 pass)  H100 4,249.3 -> 4,021.9   1.94s  ok
+16:31:16    [ 279/1218] 2023 gross all base     P=  750 d=2 k=200  CC  0.542 (uncapped 0.542, 2 pass)  H100 4,454.2 -> 4,047.3   7.42s  ok
+16:31:16    [ 280/1218] 2023 gross AM  base     P=  335 d=4 k=200  CC  0.980 (uncapped 0.980, 2 pass)  H100 4,249.3 -> 3,920.9   1.90s  ok
+16:31:17    [ 281/1218] 2023 gross AM  base     P=  500 d=1 k=200  CC  0.356 (uncapped 0.356, 2 pass)  H100 4,249.3 -> 4,071.1   1.99s  ok
+16:31:17    [ 282/1218] 2023 gross AM  base     P=  500 d=2 k=200  CC  0.635 (uncapped 0.635, 2 pass)  H100 4,249.3 -> 3,931.6   1.92s  ok
+16:31:17    [ 283/1218] 2023 gross AM  base     P=  500 d=4 k=200  CC  0.962 (uncapped 0.962, 2 pass)  H100 4,249.3 -> 3,768.2   1.94s  ok
+16:31:18    [ 284/1218] 2023 gross AM  base     P=  750 d=1 k=200  CC  0.336 (uncapped 0.336, 2 pass)  H100 4,249.3 -> 3,997.0   2.26s  ok
+16:31:18    [ 285/1218] 2023 gross AM  base     P=  750 d=2 k=200  CC  0.580 (uncapped 0.580, 2 pass)  H100 4,249.3 -> 3,814.0   2.25s  ok
+16:31:18    [ 286/1218] 2023 gross AM  base     P=  750 d=4 k=200  CC  0.941 (uncapped 0.941, 2 pass)  H100 4,249.3 -> 3,543.9   2.37s  ok
+16:31:19    [ 287/1218] 2023 gross AM  base     P= 1000 d=2 k=200  CC  0.541 (uncapped 0.541, 2 pass)  H100 4,249.3 -> 3,707.9   2.49s  ok
+16:31:19    [ 288/1218] 2023 gross AM  base     P= 1000 d=1 k=200  CC  0.318 (uncapped 0.318, 2 pass)  H100 4,249.3 -> 3,931.2   2.74s  ok
+16:31:19    [ 289/1218] 2023 gross all base     P= 1000 d=2 k=200  CC  0.456 (uncapped 0.456, 2 pass)  H100 4,454.2 -> 3,997.9   9.62s  ok
+16:31:19    [ 290/1218] 2023 gross AM  base     P= 1500 d=2 k=200  CC  0.495 (uncapped 0.495, 2 pass)  H100 4,249.3 -> 3,506.3   2.60s  ok
+16:31:19    [ 291/1218] 2023 gross PM  base     P=   35 d=1 k=200  CC  0.458 (uncapped 0.458, 2 pass)  H100 4,395.6 -> 4,379.5   1.87s  ok
+16:31:20    [ 292/1218] 2023 gross AM  base     P= 1500 d=1 k=200  CC  0.290 (uncapped 0.290, 2 pass)  H100 4,249.3 -> 3,814.0   3.14s  ok
+16:31:20    [ 293/1218] 2023 gross PM  base     P=   35 d=2 k=200  CC  0.792 (uncapped 0.792, 2 pass)  H100 4,395.6 -> 4,367.9   2.06s  ok
+16:31:20    [ 294/1218] 2023 gross PM  base     P=   35 d=4 k=200  CC  0.984 (uncapped 0.984, 2 pass)  H100 4,395.6 -> 4,361.1   1.84s  ok
+16:31:20    [ 295/1218] 2023 gross AM  base     P= 1000 d=4 k=200  CC  0.882 (uncapped 0.921, 3 pass)  H100 4,249.3 -> 3,366.9   4.06s  ok
+16:31:21    [ 296/1218] 2023 gross PM  base     P=  135 d=1 k=200  CC  0.416 (uncapped 0.416, 2 pass)  H100 4,395.6 -> 4,339.4   1.94s  ok
+16:31:21    [ 297/1218] 2023 gross PM  base     P=  135 d=2 k=200  CC  0.737 (uncapped 0.737, 2 pass)  H100 4,395.6 -> 4,296.1   1.90s  ok
+16:31:21    [ 298/1218] 2023 gross PM  base     P=  135 d=4 k=200  CC  0.971 (uncapped 0.971, 2 pass)  H100 4,395.6 -> 4,264.5   2.07s  ok
+16:31:21    [ 299/1218] 2023 gross PM  base     P=  335 d=1 k=200  CC  0.370 (uncapped 0.370, 2 pass)  H100 4,395.6 -> 4,271.5   2.15s  ok
+16:31:22    [ 300/1218] 2023 gross PM  base     P=  335 d=2 k=200  CC  0.652 (uncapped 0.652, 2 pass)  H100 4,395.6 -> 4,177.0   2.17s  ok
+16:31:22    [ 301/1218] 2023 gross PM  base     P=  335 d=4 k=200  CC  0.950 (uncapped 0.950, 2 pass)  H100 4,395.6 -> 4,077.3   2.12s  ok
+16:31:22    [ 302/1218] 2023 gross all base     P= 1500 d=2 k=200  CC  0.353 (uncapped 0.353, 2 pass)  H100 4,454.2 -> 3,924.4  10.99s  ok
+16:31:22    [ 303/1218] 2023 gross PM  base     P=  500 d=1 k=200  CC  0.346 (uncapped 0.346, 2 pass)  H100 4,395.6 -> 4,222.7   2.18s  ok
+16:31:22    [ 304/1218] 2023 gross PM  base     P=  500 d=2 k=200  CC  0.599 (uncapped 0.599, 2 pass)  H100 4,395.6 -> 4,096.0   2.10s  ok
+16:31:23    [ 305/1218] 2023 gross PM  base     P=  500 d=4 k=200  CC  0.929 (uncapped 0.929, 2 pass)  H100 4,395.6 -> 3,930.8   2.06s  ok
+16:31:23    [ 306/1218] 2023 gross AM  base     P= 1500 d=4 k=200  CC  0.652 (uncapped 0.892, 4 pass)  H100 4,249.3 -> 3,270.6   5.64s  ok
+16:31:23    [ 307/1218] 2023 gross PM  base     P=  750 d=1 k=200  CC  0.319 (uncapped 0.319, 2 pass)  H100 4,395.6 -> 4,156.3   2.14s  ok
+16:31:23    [ 308/1218] 2023 gross PM  base     P=  750 d=2 k=200  CC  0.543 (uncapped 0.543, 2 pass)  H100 4,395.6 -> 3,988.4   2.25s  ok
+16:31:24    [ 309/1218] 2023 gross PM  base     P=  750 d=4 k=200  CC  0.889 (uncapped 0.889, 2 pass)  H100 4,395.6 -> 3,728.9   2.51s  ok
+16:31:24    [ 310/1218] 2023 gross PM  base     P= 1000 d=1 k=200  CC  0.300 (uncapped 0.300, 2 pass)  H100 4,395.6 -> 4,096.0   2.81s  ok
+16:31:24    [ 311/1218] 2023 net   all base     P=   35 d=1 k=200  CC  0.429 (uncapped 0.429, 2 pass)  H100 4,261.4 -> 4,246.4   1.88s  ok
+16:31:25    [ 312/1218] 2023 gross PM  base     P= 1000 d=2 k=200  CC  0.503 (uncapped 0.503, 2 pass)  H100 4,395.6 -> 3,892.7   2.89s  ok
+16:31:25    [ 313/1218] 2023 net   all base     P=   35 d=4 k=200  CC  0.992 (uncapped 0.992, 2 pass)  H100 4,261.4 -> 4,226.7   1.80s  ok
+16:31:25    [ 314/1218] 2023 gross PM  base     P= 1000 d=4 k=200  CC  0.845 (uncapped 0.845, 2 pass)  H100 4,395.6 -> 3,550.9   2.92s  ok
+16:31:25    [ 315/1218] 2023 net   all base     P=  135 d=1 k=200  CC  0.395 (uncapped 0.395, 2 pass)  H100 4,261.4 -> 4,208.1   1.86s  ok
+16:31:25    [ 316/1218] 2023 gross PM  base     P= 1500 d=1 k=200  CC  0.271 (uncapped 0.271, 2 pass)  H100 4,395.6 -> 3,988.4   3.13s  ok
+16:31:25    [ 317/1218] 2023 gross PM  base     P= 1500 d=2 k=200  CC  0.452 (uncapped 0.452, 2 pass)  H100 4,395.6 -> 3,717.5   3.15s  ok
+16:31:26    [ 318/1218] 2023 net   all base     P=  135 d=4 k=200  CC  0.985 (uncapped 0.985, 2 pass)  H100 4,261.4 -> 4,128.5   1.89s  ok
+16:31:27    [ 319/1218] 2023 net   all base     P=  335 d=1 k=200  CC  0.356 (uncapped 0.356, 2 pass)  H100 4,261.4 -> 4,142.2   2.14s  ok
+16:31:27    [ 320/1218] 2023 net   all base     P=   35 d=2 k=200  CC  0.748 (uncapped 0.748, 2 pass)  H100 4,261.4 -> 4,235.3   4.09s  ok
+16:31:27    [ 321/1218] 2023 net   all base     P=  335 d=4 k=200  CC  0.967 (uncapped 0.967, 2 pass)  H100 4,261.4 -> 3,937.5   2.04s  ok
+16:31:27    [ 322/1218] 2023 net   all base     P=  500 d=1 k=200  CC  0.336 (uncapped 0.336, 2 pass)  H100 4,261.4 -> 4,093.2   2.11s  ok
+16:31:27    [ 323/1218] 2023 net   all base     P=  500 d=4 k=200  CC  0.906 (uncapped 0.906, 2 pass)  H100 4,261.4 -> 3,808.3   2.00s  ok
+16:31:28    [ 324/1218] 2023 net   all base     P=  750 d=1 k=200  CC  0.317 (uncapped 0.317, 2 pass)  H100 4,261.4 -> 4,023.4   2.23s  ok
+16:31:28    [ 325/1218] 2023 net   all base     P=  135 d=2 k=200  CC  0.711 (uncapped 0.711, 2 pass)  H100 4,261.4 -> 4,165.5   4.03s  ok
+16:31:29    [ 326/1218] 2023 gross PM  base     P= 1500 d=4 k=200  CC  0.645 (uncapped 0.786, 4 pass)  H100 4,395.6 -> 3,428.4   6.23s  ok
+16:31:29    [ 327/1218] 2023 net   all base     P=  750 d=4 k=200  CC  0.758 (uncapped 0.758, 2 pass)  H100 4,261.4 -> 3,692.6   2.36s  ok
+16:31:29    [ 328/1218] 2023 net   all base     P=  335 d=2 k=200  CC  0.643 (uncapped 0.643, 2 pass)  H100 4,261.4 -> 4,046.0   4.60s  ok
+16:31:30    [ 329/1218] 2023 net   all base     P= 1000 d=1 k=200  CC  0.301 (uncapped 0.301, 2 pass)  H100 4,261.4 -> 3,960.6   3.04s  ok
+16:31:30    [ 330/1218] 2023 net   all base     P= 1000 d=4 k=200  CC  0.653 (uncapped 0.653, 2 pass)  H100 4,261.4 -> 3,608.0   3.24s  ok
+16:31:30    [ 331/1218] 2023 net   all base     P=  500 d=2 k=200  CC  0.602 (uncapped 0.602, 2 pass)  H100 4,261.4 -> 3,960.6   5.29s  ok
+16:31:30    [ 332/1218] 2023 net   AM  base     P=   35 d=1 k=200  CC  0.431 (uncapped 0.431, 2 pass)  H100 4,032.6 -> 4,017.5   1.83s  ok
+16:31:31    [ 333/1218] 2023 net   AM  base     P=   35 d=2 k=200  CC  0.757 (uncapped 0.757, 2 pass)  H100 4,032.6 -> 4,006.1   1.85s  ok
+16:31:31    [ 334/1218] 2023 net   AM  base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,032.6 -> 3,997.6   1.82s  ok
+16:31:31    [ 335/1218] 2023 net   all base     P= 1500 d=1 k=200  CC  0.274 (uncapped 0.274, 2 pass)  H100 4,261.4 -> 3,850.1   3.80s  ok
+16:31:32    [ 336/1218] 2023 net   AM  base     P=  135 d=1 k=200  CC  0.395 (uncapped 0.395, 2 pass)  H100 4,032.6 -> 3,979.3   1.86s  ok
+16:31:32    [ 337/1218] 2023 net   AM  base     P=  135 d=2 k=200  CC  0.713 (uncapped 0.713, 2 pass)  H100 4,032.6 -> 3,936.4   1.85s  ok
+16:31:32    [ 338/1218] 2023 net   AM  base     P=  135 d=4 k=200  CC  0.993 (uncapped 0.993, 2 pass)  H100 4,032.6 -> 3,898.6   1.85s  ok
+16:31:32    [ 339/1218] 2023 net   AM  base     P=  335 d=1 k=200  CC  0.358 (uncapped 0.358, 2 pass)  H100 4,032.6 -> 3,912.6   1.97s  ok
+16:31:33    [ 340/1218] 2023 net   AM  base     P=  335 d=2 k=200  CC  0.647 (uncapped 0.647, 2 pass)  H100 4,032.6 -> 3,815.8   1.99s  ok
+16:31:33    [ 341/1218] 2023 net   all base     P=  750 d=2 k=200  CC  0.548 (uncapped 0.548, 2 pass)  H100 4,261.4 -> 3,850.1   6.63s  ok
+16:31:33    [ 342/1218] 2023 net   AM  base     P=  335 d=4 k=200  CC  0.973 (uncapped 0.973, 2 pass)  H100 4,032.6 -> 3,706.7   1.88s  ok
+16:31:33    [ 343/1218] 2023 net   AM  base     P=  500 d=1 k=200  CC  0.340 (uncapped 0.340, 2 pass)  H100 4,032.6 -> 3,862.4   2.09s  ok
+16:31:34    [ 344/1218] 2023 net   AM  base     P=  500 d=2 k=200  CC  0.602 (uncapped 0.602, 2 pass)  H100 4,032.6 -> 3,731.5   2.06s  ok
+16:31:34    [ 345/1218] 2023 net   all base     P= 1500 d=4 k=200  CC  0.521 (uncapped 0.529, 3 pass)  H100 4,261.4 -> 3,480.1   6.26s  ok
+16:31:34    [ 346/1218] 2023 net   AM  base     P=  500 d=4 k=200  CC  0.952 (uncapped 0.952, 2 pass)  H100 4,032.6 -> 3,556.4   2.04s  ok
+16:31:34    [ 347/1218] 2023 net   AM  base     P=  750 d=1 k=200  CC  0.319 (uncapped 0.319, 2 pass)  H100 4,032.6 -> 3,793.4   2.34s  ok
+16:31:35    [ 348/1218] 2023 net   AM  base     P=  750 d=2 k=200  CC  0.553 (uncapped 0.553, 2 pass)  H100 4,032.6 -> 3,618.0   2.39s  ok
+16:31:35    [ 349/1218] 2023 net   AM  base     P=  750 d=4 k=200  CC  0.928 (uncapped 0.928, 2 pass)  H100 4,032.6 -> 3,336.4   2.56s  ok
+16:31:35    [ 350/1218] 2023 net   AM  base     P= 1000 d=1 k=200  CC  0.301 (uncapped 0.301, 2 pass)  H100 4,032.6 -> 3,731.3   2.57s  ok
+16:31:35    [ 351/1218] 2023 net   AM  base     P= 1000 d=2 k=200  CC  0.518 (uncapped 0.518, 2 pass)  H100 4,032.6 -> 3,514.4   2.56s  ok
+16:31:35    [ 352/1218] 2023 net   all base     P= 1000 d=2 k=200  CC  0.482 (uncapped 0.482, 2 pass)  H100 4,261.4 -> 3,779.6   8.74s  ok
+16:31:36    [ 353/1218] 2023 net   PM  base     P=   35 d=1 k=200  CC  0.388 (uncapped 0.388, 2 pass)  H100 4,184.1 -> 4,170.5   1.78s  ok
+16:31:36    [ 354/1218] 2023 net   PM  base     P=   35 d=2 k=200  CC  0.683 (uncapped 0.683, 2 pass)  H100 4,184.1 -> 4,160.1   1.70s  ok
+16:31:37    [ 355/1218] 2023 net   AM  base     P= 1500 d=1 k=200  CC  0.276 (uncapped 0.276, 2 pass)  H100 4,032.6 -> 3,618.0   2.99s  ok
+16:31:37    [ 356/1218] 2023 net   AM  base     P= 1500 d=2 k=200  CC  0.479 (uncapped 0.479, 2 pass)  H100 4,032.6 -> 3,314.1   2.66s  ok
+16:31:37    [ 357/1218] 2023 net   PM  base     P=  135 d=1 k=200  CC  0.363 (uncapped 0.363, 2 pass)  H100 4,184.1 -> 4,135.0   1.69s  ok
+16:31:37    [ 358/1218] 2023 net   PM  base     P=   35 d=4 k=200  CC  0.970 (uncapped 0.970, 2 pass)  H100 4,184.1 -> 4,150.1   1.76s  ok
+16:31:37    [ 359/1218] 2023 net   PM  base     P=  135 d=2 k=200  CC  0.644 (uncapped 0.644, 2 pass)  H100 4,184.1 -> 4,097.1   1.83s  ok
+16:31:37    [ 360/1218] 2023 net   PM  base     P=  135 d=4 k=200  CC  0.964 (uncapped 0.964, 2 pass)  H100 4,184.1 -> 4,053.9   1.85s  ok
+16:31:37    [ 361/1218] 2023 net   all base     P= 1500 d=2 k=200  CC  0.383 (uncapped 0.383, 2 pass)  H100 4,261.4 -> 3,687.1   9.75s  ok
+16:31:38    [ 362/1218] 2023 net   PM  base     P=  335 d=1 k=200  CC  0.324 (uncapped 0.324, 2 pass)  H100 4,184.1 -> 4,075.6   1.94s  ok
+16:31:38    [ 363/1218] 2023 net   PM  base     P=  335 d=2 k=200  CC  0.578 (uncapped 0.578, 2 pass)  H100 4,184.1 -> 3,990.4   1.99s  ok
+16:31:39    [ 364/1218] 2023 net   PM  base     P=  335 d=4 k=200  CC  0.934 (uncapped 0.934, 2 pass)  H100 4,184.1 -> 3,871.2   1.94s  ok
+16:31:39    [ 365/1218] 2023 net   AM  base     P= 1000 d=4 k=200  CC  0.834 (uncapped 0.908, 4 pass)  H100 4,032.6 -> 3,199.1   5.51s  ok
+16:31:39    [ 366/1218] 2023 net   PM  base     P=  500 d=1 k=200  CC  0.304 (uncapped 0.304, 2 pass)  H100 4,184.1 -> 4,032.0   1.97s  ok
+16:31:39    [ 367/1218] 2023 net   PM  base     P=  500 d=2 k=200  CC  0.536 (uncapped 0.536, 2 pass)  H100 4,184.1 -> 3,915.9   1.98s  ok
+16:31:39    [ 368/1218] 2023 net   PM  base     P=  500 d=4 k=200  CC  0.899 (uncapped 0.899, 2 pass)  H100 4,184.1 -> 3,734.4   1.97s  ok
+16:31:39    [ 369/1218] 2023 net   PM  base     P=  750 d=2 k=200  CC  0.491 (uncapped 0.491, 2 pass)  H100 4,184.1 -> 3,816.2   2.17s  ok
+16:31:39    [ 370/1218] 2023 net   PM  base     P=  750 d=1 k=200  CC  0.284 (uncapped 0.284, 2 pass)  H100 4,184.1 -> 3,971.1   2.24s  ok
+16:31:40    [ 371/1218] 2023 net   PM  base     P=  750 d=4 k=200  CC  0.848 (uncapped 0.848, 2 pass)  H100 4,184.1 -> 3,548.4   2.29s  ok
+16:31:41    [ 372/1218] 2023 net   PM  base     P= 1000 d=1 k=200  CC  0.268 (uncapped 0.268, 2 pass)  H100 4,184.1 -> 3,915.9   2.57s  ok
+16:31:41    [ 373/1218] 2024 gross all base     P=   35 d=1 k=200  CC  0.534 (uncapped 0.534, 2 pass)  H100 4,424.1 -> 4,405.4   2.02s  ok
+16:31:41    [ 374/1218] 2023 net   PM  base     P= 1000 d=2 k=200  CC  0.462 (uncapped 0.462, 2 pass)  H100 4,184.1 -> 3,721.8   2.92s  ok
+16:31:41    [ 375/1218] 2024 gross all base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,424.1 -> 4,389.1   2.03s  ok
+16:31:42    [ 376/1218] 2023 net   AM  base     P= 1500 d=4 k=200  CC  0.618 (uncapped 0.879, 5 pass)  H100 4,032.6 -> 3,105.7   7.48s  ok
+16:31:42    [ 377/1218] 2023 net   PM  base     P= 1500 d=1 k=200  CC  0.245 (uncapped 0.245, 2 pass)  H100 4,184.1 -> 3,816.2   2.93s  ok
+16:31:42    [ 378/1218] 2023 net   PM  base     P= 1500 d=2 k=200  CC  0.426 (uncapped 0.426, 2 pass)  H100 4,184.1 -> 3,545.0   3.43s  ok
+16:31:42    [ 379/1218] 2024 gross all base     P=  135 d=1 k=200  CC  0.483 (uncapped 0.483, 2 pass)  H100 4,424.1 -> 4,358.9   2.35s  ok
+16:31:43    [ 380/1218] 2024 gross all base     P=  135 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,424.1 -> 4,289.1   2.09s  ok
+16:31:44    [ 381/1218] 2024 gross all base     P=  500 d=1 k=200  CC  0.389 (uncapped 0.389, 2 pass)  H100 4,424.1 -> 4,229.5   2.23s  ok
+16:31:44    [ 382/1218] 2024 gross all base     P=  335 d=1 k=200  CC  0.422 (uncapped 0.422, 2 pass)  H100 4,424.1 -> 4,282.8   2.34s  ok
+16:31:44    [ 383/1218] 2024 gross all base     P=   35 d=2 k=200  CC  0.874 (uncapped 0.874, 2 pass)  H100 4,424.1 -> 4,393.5   4.32s  ok
+16:31:44    [ 384/1218] 2023 net   PM  base     P= 1000 d=4 k=200  CC  0.806 (uncapped 0.806, 3 pass)  H100 4,184.1 -> 3,377.8   5.22s  ok
+16:31:44    [ 385/1218] 2024 gross all base     P=  335 d=4 k=200  CC  0.973 (uncapped 0.973, 2 pass)  H100 4,424.1 -> 4,098.3   2.38s  ok
+16:31:45    [ 386/1218] 2024 gross all base     P=  500 d=4 k=200  CC  0.884 (uncapped 0.884, 2 pass)  H100 4,424.1 -> 3,982.2   2.77s  ok
+16:31:46    [ 387/1218] 2024 gross all base     P=  135 d=2 k=200  CC  0.826 (uncapped 0.826, 2 pass)  H100 4,424.1 -> 4,312.6   4.96s  ok
+16:31:46    [ 388/1218] 2024 gross all base     P=  750 d=1 k=200  CC  0.352 (uncapped 0.352, 2 pass)  H100 4,424.1 -> 4,160.0   3.01s  ok
+16:31:46    [ 389/1218] 2023 net   PM  base     P= 1500 d=4 k=200  CC  0.625 (uncapped 0.760, 4 pass)  H100 4,184.1 -> 3,246.4   7.19s  ok
+16:31:48    [ 390/1218] 2024 gross all base     P=  750 d=4 k=200  CC  0.721 (uncapped 0.721, 2 pass)  H100 4,424.1 -> 3,883.2   4.38s  ok
+16:31:48    [ 391/1218] 2024 gross all base     P=  335 d=2 k=200  CC  0.724 (uncapped 0.724, 2 pass)  H100 4,424.1 -> 4,181.6   6.95s  ok
+16:31:49    [ 392/1218] 2024 gross AM  base     P=   35 d=1 k=200  CC  0.497 (uncapped 0.497, 2 pass)  H100 4,202.3 -> 4,184.9   2.60s  ok
+16:31:49    [ 393/1218] 2024 gross all base     P= 1000 d=1 k=200  CC  0.322 (uncapped 0.322, 2 pass)  H100 4,424.1 -> 4,101.9   5.39s  ok
+16:31:49    [ 394/1218] 2024 gross all base     P= 1000 d=4 k=200  CC  0.613 (uncapped 0.613, 2 pass)  H100 4,424.1 -> 3,811.3   5.51s  ok
+16:31:50    [ 395/1218] 2024 gross AM  base     P=   35 d=2 k=200  CC  0.818 (uncapped 0.818, 2 pass)  H100 4,202.3 -> 4,173.7   2.21s  ok
+16:31:50    [ 396/1218] 2024 gross all base     P= 1500 d=1 k=200  CC  0.272 (uncapped 0.272, 2 pass)  H100 4,424.1 -> 4,015.7   5.63s  ok
+16:31:51    [ 397/1218] 2024 gross AM  base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,202.3 -> 4,167.3   2.66s  ok
+16:31:51    [ 398/1218] 2024 gross AM  base     P=  135 d=1 k=200  CC  0.444 (uncapped 0.444, 2 pass)  H100 4,202.3 -> 4,142.3   2.49s  ok
+16:31:52    [ 399/1218] 2024 gross all base     P=  500 d=2 k=200  CC  0.644 (uncapped 0.644, 2 pass)  H100 4,424.1 -> 4,102.3   9.47s  ok
+16:31:52    [ 400/1218] 2024 gross AM  base     P=  135 d=2 k=200  CC  0.761 (uncapped 0.761, 2 pass)  H100 4,202.3 -> 4,099.5   2.44s  ok
+16:31:52    [ 401/1218] 2024 gross AM  base     P=  135 d=4 k=200  CC  0.993 (uncapped 0.993, 2 pass)  H100 4,202.3 -> 4,068.2   2.21s  ok
+16:31:53    [ 402/1218] 2024 gross all base     P=  750 d=2 k=200  CC  0.545 (uncapped 0.545, 2 pass)  H100 4,424.1 -> 4,015.7   9.22s  ok
+16:31:53    [ 403/1218] 2024 gross AM  base     P=  335 d=2 k=200  CC  0.677 (uncapped 0.677, 2 pass)  H100 4,202.3 -> 3,975.3   2.49s  ok
+16:31:53    [ 404/1218] 2024 gross AM  base     P=  335 d=1 k=200  CC  0.385 (uncapped 0.385, 2 pass)  H100 4,202.3 -> 4,073.2   2.80s  ok
+16:31:54    [ 405/1218] 2024 gross AM  base     P=  335 d=4 k=200  CC  0.974 (uncapped 0.974, 2 pass)  H100 4,202.3 -> 3,875.9   2.41s  ok
+16:31:54    [ 406/1218] 2024 gross AM  base     P=  500 d=1 k=200  CC  0.360 (uncapped 0.360, 2 pass)  H100 4,202.3 -> 4,022.5   2.86s  ok
+16:31:55    [ 407/1218] 2024 gross AM  base     P=  500 d=4 k=200  CC  0.959 (uncapped 0.959, 2 pass)  H100 4,202.3 -> 3,723.0   3.02s  ok
+16:31:55    [ 408/1218] 2024 gross AM  base     P=  500 d=2 k=200  CC  0.626 (uncapped 0.626, 2 pass)  H100 4,202.3 -> 3,889.0   3.36s  ok
+16:31:55    [ 409/1218] 2024 gross all base     P= 1500 d=4 k=200  CC  0.495 (uncapped 0.500, 3 pass)  H100 4,424.1 -> 3,681.6   9.19s  ok
+16:31:55    [ 410/1218] 2024 gross AM  base     P=  750 d=1 k=200  CC  0.333 (uncapped 0.333, 2 pass)  H100 4,202.3 -> 3,952.6   3.85s  ok
+16:31:57    [ 411/1218] 2024 gross all base     P= 1000 d=2 k=200  CC  0.461 (uncapped 0.461, 2 pass)  H100 4,424.1 -> 3,962.8  12.80s  ok
+16:31:57    [ 412/1218] 2024 gross AM  base     P=  750 d=4 k=200  CC  0.936 (uncapped 0.936, 2 pass)  H100 4,202.3 -> 3,500.0   3.71s  ok
+16:31:57    [ 413/1218] 2024 gross AM  base     P= 1000 d=2 k=200  CC  0.529 (uncapped 0.529, 2 pass)  H100 4,202.3 -> 3,673.3   3.31s  ok
+16:31:57    [ 414/1218] 2024 gross AM  base     P=  750 d=2 k=200  CC  0.568 (uncapped 0.568, 2 pass)  H100 4,202.3 -> 3,776.4   4.00s  ok
+16:31:58    [ 415/1218] 2024 gross AM  base     P= 1000 d=1 k=200  CC  0.313 (uncapped 0.313, 2 pass)  H100 4,202.3 -> 3,888.8   4.66s  ok
+16:31:58    [ 416/1218] 2024 gross PM  base     P=   35 d=1 k=200  CC  0.463 (uncapped 0.463, 2 pass)  H100 4,387.4 -> 4,371.2   2.76s  ok
+16:31:59    [ 417/1218] 2024 gross PM  base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,387.4 -> 4,352.4   2.22s  ok
+16:31:59    [ 418/1218] 2024 gross PM  base     P=   35 d=2 k=200  CC  0.827 (uncapped 0.827, 2 pass)  H100 4,387.4 -> 4,358.5   2.39s  ok
+16:31:59    [ 419/1218] 2024 gross all base     P= 1500 d=2 k=200  CC  0.361 (uncapped 0.361, 2 pass)  H100 4,424.1 -> 3,882.6  13.32s  ok
+16:31:59    [ 420/1218] 2024 gross AM  base     P= 1500 d=2 k=200  CC  0.486 (uncapped 0.486, 2 pass)  H100 4,202.3 -> 3,473.0   4.30s  ok
+16:31:59    [ 421/1218] 2024 gross AM  base     P= 1500 d=1 k=200  CC  0.284 (uncapped 0.284, 2 pass)  H100 4,202.3 -> 3,776.4   4.66s  ok
+16:31:59    [ 422/1218] 2024 gross PM  base     P=  135 d=2 k=200  CC  0.780 (uncapped 0.780, 2 pass)  H100 4,387.4 -> 4,282.2   2.53s  ok
+16:31:59    [ 423/1218] 2024 gross PM  base     P=  135 d=1 k=200  CC  0.435 (uncapped 0.435, 2 pass)  H100 4,387.4 -> 4,328.7   2.66s  ok
+16:32:00    [ 424/1218] 2024 gross PM  base     P=  135 d=4 k=200  CC  0.994 (uncapped 0.994, 2 pass)  H100 4,387.4 -> 4,253.2   2.42s  ok
+16:32:01    [ 425/1218] 2024 gross PM  base     P=  335 d=1 k=200  CC  0.390 (uncapped 0.390, 2 pass)  H100 4,387.4 -> 4,256.7   2.66s  ok
+16:32:02    [ 426/1218] 2024 gross PM  base     P=  335 d=2 k=200  CC  0.682 (uncapped 0.682, 2 pass)  H100 4,387.4 -> 4,159.0   2.76s  ok
+16:32:02    [ 427/1218] 2024 gross PM  base     P=  335 d=4 k=200  CC  0.969 (uncapped 0.969, 2 pass)  H100 4,387.4 -> 4,062.7   2.80s  ok
+16:32:02    [ 428/1218] 2024 gross PM  base     P=  500 d=1 k=200  CC  0.363 (uncapped 0.363, 2 pass)  H100 4,387.4 -> 4,205.8   2.88s  ok
+16:32:02    [ 429/1218] 2024 gross PM  base     P=  500 d=2 k=200  CC  0.619 (uncapped 0.619, 2 pass)  H100 4,387.4 -> 4,078.0   2.74s  ok
+16:32:02    [ 430/1218] 2024 gross AM  base     P= 1000 d=4 k=200  CC  0.855 (uncapped 0.916, 4 pass)  H100 4,202.3 -> 3,346.9   7.81s  ok
+16:32:02    [ 431/1218] 2024 gross PM  base     P=  500 d=4 k=200  CC  0.945 (uncapped 0.945, 2 pass)  H100 4,387.4 -> 3,914.7   2.93s  ok
+16:32:02    [ 432/1218] 2024 gross AM  base     P= 1500 d=4 k=200  CC  0.616 (uncapped 0.885, 4 pass)  H100 4,202.3 -> 3,278.3   6.92s  ok
+16:32:02    [ 433/1218] 2024 gross PM  base     P=  750 d=1 k=200  CC  0.332 (uncapped 0.332, 2 pass)  H100 4,387.4 -> 4,138.1   3.02s  ok
+16:32:03    [ 434/1218] 2024 gross PM  base     P=  750 d=2 k=200  CC  0.554 (uncapped 0.554, 2 pass)  H100 4,387.4 -> 3,972.0   3.11s  ok
+16:32:04    [ 435/1218] 2024 gross PM  base     P=  750 d=4 k=200  CC  0.900 (uncapped 0.900, 2 pass)  H100 4,387.4 -> 3,712.1   3.83s  ok
+16:32:05    [ 436/1218] 2024 net   all base     P=   35 d=1 k=200  CC  0.515 (uncapped 0.515, 2 pass)  H100 4,187.0 -> 4,168.9   2.69s  ok
+16:32:05    [ 437/1218] 2024 gross PM  base     P= 1000 d=1 k=200  CC  0.309 (uncapped 0.309, 2 pass)  H100 4,387.4 -> 4,078.0   4.02s  ok
+16:32:05    [ 438/1218] 2024 net   all base     P=   35 d=4 k=200  CC  0.995 (uncapped 0.995, 2 pass)  H100 4,187.0 -> 4,152.1   2.51s  ok
+16:32:05    [ 439/1218] 2024 net   all base     P=  135 d=1 k=200  CC  0.452 (uncapped 0.452, 2 pass)  H100 4,187.0 -> 4,125.9   2.73s  ok
+16:32:06    [ 440/1218] 2024 gross PM  base     P= 1000 d=2 k=200  CC  0.510 (uncapped 0.510, 2 pass)  H100 4,387.4 -> 3,877.0   3.98s  ok
+16:32:06    [ 441/1218] 2024 gross PM  base     P= 1500 d=1 k=200  CC  0.277 (uncapped 0.277, 2 pass)  H100 4,387.4 -> 3,972.0   4.12s  ok
+16:32:06    [ 442/1218] 2024 gross PM  base     P= 1500 d=2 k=200  CC  0.458 (uncapped 0.458, 2 pass)  H100 4,387.4 -> 3,701.1   4.43s  ok
+16:32:08    [ 443/1218] 2024 net   all base     P=   35 d=2 k=200  CC  0.834 (uncapped 0.834, 2 pass)  H100 4,187.0 -> 4,157.8   5.63s  ok
+16:32:08    [ 444/1218] 2024 net   all base     P=  135 d=4 k=200  CC  0.992 (uncapped 0.992, 2 pass)  H100 4,187.0 -> 4,053.0   3.09s  ok
+16:32:08    [ 445/1218] 2024 net   all base     P=  335 d=1 k=200  CC  0.398 (uncapped 0.398, 2 pass)  H100 4,187.0 -> 4,053.8   3.27s  ok
+16:32:08    [ 446/1218] 2024 net   all base     P=  335 d=4 k=200  CC  0.959 (uncapped 0.959, 2 pass)  H100 4,187.0 -> 3,865.6   3.11s  ok
+16:32:09    [ 447/1218] 2024 net   all base     P=  500 d=1 k=200  CC  0.371 (uncapped 0.371, 2 pass)  H100 4,187.0 -> 4,001.7   3.18s  ok
+16:32:10    [ 448/1218] 2024 net   all base     P=  135 d=2 k=200  CC  0.789 (uncapped 0.789, 2 pass)  H100 4,187.0 -> 4,080.4   5.45s  ok
+16:32:10    [ 449/1218] 2024 net   all base     P=  500 d=4 k=200  CC  0.858 (uncapped 0.858, 2 pass)  H100 4,187.0 -> 3,758.0   3.38s  ok
+16:32:11    [ 450/1218] 2024 net   all base     P=  750 d=1 k=200  CC  0.339 (uncapped 0.339, 2 pass)  H100 4,187.0 -> 3,932.7   3.15s  ok
+16:32:11    [ 451/1218] 2024 gross PM  base     P= 1000 d=4 k=200  CC  0.850 (uncapped 0.852, 4 pass)  H100 4,387.4 -> 3,537.6   9.59s  ok
+16:32:12    [ 452/1218] 2024 net   all base     P=  750 d=4 k=200  CC  0.701 (uncapped 0.701, 2 pass)  H100 4,187.0 -> 3,660.9   3.38s  ok
+16:32:12    [ 453/1218] 2024 net   all base     P=  335 d=2 k=200  CC  0.695 (uncapped 0.695, 2 pass)  H100 4,187.0 -> 3,954.0   6.71s  ok
+16:32:13    [ 454/1218] 2024 net   all base     P= 1000 d=1 k=200  CC  0.311 (uncapped 0.311, 2 pass)  H100 4,187.0 -> 3,875.5   4.18s  ok
+16:32:13    [ 455/1218] 2024 gross PM  base     P= 1500 d=4 k=200  CC  0.667 (uncapped 0.791, 5 pass)  H100 4,387.4 -> 3,387.0  11.33s  ok
+16:32:14    [ 456/1218] 2024 net   all base     P=  500 d=2 k=200  CC  0.623 (uncapped 0.623, 2 pass)  H100 4,187.0 -> 3,875.6   7.67s  ok
+16:32:14    [ 457/1218] 2024 net   AM  base     P=   35 d=1 k=200  CC  0.401 (uncapped 0.401, 2 pass)  H100 3,988.3 -> 3,974.2   2.40s  ok
+16:32:14    [ 458/1218] 2024 net   all base     P= 1000 d=4 k=200  CC  0.599 (uncapped 0.599, 2 pass)  H100 4,187.0 -> 3,588.1   4.66s  ok
+16:32:14    [ 459/1218] 2024 net   AM  base     P=   35 d=2 k=200  CC  0.722 (uncapped 0.722, 2 pass)  H100 3,988.3 -> 3,963.0   2.52s  ok
+16:32:15    [ 460/1218] 2024 net   AM  base     P=   35 d=4 k=200  CC  0.995 (uncapped 0.995, 2 pass)  H100 3,988.3 -> 3,953.5   2.13s  ok
+16:32:15    [ 461/1218] 2024 net   all base     P= 1500 d=1 k=200  CC  0.263 (uncapped 0.263, 2 pass)  H100 4,187.0 -> 3,792.2   5.15s  ok
+16:32:16    [ 462/1218] 2024 net   AM  base     P=  135 d=1 k=200  CC  0.383 (uncapped 0.383, 2 pass)  H100 3,988.3 -> 3,936.6   2.25s  ok
+16:32:16    [ 463/1218] 2024 net   AM  base     P=  135 d=2 k=200  CC  0.688 (uncapped 0.688, 2 pass)  H100 3,988.3 -> 3,895.4   2.23s  ok
+16:32:16    [ 464/1218] 2024 net   AM  base     P=  135 d=4 k=200  CC  0.980 (uncapped 0.980, 2 pass)  H100 3,988.3 -> 3,855.9   2.24s  ok
+16:32:17    [ 465/1218] 2024 net   AM  base     P=  335 d=2 k=200  CC  0.623 (uncapped 0.623, 2 pass)  H100 3,988.3 -> 3,779.5   2.30s  ok
+16:32:17    [ 466/1218] 2024 net   AM  base     P=  335 d=1 k=200  CC  0.348 (uncapped 0.348, 2 pass)  H100 3,988.3 -> 3,871.7   2.42s  ok
+16:32:17    [ 467/1218] 2024 net   all base     P=  750 d=2 k=200  CC  0.526 (uncapped 0.526, 2 pass)  H100 4,187.0 -> 3,792.2   8.82s  ok
+16:32:17    [ 468/1218] 2024 net   AM  base     P=  335 d=4 k=200  CC  0.952 (uncapped 0.952, 2 pass)  H100 3,988.3 -> 3,669.4   2.17s  ok
+16:32:17    [ 469/1218] 2024 net   AM  base     P=  500 d=1 k=200  CC  0.327 (uncapped 0.327, 2 pass)  H100 3,988.3 -> 3,824.8   2.34s  ok
+16:32:18    [ 470/1218] 2024 net   AM  base     P=  500 d=2 k=200  CC  0.583 (uncapped 0.583, 2 pass)  H100 3,988.3 -> 3,696.8   2.56s  ok
+16:32:18    [ 471/1218] 2024 net   AM  base     P=  500 d=4 k=200  CC  0.933 (uncapped 0.933, 2 pass)  H100 3,988.3 -> 3,521.9   2.48s  ok
+16:32:19    [ 472/1218] 2024 net   all base     P= 1500 d=4 k=200  CC  0.473 (uncapped 0.490, 3 pass)  H100 4,187.0 -> 3,477.7   7.64s  ok
+16:32:19    [ 473/1218] 2024 net   AM  base     P=  750 d=1 k=200  CC  0.307 (uncapped 0.307, 2 pass)  H100 3,988.3 -> 3,757.9   2.91s  ok
+16:32:19    [ 474/1218] 2024 net   all base     P= 1000 d=2 k=200  CC  0.447 (uncapped 0.447, 2 pass)  H100 4,187.0 -> 3,739.9  10.43s  ok
+16:32:19    [ 475/1218] 2024 net   AM  base     P=  750 d=2 k=200  CC  0.538 (uncapped 0.538, 2 pass)  H100 3,988.3 -> 3,584.6   2.91s  ok
+16:32:20    [ 476/1218] 2024 net   AM  base     P= 1000 d=2 k=200  CC  0.507 (uncapped 0.507, 2 pass)  H100 3,988.3 -> 3,481.2   2.98s  ok
+16:32:20    [ 477/1218] 2024 net   AM  base     P= 1000 d=1 k=200  CC  0.292 (uncapped 0.292, 2 pass)  H100 3,988.3 -> 3,696.4   3.45s  ok
+16:32:21    [ 478/1218] 2024 net   AM  base     P=  750 d=4 k=200  CC  0.902 (uncapped 0.914, 3 pass)  H100 3,988.3 -> 3,311.8   4.47s  ok
+16:32:21    [ 479/1218] 2024 net   PM  base     P=   35 d=1 k=200  CC  0.432 (uncapped 0.432, 2 pass)  H100 4,122.7 -> 4,107.6   2.38s  ok
+16:32:22    [ 480/1218] 2024 net   PM  base     P=   35 d=2 k=200  CC  0.765 (uncapped 0.765, 2 pass)  H100 4,122.7 -> 4,095.9   2.31s  ok
+16:32:22    [ 481/1218] 2024 net   AM  base     P= 1500 d=1 k=200  CC  0.269 (uncapped 0.269, 2 pass)  H100 3,988.3 -> 3,584.6   3.62s  ok
+16:32:22    [ 482/1218] 2024 net   PM  base     P=   35 d=4 k=200  CC  0.990 (uncapped 0.990, 2 pass)  H100 4,122.7 -> 4,088.1   2.32s  ok
+16:32:22    [ 483/1218] 2024 net   PM  base     P=  135 d=1 k=200  CC  0.398 (uncapped 0.398, 2 pass)  H100 4,122.7 -> 4,068.9   2.36s  ok
+16:32:23    [ 484/1218] 2024 net   PM  base     P=  135 d=2 k=200  CC  0.714 (uncapped 0.714, 2 pass)  H100 4,122.7 -> 4,026.4   2.36s  ok
+16:32:23    [ 485/1218] 2024 net   PM  base     P=  135 d=4 k=200  CC  0.987 (uncapped 0.987, 2 pass)  H100 4,122.7 -> 3,989.5   2.23s  ok
+16:32:23    [ 486/1218] 2024 net   AM  base     P= 1500 d=2 k=200  CC  0.466 (uncapped 0.472, 3 pass)  H100 3,988.3 -> 3,289.0   5.06s  ok
+16:32:24    [ 487/1218] 2024 net   PM  base     P=  335 d=1 k=200  CC  0.359 (uncapped 0.359, 2 pass)  H100 4,122.7 -> 4,002.4   2.62s  ok
+16:32:24    [ 488/1218] 2024 net   PM  base     P=  335 d=4 k=200  CC  0.956 (uncapped 0.956, 2 pass)  H100 4,122.7 -> 3,802.6   2.50s  ok
+16:32:24    [ 489/1218] 2024 net   PM  base     P=  335 d=2 k=200  CC  0.635 (uncapped 0.635, 2 pass)  H100 4,122.7 -> 3,909.8   2.66s  ok
+16:32:24    [ 490/1218] 2024 net   PM  base     P=  500 d=1 k=200  CC  0.338 (uncapped 0.338, 2 pass)  H100 4,122.7 -> 3,953.5   2.69s  ok
+16:32:25    [ 491/1218] 2024 net   all base     P= 1500 d=2 k=200  CC  0.353 (uncapped 0.353, 2 pass)  H100 4,187.0 -> 3,657.7  13.56s  ok
+16:32:25    [ 492/1218] 2024 net   PM  base     P=  500 d=2 k=200  CC  0.579 (uncapped 0.579, 2 pass)  H100 4,122.7 -> 3,833.1   2.71s  ok
+16:32:25    [ 493/1218] 2024 net   PM  base     P=  500 d=4 k=200  CC  0.927 (uncapped 0.927, 2 pass)  H100 4,122.7 -> 3,659.4   2.76s  ok
+16:32:26    [ 494/1218] 2024 net   PM  base     P=  750 d=1 k=200  CC  0.310 (uncapped 0.310, 2 pass)  H100 4,122.7 -> 3,890.0   2.86s  ok
+16:32:26    [ 495/1218] 2024 net   AM  base     P= 1500 d=4 k=200  CC  0.594 (uncapped 0.871, 4 pass)  H100 3,988.3 -> 3,096.5   7.20s  ok
+16:32:26    [ 496/1218] 2024 net   AM  base     P= 1000 d=4 k=200  CC  0.807 (uncapped 0.897, 5 pass)  H100 3,988.3 -> 3,181.2   9.01s  ok
+16:32:26    [ 497/1218] 2024 net   PM  base     P=  750 d=2 k=200  CC  0.525 (uncapped 0.525, 2 pass)  H100 4,122.7 -> 3,729.0   2.91s  ok
+16:32:27    [ 498/1218] 2024 net   PM  base     P=  750 d=4 k=200  CC  0.881 (uncapped 0.881, 2 pass)  H100 4,122.7 -> 3,462.3   3.06s  ok
+16:32:28    [ 499/1218] 2024 net   PM  base     P= 1000 d=1 k=200  CC  0.290 (uncapped 0.290, 2 pass)  H100 4,122.7 -> 3,833.1   3.54s  ok
+16:32:28    [ 500/1218] 2024 net   PM  base     P= 1500 d=1 k=200  CC  0.262 (uncapped 0.262, 2 pass)  H100 4,122.7 -> 3,729.0   3.54s  ok
+16:32:28    [ 501/1218] 2024 net   PM  base     P= 1000 d=2 k=200  CC  0.490 (uncapped 0.490, 2 pass)  H100 4,122.7 -> 3,632.4   3.94s  ok
+16:32:28    [ 502/1218] 2025 gross all base     P=   35 d=1 k=200  CC  0.488 (uncapped 0.488, 2 pass)  H100 4,459.1 -> 4,442.0   2.25s  ok
+16:32:29    [ 503/1218] 2025 gross all base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,459.1 -> 4,424.1   2.46s  ok
+16:32:29    [ 504/1218] 2025 gross all base     P=  135 d=1 k=200  CC  0.451 (uncapped 0.451, 2 pass)  H100 4,459.1 -> 4,398.2   2.56s  ok
+16:32:29    [ 505/1218] 2024 net   PM  base     P= 1500 d=2 k=200  CC  0.445 (uncapped 0.445, 2 pass)  H100 4,122.7 -> 3,455.9   4.00s  ok
+16:32:30    [ 506/1218] 2025 gross all base     P=  135 d=4 k=200  CC  0.999 (uncapped 0.999, 2 pass)  H100 4,459.1 -> 4,324.3   2.46s  ok
+16:32:31    [ 507/1218] 2024 net   PM  base     P= 1000 d=4 k=200  CC  0.819 (uncapped 0.834, 3 pass)  H100 4,122.7 -> 3,304.0   6.22s  ok
+16:32:31    [ 508/1218] 2025 gross all base     P=  335 d=1 k=200  CC  0.398 (uncapped 0.398, 2 pass)  H100 4,459.1 -> 4,325.7   2.72s  ok
+16:32:31    [ 509/1218] 2025 gross all base     P=  335 d=4 k=200  CC  0.981 (uncapped 0.981, 2 pass)  H100 4,459.1 -> 4,130.4   2.68s  ok
+16:32:31    [ 510/1218] 2025 gross all base     P=   35 d=2 k=200  CC  0.841 (uncapped 0.841, 2 pass)  H100 4,459.1 -> 4,429.7   5.27s  ok
+16:32:32    [ 511/1218] 2025 gross all base     P=  500 d=1 k=200  CC  0.375 (uncapped 0.375, 2 pass)  H100 4,459.1 -> 4,271.7   3.05s  ok
+16:32:32    [ 512/1218] 2025 gross all base     P=  500 d=4 k=200  CC  0.917 (uncapped 0.917, 2 pass)  H100 4,459.1 -> 4,000.4   2.87s  ok
+16:32:33    [ 513/1218] 2025 gross all base     P=  135 d=2 k=200  CC  0.790 (uncapped 0.790, 2 pass)  H100 4,459.1 -> 4,352.4   5.83s  ok
+16:32:33    [ 514/1218] 2025 gross all base     P=  750 d=1 k=200  CC  0.347 (uncapped 0.347, 2 pass)  H100 4,459.1 -> 4,199.0   2.95s  ok
+16:32:34    [ 515/1218] 2025 gross all base     P=  750 d=4 k=200  CC  0.759 (uncapped 0.759, 2 pass)  H100 4,459.1 -> 3,890.2   3.49s  ok
+16:32:35    [ 516/1218] 2025 gross all base     P=  335 d=2 k=200  CC  0.700 (uncapped 0.700, 2 pass)  H100 4,459.1 -> 4,224.7   6.58s  ok
+16:32:35    [ 517/1218] 2025 gross all base     P= 1000 d=1 k=200  CC  0.324 (uncapped 0.324, 2 pass)  H100 4,459.1 -> 4,134.9   4.14s  ok
+16:32:37    [ 518/1218] 2024 net   PM  base     P= 1500 d=4 k=200  CC  0.623 (uncapped 0.778, 5 pass)  H100 4,122.7 -> 3,188.6  11.19s  ok
+16:32:37    [ 519/1218] 2025 gross all base     P=  500 d=2 k=200  CC  0.645 (uncapped 0.645, 2 pass)  H100 4,459.1 -> 4,136.5   7.76s  ok
+16:32:37    [ 520/1218] 2025 gross all base     P= 1000 d=4 k=200  CC  0.643 (uncapped 0.643, 2 pass)  H100 4,459.1 -> 3,816.1   4.97s  ok
+16:32:37    [ 521/1218] 2025 gross AM  base     P=   35 d=1 k=200  CC  0.460 (uncapped 0.460, 2 pass)  H100 4,251.3 -> 4,235.2   2.77s  ok
+16:32:38    [ 522/1218] 2025 gross AM  base     P=   35 d=2 k=200  CC  0.788 (uncapped 0.788, 2 pass)  H100 4,251.3 -> 4,223.7   3.07s  ok
+16:32:38    [ 523/1218] 2025 gross AM  base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,251.3 -> 4,216.3   2.76s  ok
+16:32:38    [ 524/1218] 2025 gross all base     P= 1500 d=1 k=200  CC  0.283 (uncapped 0.283, 2 pass)  H100 4,459.1 -> 4,035.1   6.37s  ok
+16:32:39    [ 525/1218] 2025 gross AM  base     P=  135 d=1 k=200  CC  0.427 (uncapped 0.427, 2 pass)  H100 4,251.3 -> 4,193.6   2.53s  ok
+16:32:39    [ 526/1218] 2025 gross AM  base     P=  135 d=2 k=200  CC  0.761 (uncapped 0.761, 2 pass)  H100 4,251.3 -> 4,148.5   2.72s  ok
+16:32:40    [ 527/1218] 2025 gross AM  base     P=  135 d=4 k=200  CC  0.997 (uncapped 0.997, 2 pass)  H100 4,251.3 -> 4,116.7   2.80s  ok
+16:32:40    [ 528/1218] 2025 gross AM  base     P=  335 d=1 k=200  CC  0.387 (uncapped 0.387, 2 pass)  H100 4,251.3 -> 4,121.7   2.88s  ok
+16:32:40    [ 529/1218] 2025 gross all base     P=  750 d=2 k=200  CC  0.565 (uncapped 0.565, 2 pass)  H100 4,459.1 -> 4,035.1   9.45s  ok
+16:32:41    [ 530/1218] 2025 gross AM  base     P=  335 d=2 k=200  CC  0.685 (uncapped 0.685, 2 pass)  H100 4,251.3 -> 4,021.7   2.73s  ok
+16:32:41    [ 531/1218] 2025 gross AM  base     P=  500 d=1 k=200  CC  0.364 (uncapped 0.364, 2 pass)  H100 4,251.3 -> 4,069.2   2.51s  ok
+16:32:41    [ 532/1218] 2025 gross AM  base     P=  335 d=4 k=200  CC  0.991 (uncapped 0.991, 2 pass)  H100 4,251.3 -> 3,919.4   2.91s  ok
+16:32:42    [ 533/1218] 2025 gross AM  base     P=  500 d=2 k=200  CC  0.633 (uncapped 0.633, 2 pass)  H100 4,251.3 -> 3,934.7   2.79s  ok
+16:32:42    [ 534/1218] 2025 gross AM  base     P=  500 d=4 k=200  CC  0.973 (uncapped 0.973, 2 pass)  H100 4,251.3 -> 3,764.6   2.54s  ok
+16:32:42    [ 535/1218] 2025 gross all base     P= 1500 d=4 k=200  CC  0.512 (uncapped 0.520, 3 pass)  H100 4,459.1 -> 3,691.0   8.94s  ok
+16:32:43    [ 536/1218] 2025 gross AM  base     P=  750 d=1 k=200  CC  0.337 (uncapped 0.337, 2 pass)  H100 4,251.3 -> 3,998.5   3.15s  ok
+16:32:43    [ 537/1218] 2025 gross AM  base     P=  750 d=2 k=200  CC  0.578 (uncapped 0.578, 2 pass)  H100 4,251.3 -> 3,817.7   3.21s  ok
+16:32:43    [ 538/1218] 2025 gross AM  base     P=  750 d=4 k=200  CC  0.948 (uncapped 0.948, 2 pass)  H100 4,251.3 -> 3,540.2   3.35s  ok
+16:32:44    [ 539/1218] 2025 gross all base     P= 1000 d=2 k=200  CC  0.494 (uncapped 0.494, 2 pass)  H100 4,459.1 -> 3,964.6  12.35s  ok
+16:32:44    [ 540/1218] 2025 gross AM  base     P= 1000 d=1 k=200  CC  0.317 (uncapped 0.317, 2 pass)  H100 4,251.3 -> 3,934.5   3.55s  ok
+16:32:44    [ 541/1218] 2025 gross AM  base     P= 1000 d=2 k=200  CC  0.539 (uncapped 0.539, 2 pass)  H100 4,251.3 -> 3,712.2   3.47s  ok
+16:32:45    [ 542/1218] 2025 gross PM  base     P=   35 d=1 k=200  CC  0.420 (uncapped 0.420, 2 pass)  H100 4,369.4 -> 4,354.7   2.15s  ok
+16:32:45    [ 543/1218] 2025 gross all base     P= 1500 d=2 k=200  CC  0.382 (uncapped 0.382, 2 pass)  H100 4,459.1 -> 3,885.4  12.17s  ok
+16:32:45    [ 544/1218] 2025 gross AM  base     P= 1500 d=2 k=200  CC  0.494 (uncapped 0.494, 2 pass)  H100 4,251.3 -> 3,510.8   3.19s  ok
+16:32:46    [ 545/1218] 2025 gross PM  base     P=   35 d=4 k=200  CC  0.992 (uncapped 0.992, 2 pass)  H100 4,369.4 -> 4,334.6   2.08s  ok
+16:32:46    [ 546/1218] 2025 gross PM  base     P=   35 d=2 k=200  CC  0.739 (uncapped 0.739, 2 pass)  H100 4,369.4 -> 4,343.5   2.41s  ok
+16:32:46    [ 547/1218] 2025 gross AM  base     P= 1500 d=1 k=200  CC  0.289 (uncapped 0.289, 2 pass)  H100 4,251.3 -> 3,817.7   3.99s  ok
+16:32:46    [ 548/1218] 2025 gross AM  base     P= 1000 d=4 k=200  CC  0.839 (uncapped 0.926, 3 pass)  H100 4,251.3 -> 3,412.3   5.28s  ok
+16:32:46    [ 549/1218] 2025 gross PM  base     P=  135 d=1 k=200  CC  0.383 (uncapped 0.383, 2 pass)  H100 4,369.4 -> 4,317.7   2.35s  ok
+16:32:46    [ 550/1218] 2025 gross PM  base     P=  135 d=4 k=200  CC  0.975 (uncapped 0.975, 2 pass)  H100 4,369.4 -> 4,237.7   2.31s  ok
+16:32:47    [ 551/1218] 2025 gross PM  base     P=  135 d=2 k=200  CC  0.686 (uncapped 0.686, 2 pass)  H100 4,369.4 -> 4,276.7   2.36s  ok
+16:32:47    [ 552/1218] 2025 gross PM  base     P=  335 d=1 k=200  CC  0.341 (uncapped 0.341, 2 pass)  H100 4,369.4 -> 4,255.2   2.59s  ok
+16:32:48    [ 553/1218] 2025 gross PM  base     P=  335 d=4 k=200  CC  0.939 (uncapped 0.939, 2 pass)  H100 4,369.4 -> 4,054.8   2.40s  ok
+16:32:48    [ 554/1218] 2025 gross PM  base     P=  500 d=1 k=200  CC  0.321 (uncapped 0.321, 2 pass)  H100 4,369.4 -> 4,209.1   2.63s  ok
+16:32:49    [ 555/1218] 2025 gross PM  base     P=  500 d=2 k=200  CC  0.559 (uncapped 0.559, 2 pass)  H100 4,369.4 -> 4,089.6   2.98s  ok
+16:32:49    [ 556/1218] 2025 gross PM  base     P=  335 d=2 k=200  CC  0.608 (uncapped 0.608, 2 pass)  H100 4,369.4 -> 4,165.7   3.60s  ok
+16:32:49    [ 557/1218] 2025 gross PM  base     P=  500 d=4 k=200  CC  0.909 (uncapped 0.909, 2 pass)  H100 4,369.4 -> 3,914.9   3.11s  ok
+16:32:50    [ 558/1218] 2025 gross PM  base     P=  750 d=1 k=200  CC  0.298 (uncapped 0.298, 2 pass)  H100 4,369.4 -> 4,146.2   3.55s  ok
+16:32:50    [ 559/1218] 2025 gross PM  base     P=  750 d=2 k=200  CC  0.514 (uncapped 0.514, 2 pass)  H100 4,369.4 -> 3,983.7   3.78s  ok
+16:32:50    [ 560/1218] 2025 gross PM  base     P=  750 d=4 k=200  CC  0.866 (uncapped 0.866, 2 pass)  H100 4,369.4 -> 3,719.5   3.80s  ok
+16:32:51    [ 561/1218] 2025 gross PM  base     P= 1000 d=2 k=200  CC  0.482 (uncapped 0.482, 2 pass)  H100 4,369.4 -> 3,887.7   3.77s  ok
+16:32:51    [ 562/1218] 2025 gross AM  base     P= 1500 d=4 k=200  CC  0.607 (uncapped 0.892, 5 pass)  H100 4,251.3 -> 3,341.1   9.19s  ok
+16:32:51    [ 563/1218] 2025 net   all base     P=   35 d=1 k=200  CC  0.473 (uncapped 0.473, 2 pass)  H100 4,201.3 -> 4,184.8   2.45s  ok
+16:32:52    [ 564/1218] 2025 gross PM  base     P= 1000 d=1 k=200  CC  0.280 (uncapped 0.280, 2 pass)  H100 4,369.4 -> 4,089.6   5.20s  ok
+16:32:52    [ 565/1218] 2025 gross PM  base     P= 1500 d=1 k=200  CC  0.257 (uncapped 0.257, 2 pass)  H100 4,369.4 -> 3,983.7   3.64s  ok
+16:32:52    [ 566/1218] 2025 net   all base     P=   35 d=4 k=200  CC  1.000 (uncapped 1.000, 2 pass)  H100 4,201.3 -> 4,166.3   2.46s  ok
+16:32:53    [ 567/1218] 2025 net   all base     P=  135 d=1 k=200  CC  0.420 (uncapped 0.420, 2 pass)  H100 4,201.3 -> 4,144.6   2.62s  ok
+16:32:54    [ 568/1218] 2025 net   all base     P=  135 d=4 k=200  CC  0.995 (uncapped 0.995, 2 pass)  H100 4,201.3 -> 4,067.0   2.37s  ok
+16:32:54    [ 569/1218] 2025 gross PM  base     P= 1000 d=4 k=200  CC  0.822 (uncapped 0.826, 3 pass)  H100 4,369.4 -> 3,546.9   6.47s  ok
+16:32:54    [ 570/1218] 2025 gross PM  base     P= 1500 d=2 k=200  CC  0.439 (uncapped 0.439, 2 pass)  H100 4,369.4 -> 3,710.2   5.55s  ok
+16:32:55    [ 571/1218] 2025 net   all base     P=  335 d=1 k=200  CC  0.376 (uncapped 0.376, 2 pass)  H100 4,201.3 -> 4,075.3   3.68s  ok
+16:32:55    [ 572/1218] 2025 net   all base     P=  500 d=1 k=200  CC  0.356 (uncapped 0.356, 2 pass)  H100 4,201.3 -> 4,023.2   2.99s  ok
+16:32:55    [ 573/1218] 2025 net   all base     P=  335 d=4 k=200  CC  0.979 (uncapped 0.979, 2 pass)  H100 4,201.3 -> 3,873.3   3.64s  ok
+16:32:56    [ 574/1218] 2025 net   all base     P=   35 d=2 k=200  CC  0.789 (uncapped 0.789, 2 pass)  H100 4,201.3 -> 4,173.7   6.53s  ok
+16:32:56    [ 575/1218] 2025 net   all base     P=  500 d=4 k=200  CC  0.903 (uncapped 0.903, 2 pass)  H100 4,201.3 -> 3,749.8   2.68s  ok
+16:32:56    [ 576/1218] 2025 net   all base     P=  135 d=2 k=200  CC  0.743 (uncapped 0.743, 2 pass)  H100 4,201.3 -> 4,101.1   5.29s  ok
+16:32:57    [ 577/1218] 2025 net   all base     P=  750 d=1 k=200  CC  0.330 (uncapped 0.330, 2 pass)  H100 4,201.3 -> 3,954.1   3.21s  ok
+16:32:57    [ 578/1218] 2025 gross PM  base     P= 1500 d=4 k=200  CC  0.615 (uncapped 0.774, 4 pass)  H100 4,369.4 -> 3,447.4   8.66s  ok
+16:32:58    [ 579/1218] 2025 net   all base     P=  750 d=4 k=200  CC  0.735 (uncapped 0.735, 2 pass)  H100 4,201.3 -> 3,649.7   3.05s  ok
+16:32:58    [ 580/1218] 2025 net   all base     P=  335 d=2 k=200  CC  0.666 (uncapped 0.666, 2 pass)  H100 4,201.3 -> 3,978.3   6.58s  ok
+16:32:59    [ 581/1218] 2025 net   all base     P= 1000 d=1 k=200  CC  0.309 (uncapped 0.309, 2 pass)  H100 4,201.3 -> 3,891.9   3.47s  ok
+16:32:59    [ 582/1218] 2025 net   AM  base     P=   35 d=1 k=200  CC  0.435 (uncapped 0.435, 2 pass)  H100 3,991.6 -> 3,976.4   2.05s  ok
+16:33:00    [ 583/1218] 2025 net   all base     P=  500 d=2 k=200  CC  0.617 (uncapped 0.617, 2 pass)  H100 4,201.3 -> 3,892.6   6.71s  ok
+16:33:00    [ 584/1218] 2025 net   AM  base     P=   35 d=2 k=200  CC  0.760 (uncapped 0.760, 2 pass)  H100 3,991.6 -> 3,965.0   2.04s  ok
+16:33:00    [ 585/1218] 2025 net   all base     P= 1000 d=4 k=200  CC  0.623 (uncapped 0.623, 2 pass)  H100 4,201.3 -> 3,578.0   4.03s  ok
+16:33:01    [ 586/1218] 2025 net   AM  base     P=   35 d=4 k=200  CC  0.995 (uncapped 0.995, 2 pass)  H100 3,991.6 -> 3,956.8   2.26s  ok
+16:33:01    [ 587/1218] 2025 net   AM  base     P=  135 d=1 k=200  CC  0.413 (uncapped 0.413, 2 pass)  H100 3,991.6 -> 3,935.9   1.95s  ok
+16:33:01    [ 588/1218] 2025 net   all base     P= 1500 d=1 k=200  CC  0.277 (uncapped 0.277, 2 pass)  H100 4,201.3 -> 3,786.3   4.75s  ok
+16:33:02    [ 589/1218] 2025 net   AM  base     P=  135 d=2 k=200  CC  0.724 (uncapped 0.724, 2 pass)  H100 3,991.6 -> 3,894.0   2.04s  ok
+16:33:02    [ 590/1218] 2025 net   AM  base     P=  135 d=4 k=200  CC  0.991 (uncapped 0.991, 2 pass)  H100 3,991.6 -> 3,857.9   2.41s  ok
+16:33:03    [ 591/1218] 2025 net   AM  base     P=  335 d=1 k=200  CC  0.370 (uncapped 0.370, 2 pass)  H100 3,991.6 -> 3,867.5   2.51s  ok
+16:33:03    [ 592/1218] 2025 net   all base     P=  750 d=2 k=200  CC  0.553 (uncapped 0.553, 2 pass)  H100 4,201.3 -> 3,786.3   8.68s  ok
+16:33:03    [ 593/1218] 2025 net   AM  base     P=  335 d=2 k=200  CC  0.649 (uncapped 0.649, 2 pass)  H100 3,991.6 -> 3,774.1   2.70s  ok
+16:33:03    [ 594/1218] 2025 net   AM  base     P=  335 d=4 k=200  CC  0.972 (uncapped 0.972, 2 pass)  H100 3,991.6 -> 3,666.0   2.53s  ok
+16:33:03    [ 595/1218] 2025 net   AM  base     P=  500 d=1 k=200  CC  0.346 (uncapped 0.346, 2 pass)  H100 3,991.6 -> 3,818.8   2.45s  ok
+16:33:04    [ 596/1218] 2025 net   AM  base     P=  500 d=2 k=200  CC  0.604 (uncapped 0.604, 2 pass)  H100 3,991.6 -> 3,689.5   2.48s  ok
+16:33:04    [ 597/1218] 2025 net   AM  base     P=  500 d=4 k=200  CC  0.952 (uncapped 0.952, 2 pass)  H100 3,991.6 -> 3,515.4   2.53s  ok
+16:33:05    [ 598/1218] 2025 net   AM  base     P=  750 d=1 k=200  CC  0.322 (uncapped 0.322, 2 pass)  H100 3,991.6 -> 3,750.2   2.76s  ok
+16:33:05    [ 599/1218] 2025 net   all base     P= 1500 d=4 k=200  CC  0.474 (uncapped 0.507, 3 pass)  H100 4,201.3 -> 3,490.0   7.96s  ok
+16:33:06    [ 600/1218] 2025 net   AM  base     P=  750 d=2 k=200  CC  0.555 (uncapped 0.555, 2 pass)  H100 3,991.6 -> 3,575.6   2.91s  ok
+16:33:06    [ 601/1218] 2025 net   all base     P= 1000 d=2 k=200  CC  0.480 (uncapped 0.480, 2 pass)  H100 4,201.3 -> 3,721.6  10.68s  ok
+16:33:06    [ 602/1218] 2025 net   AM  base     P= 1000 d=2 k=200  CC  0.520 (uncapped 0.520, 2 pass)  H100 3,991.6 -> 3,471.2   3.15s  ok
+16:33:06    [ 603/1218] 2025 net   AM  base     P= 1000 d=1 k=200  CC  0.303 (uncapped 0.303, 2 pass)  H100 3,991.6 -> 3,688.5   3.48s  ok
+16:33:07    [ 604/1218] 2025 net   AM  base     P= 1500 d=1 k=200  CC  0.277 (uncapped 0.277, 2 pass)  H100 3,991.6 -> 3,575.6   3.34s  ok
+16:33:07    [ 605/1218] 2025 net   PM  base     P=   35 d=1 k=200  CC  0.403 (uncapped 0.403, 2 pass)  H100 4,089.2 -> 4,075.1   2.23s  ok
+16:33:08    [ 606/1218] 2025 net   AM  base     P=  750 d=4 k=200  CC  0.904 (uncapped 0.928, 3 pass)  H100 3,991.6 -> 3,313.8   4.75s  ok
+16:33:08    [ 607/1218] 2025 net   PM  base     P=   35 d=2 k=200  CC  0.704 (uncapped 0.704, 2 pass)  H100 4,089.2 -> 4,064.5   2.21s  ok
+16:33:08    [ 608/1218] 2025 net   all base     P= 1500 d=2 k=200  CC  0.369 (uncapped 0.369, 2 pass)  H100 4,201.3 -> 3,647.5  11.44s  ok
+16:33:08    [ 609/1218] 2025 net   PM  base     P=   35 d=4 k=200  CC  0.971 (uncapped 0.971, 2 pass)  H100 4,089.2 -> 4,055.2   2.11s  ok
+16:33:08    [ 610/1218] 2025 net   PM  base     P=  135 d=1 k=200  CC  0.374 (uncapped 0.374, 2 pass)  H100 4,089.2 -> 4,038.7   2.22s  ok
+16:33:09    [ 611/1218] 2025 net   PM  base     P=  135 d=2 k=200  CC  0.664 (uncapped 0.664, 2 pass)  H100 4,089.2 -> 3,999.5   2.21s  ok
+16:33:09    [ 612/1218] 2025 net   AM  base     P= 1500 d=2 k=200  CC  0.469 (uncapped 0.481, 3 pass)  H100 3,991.6 -> 3,288.2   4.70s  ok
+16:33:09    [ 613/1218] 2025 net   PM  base     P=  135 d=4 k=200  CC  0.960 (uncapped 0.960, 2 pass)  H100 4,089.2 -> 3,959.6   2.42s  ok
+16:33:10    [ 614/1218] 2025 net   AM  base     P= 1000 d=4 k=200  CC  0.786 (uncapped 0.909, 4 pass)  H100 3,991.6 -> 3,205.7   6.61s  ok
+16:33:10    [ 615/1218] 2025 net   PM  base     P=  335 d=1 k=200  CC  0.335 (uncapped 0.335, 2 pass)  H100 4,089.2 -> 3,976.8   2.51s  ok
+16:33:10    [ 616/1218] 2025 net   PM  base     P=  335 d=2 k=200  CC  0.593 (uncapped 0.593, 2 pass)  H100 4,089.2 -> 3,890.6   2.38s  ok
+16:33:10    [ 617/1218] 2025 net   PM  base     P=  335 d=4 k=200  CC  0.934 (uncapped 0.934, 2 pass)  H100 4,089.2 -> 3,776.2   2.24s  ok
+16:33:11    [ 618/1218] 2025 net   PM  base     P=  500 d=1 k=200  CC  0.313 (uncapped 0.313, 2 pass)  H100 4,089.2 -> 3,932.5   2.62s  ok
+16:33:11    [ 619/1218] 2025 net   PM  base     P=  500 d=2 k=200  CC  0.550 (uncapped 0.550, 2 pass)  H100 4,089.2 -> 3,814.1   2.44s  ok
+16:33:11    [ 620/1218] 2025 net   PM  base     P=  500 d=4 k=200  CC  0.904 (uncapped 0.904, 2 pass)  H100 4,089.2 -> 3,637.3   2.57s  ok
+16:33:11    [ 621/1218] 2025 net   PM  base     P=  750 d=2 k=200  CC  0.503 (uncapped 0.503, 2 pass)  H100 4,089.2 -> 3,711.8   2.55s  ok
+16:33:12    [ 622/1218] 2025 net   AM  base     P= 1500 d=4 k=200  CC  0.571 (uncapped 0.880, 4 pass)  H100 3,991.6 -> 3,135.3   7.16s  ok
+16:33:12    [ 623/1218] 2025 net   PM  base     P=  750 d=1 k=200  CC  0.291 (uncapped 0.291, 2 pass)  H100 4,089.2 -> 3,871.1   3.54s  ok
+16:33:13    [ 624/1218] 2025 net   PM  base     P= 1000 d=1 k=200  CC  0.275 (uncapped 0.275, 2 pass)  H100 4,089.2 -> 3,814.1   3.27s  ok
+16:33:13    [ 625/1218] 2025 net   PM  base     P=  750 d=4 k=200  CC  0.853 (uncapped 0.853, 2 pass)  H100 4,089.2 -> 3,449.3   3.93s  ok
+16:33:14    [ 626/1218] 2025 net   PM  base     P= 1500 d=1 k=200  CC  0.252 (uncapped 0.252, 2 pass)  H100 4,089.2 -> 3,711.8   3.43s  ok
+16:33:14    [ 627/1218] 2026 gross all base     P=   35 d=1 k=200  CC  0.462 (uncapped 0.462, 2 pass)  H100 4,579.1 -> 4,562.9   2.73s  ok
+16:33:14    [ 628/1218] 2025 net   PM  base     P= 1000 d=2 k=200  CC  0.472 (uncapped 0.472, 2 pass)  H100 4,089.2 -> 3,617.3   3.84s  ok
+16:33:14    [ 629/1218] 2026 gross all base     P=   35 d=4 k=200  CC  0.972 (uncapped 0.972, 2 pass)  H100 4,579.1 -> 4,545.1   1.94s  ok
+16:33:15    [ 630/1218] 2025 net   PM  base     P= 1500 d=2 k=200  CC  0.431 (uncapped 0.431, 2 pass)  H100 4,089.2 -> 3,443.2   4.21s  ok
+16:33:15    [ 631/1218] 2026 gross all base     P=  135 d=1 k=200  CC  0.411 (uncapped 0.411, 2 pass)  H100 4,579.1 -> 4,523.6   2.58s  ok
+16:33:16    [ 632/1218] 2026 gross all base     P=  135 d=4 k=200  CC  0.960 (uncapped 0.960, 2 pass)  H100 4,579.1 -> 4,449.5   2.36s  ok
+16:33:16    [ 633/1218] 2026 gross all base     P=  335 d=1 k=200  CC  0.365 (uncapped 0.365, 2 pass)  H100 4,579.1 -> 4,456.9   2.27s  ok
+16:33:16    [ 634/1218] 2026 gross all base     P=  500 d=1 k=200  CC  0.341 (uncapped 0.341, 2 pass)  H100 4,579.1 -> 4,408.5   2.13s  ok
+16:33:16    [ 635/1218] 2026 gross all base     P=   35 d=2 k=200  CC  0.763 (uncapped 0.763, 2 pass)  H100 4,579.1 -> 4,552.4   4.81s  ok
+16:33:17    [ 636/1218] 2026 gross all base     P=  335 d=4 k=200  CC  0.944 (uncapped 0.944, 2 pass)  H100 4,579.1 -> 4,262.7   3.03s  ok
+16:33:17    [ 637/1218] 2026 gross all base     P=  500 d=4 k=200  CC  0.871 (uncapped 0.871, 2 pass)  H100 4,579.1 -> 4,143.7   2.14s  ok
+16:33:18    [ 638/1218] 2026 gross all base     P=  750 d=1 k=200  CC  0.317 (uncapped 0.317, 2 pass)  H100 4,579.1 -> 4,341.6   2.44s  ok
+16:33:19    [ 639/1218] 2026 gross all base     P=  135 d=2 k=200  CC  0.713 (uncapped 0.713, 2 pass)  H100 4,579.1 -> 4,482.8   5.53s  ok
+16:33:19    [ 640/1218] 2026 gross all base     P=  750 d=4 k=200  CC  0.718 (uncapped 0.718, 2 pass)  H100 4,579.1 -> 4,040.6   3.11s  ok
+16:33:20    [ 641/1218] 2026 gross all base     P= 1000 d=1 k=200  CC  0.299 (uncapped 0.299, 2 pass)  H100 4,579.1 -> 4,280.0   3.42s  ok
+16:33:20    [ 642/1218] 2026 gross all base     P=  335 d=2 k=200  CC  0.641 (uncapped 0.641, 2 pass)  H100 4,579.1 -> 4,364.3   6.08s  ok
+16:33:21    [ 643/1218] 2025 net   PM  base     P= 1000 d=4 k=200  CC  0.768 (uncapped 0.812, 5 pass)  H100 4,089.2 -> 3,321.3  10.64s  ok
+16:33:21    [ 644/1218] 2026 gross all base     P= 1000 d=4 k=200  CC  0.608 (uncapped 0.609, 2 pass)  H100 4,579.1 -> 3,970.9   4.12s  ok
+16:33:21    [ 645/1218] 2026 gross all base     P=  500 d=2 k=200  CC  0.598 (uncapped 0.598, 2 pass)  H100 4,579.1 -> 4,280.2   6.62s  ok
+16:33:21    [ 646/1218] 2026 gross AM  base     P=   35 d=1 k=200  CC  0.401 (uncapped 0.401, 2 pass)  H100 4,316.0 -> 4,302.0   1.91s  ok
+16:33:22    [ 647/1218] 2026 gross all base     P= 1500 d=1 k=200  CC  0.268 (uncapped 0.268, 2 pass)  H100 4,579.1 -> 4,177.2   3.68s  ok
+16:33:22    [ 648/1218] 2026 gross AM  base     P=   35 d=2 k=200  CC  0.718 (uncapped 0.718, 2 pass)  H100 4,316.0 -> 4,290.8   2.22s  ok
+16:33:23    [ 649/1218] 2026 gross AM  base     P=   35 d=4 k=200  CC  0.986 (uncapped 0.986, 2 pass)  H100 4,316.0 -> 4,281.5   1.98s  ok
+16:33:23    [ 650/1218] 2026 gross AM  base     P=  135 d=4 k=200  CC  0.979 (uncapped 0.979, 2 pass)  H100 4,316.0 -> 4,183.8   1.68s  ok
+16:33:23    [ 651/1218] 2025 net   PM  base     P= 1500 d=4 k=200  CC  0.571 (uncapped 0.764, 5 pass)  H100 4,089.2 -> 3,232.7  12.62s  ok
+16:33:23    [ 652/1218] 2026 gross AM  base     P=  135 d=1 k=200  CC  0.377 (uncapped 0.377, 2 pass)  H100 4,316.0 -> 4,265.1   2.43s  ok
+16:33:24    [ 653/1218] 2026 gross AM  base     P=  135 d=2 k=200  CC  0.687 (uncapped 0.687, 2 pass)  H100 4,316.0 -> 4,223.3   2.21s  ok
+16:33:24    [ 654/1218] 2026 gross all base     P=  750 d=2 k=200  CC  0.536 (uncapped 0.536, 2 pass)  H100 4,579.1 -> 4,177.2   8.28s  ok
+16:33:24    [ 655/1218] 2026 gross AM  base     P=  335 d=1 k=200  CC  0.350 (uncapped 0.350, 2 pass)  H100 4,316.0 -> 4,198.6   2.59s  ok
+16:33:24    [ 656/1218] 2026 gross AM  base     P=  335 d=2 k=200  CC  0.633 (uncapped 0.633, 2 pass)  H100 4,316.0 -> 4,103.9   2.32s  ok
+16:33:25    [ 657/1218] 2026 gross AM  base     P=  335 d=4 k=200  CC  0.965 (uncapped 0.965, 2 pass)  H100 4,316.0 -> 3,992.8   1.92s  ok
+16:33:25    [ 658/1218] 2026 gross all base     P= 1500 d=4 k=200  CC  0.445 (uncapped 0.498, 3 pass)  H100 4,579.1 -> 3,911.1   5.73s  ok
+16:33:25    [ 659/1218] 2026 gross AM  base     P=  500 d=1 k=200  CC  0.332 (uncapped 0.332, 2 pass)  H100 4,316.0 -> 4,149.8   1.94s  ok
+16:33:26    [ 660/1218] 2026 gross AM  base     P=  500 d=2 k=200  CC  0.600 (uncapped 0.600, 2 pass)  H100 4,316.0 -> 4,016.1   2.54s  ok
+16:33:26    [ 661/1218] 2026 gross AM  base     P=  500 d=4 k=200  CC  0.949 (uncapped 0.949, 2 pass)  H100 4,316.0 -> 3,841.7   2.78s  ok
+16:33:27    [ 662/1218] 2026 gross all base     P= 1000 d=2 k=200  CC  0.466 (uncapped 0.466, 2 pass)  H100 4,579.1 -> 4,113.2   9.72s  ok
+16:33:27    [ 663/1218] 2026 gross AM  base     P=  750 d=2 k=200  CC  0.555 (uncapped 0.555, 2 pass)  H100 4,316.0 -> 3,899.7   2.96s  ok
+16:33:27    [ 664/1218] 2026 gross AM  base     P=  750 d=1 k=200  CC  0.314 (uncapped 0.314, 2 pass)  H100 4,316.0 -> 4,080.8   3.46s  ok
+16:33:27    [ 665/1218] 2026 gross AM  base     P= 1000 d=2 k=200  CC  0.523 (uncapped 0.523, 2 pass)  H100 4,316.0 -> 3,793.2   2.90s  ok
+16:33:28    [ 666/1218] 2026 gross AM  base     P= 1000 d=1 k=200  CC  0.300 (uncapped 0.300, 2 pass)  H100 4,316.0 -> 4,015.9   3.45s  ok
+16:33:28    [ 667/1218] 2026 gross AM  base     P= 1500 d=1 k=200  CC  0.278 (uncapped 0.278, 2 pass)  H100 4,316.0 -> 3,899.7   2.99s  ok
+16:33:28    [ 668/1218] 2026 gross PM  base     P=   35 d=1 k=200  CC  0.364 (uncapped 0.364, 2 pass)  H100 4,470.9 -> 4,458.2   1.94s  ok
+16:33:29    [ 669/1218] 2026 gross PM  base     P=   35 d=2 k=200  CC  0.670 (uncapped 0.670, 2 pass)  H100 4,470.9 -> 4,447.5   1.76s  ok
+16:33:29    [ 670/1218] 2026 gross PM  base     P=   35 d=4 k=200  CC  0.945 (uncapped 0.945, 2 pass)  H100 4,470.9 -> 4,437.8   1.87s  ok
+16:33:29    [ 671/1218] 2026 gross PM  base     P=  135 d=1 k=200  CC  0.335 (uncapped 0.335, 2 pass)  H100 4,470.9 -> 4,425.7   1.72s  ok
+16:33:30    [ 672/1218] 2026 gross PM  base     P=  135 d=2 k=200  CC  0.632 (uncapped 0.632, 2 pass)  H100 4,470.9 -> 4,385.5   1.84s  ok
+16:33:30    [ 673/1218] 2026 gross PM  base     P=  135 d=4 k=200  CC  0.940 (uncapped 0.940, 2 pass)  H100 4,470.9 -> 4,344.0   1.83s  ok
+16:33:30    [ 674/1218] 2026 gross AM  base     P= 1500 d=2 k=200  CC  0.451 (uncapped 0.483, 3 pass)  H100 4,316.0 -> 3,639.7   4.12s  ok
+16:33:30    [ 675/1218] 2026 gross AM  base     P=  750 d=4 k=200  CC  0.860 (uncapped 0.925, 4 pass)  H100 4,316.0 -> 3,670.7   6.06s  ok
+16:33:30    [ 676/1218] 2026 gross all base     P= 1500 d=2 k=200  CC  0.360 (uncapped 0.360, 2 pass)  H100 4,579.1 -> 4,039.3  11.76s  ok
+16:33:31    [ 677/1218] 2026 gross PM  base     P=  335 d=1 k=200  CC  0.314 (uncapped 0.314, 2 pass)  H100 4,470.9 -> 4,365.7   2.07s  ok
+16:33:31    [ 678/1218] 2026 gross PM  base     P=  335 d=2 k=200  CC  0.576 (uncapped 0.576, 2 pass)  H100 4,470.9 -> 4,277.8   2.22s  ok
+16:33:31    [ 679/1218] 2026 gross PM  base     P=  335 d=4 k=200  CC  0.912 (uncapped 0.912, 2 pass)  H100 4,470.9 -> 4,165.3   2.21s  ok
+16:33:31    [ 680/1218] 2026 gross PM  base     P=  500 d=1 k=200  CC  0.301 (uncapped 0.301, 2 pass)  H100 4,470.9 -> 4,320.2   2.11s  ok
+16:33:32    [ 681/1218] 2026 gross PM  base     P=  500 d=2 k=200  CC  0.533 (uncapped 0.533, 2 pass)  H100 4,470.9 -> 4,204.2   2.32s  ok
+16:33:32    [ 682/1218] 2026 gross PM  base     P=  500 d=4 k=200  CC  0.888 (uncapped 0.888, 2 pass)  H100 4,470.9 -> 4,027.0   2.28s  ok
+16:33:32    [ 683/1218] 2026 gross PM  base     P=  750 d=1 k=200  CC  0.282 (uncapped 0.282, 2 pass)  H100 4,470.9 -> 4,259.3   2.28s  ok
+16:33:33    [ 684/1218] 2026 gross AM  base     P= 1000 d=4 k=200  CC  0.734 (uncapped 0.906, 5 pass)  H100 4,316.0 -> 3,582.0   7.86s  ok
+16:33:33    [ 685/1218] 2026 gross PM  base     P=  750 d=2 k=200  CC  0.492 (uncapped 0.492, 2 pass)  H100 4,470.9 -> 4,101.7   2.52s  ok
+16:33:34    [ 686/1218] 2026 gross AM  base     P= 1500 d=4 k=200  CC  0.536 (uncapped 0.880, 5 pass)  H100 4,316.0 -> 3,512.1   7.23s  ok
+16:33:34    [ 687/1218] 2026 gross PM  base     P= 1000 d=1 k=200  CC  0.267 (uncapped 0.267, 2 pass)  H100 4,470.9 -> 4,204.2   3.27s  ok
+16:33:34    [ 688/1218] 2026 net   all base     P=   35 d=1 k=200  CC  0.398 (uncapped 0.398, 2 pass)  H100 4,336.6 -> 4,322.7   1.80s  ok
+16:33:34    [ 689/1218] 2026 gross PM  base     P= 1500 d=1 k=200  CC  0.246 (uncapped 0.246, 2 pass)  H100 4,470.9 -> 4,101.7   3.01s  ok
+16:33:34    [ 690/1218] 2026 gross PM  base     P= 1000 d=2 k=200  CC  0.463 (uncapped 0.463, 2 pass)  H100 4,470.9 -> 4,007.8   3.47s  ok
+16:33:35    [ 691/1218] 2026 net   all base     P=   35 d=4 k=200  CC  0.965 (uncapped 0.965, 2 pass)  H100 4,336.6 -> 4,302.8   2.07s  ok
+16:33:35    [ 692/1218] 2026 gross PM  base     P=  750 d=4 k=200  CC  0.845 (uncapped 0.847, 3 pass)  H100 4,470.9 -> 3,837.4   4.81s  ok
+16:33:36    [ 693/1218] 2026 net   all base     P=  135 d=1 k=200  CC  0.372 (uncapped 0.372, 2 pass)  H100 4,336.6 -> 4,286.4   2.06s  ok
+16:33:36    [ 694/1218] 2026 net   all base     P=  135 d=4 k=200  CC  0.956 (uncapped 0.956, 2 pass)  H100 4,336.6 -> 4,207.5   1.88s  ok
+16:33:36    [ 695/1218] 2026 gross PM  base     P= 1000 d=4 k=200  CC  0.743 (uncapped 0.806, 3 pass)  H100 4,470.9 -> 3,728.3   4.95s  ok
+16:33:36    [ 696/1218] 2026 net   all base     P=  335 d=1 k=200  CC  0.339 (uncapped 0.339, 2 pass)  H100 4,336.6 -> 4,222.9   2.19s  ok
+16:33:37    [ 697/1218] 2026 net   all base     P=   35 d=2 k=200  CC  0.723 (uncapped 0.723, 2 pass)  H100 4,336.6 -> 4,311.3   4.31s  ok
+16:33:37    [ 698/1218] 2026 gross PM  base     P= 1500 d=2 k=200  CC  0.425 (uncapped 0.426, 3 pass)  H100 4,470.9 -> 3,833.9   5.19s  ok
+16:33:37    [ 699/1218] 2026 net   all base     P=  335 d=4 k=200  CC  0.931 (uncapped 0.931, 2 pass)  H100 4,336.6 -> 4,024.8   2.34s  ok
+16:33:38    [ 700/1218] 2026 net   all base     P=  500 d=1 k=200  CC  0.322 (uncapped 0.322, 2 pass)  H100 4,336.6 -> 4,175.6   2.78s  ok
+16:33:38    [ 701/1218] 2026 net   all base     P=  500 d=4 k=200  CC  0.862 (uncapped 0.862, 2 pass)  H100 4,336.6 -> 3,905.5   2.38s  ok
+16:33:38    [ 702/1218] 2026 net   all base     P=  135 d=2 k=200  CC  0.678 (uncapped 0.678, 2 pass)  H100 4,336.6 -> 4,245.0   4.62s  ok
+16:33:39    [ 703/1218] 2026 net   all base     P=  750 d=1 k=200  CC  0.305 (uncapped 0.305, 2 pass)  H100 4,336.6 -> 4,108.1   2.47s  ok
+16:33:39    [ 704/1218] 2026 gross PM  base     P= 1500 d=4 k=200  CC  0.535 (uncapped 0.760, 4 pass)  H100 4,470.9 -> 3,669.0   6.41s  ok
+16:33:40    [ 705/1218] 2026 net   all base     P=  750 d=4 k=200  CC  0.727 (uncapped 0.727, 2 pass)  H100 4,336.6 -> 3,791.0   2.45s  ok
+16:33:40    [ 706/1218] 2026 net   all base     P= 1000 d=1 k=200  CC  0.291 (uncapped 0.291, 2 pass)  H100 4,336.6 -> 4,046.0   2.67s  ok
+16:33:40    [ 707/1218] 2026 net   all base     P=  335 d=2 k=200  CC  0.617 (uncapped 0.617, 2 pass)  H100 4,336.6 -> 4,130.0   5.71s  ok
+16:33:40    [ 708/1218] 2026 net   AM  base     P=   35 d=1 k=200  CC  0.413 (uncapped 0.413, 2 pass)  H100 4,022.5 -> 4,008.1   1.69s  ok
+16:33:41    [ 709/1218] 2026 net   AM  base     P=   35 d=2 k=200  CC  0.719 (uncapped 0.719, 2 pass)  H100 4,022.5 -> 3,997.4   1.86s  ok
+16:33:42    [ 710/1218] 2026 net   AM  base     P=   35 d=4 k=200  CC  0.975 (uncapped 0.975, 2 pass)  H100 4,022.5 -> 3,988.4   1.67s  ok
+16:33:42    [ 711/1218] 2026 net   all base     P=  500 d=2 k=200  CC  0.579 (uncapped 0.579, 2 pass)  H100 4,336.6 -> 4,047.0   6.09s  ok
+16:33:42    [ 712/1218] 2026 net   all base     P= 1500 d=1 k=200  CC  0.264 (uncapped 0.264, 2 pass)  H100 4,336.6 -> 3,941.0   3.59s  ok
+16:33:42    [ 713/1218] 2026 net   AM  base     P=  135 d=2 k=200  CC  0.685 (uncapped 0.685, 2 pass)  H100 4,022.5 -> 3,930.0   1.77s  ok
+16:33:42    [ 714/1218] 2026 net   AM  base     P=  135 d=1 k=200  CC  0.382 (uncapped 0.382, 2 pass)  H100 4,022.5 -> 3,970.9   2.06s  ok
+16:33:43    [ 715/1218] 2026 net   all base     P= 1000 d=4 k=200  CC  0.611 (uncapped 0.625, 3 pass)  H100 4,336.6 -> 3,725.1   5.07s  ok
+16:33:43    [ 716/1218] 2026 net   all base     P=  750 d=2 k=200  CC  0.527 (uncapped 0.527, 2 pass)  H100 4,336.6 -> 3,941.0   6.86s  ok
+16:33:43    [ 717/1218] 2026 net   AM  base     P=  135 d=4 k=200  CC  0.969 (uncapped 0.969, 2 pass)  H100 4,022.5 -> 3,891.7   2.01s  ok
+16:33:44    [ 718/1218] 2026 net   AM  base     P=  335 d=1 k=200  CC  0.354 (uncapped 0.354, 2 pass)  H100 4,022.5 -> 3,904.1   2.10s  ok
+16:33:44    [ 719/1218] 2026 net   AM  base     P=  335 d=2 k=200  CC  0.638 (uncapped 0.638, 2 pass)  H100 4,022.5 -> 3,808.8   2.03s  ok
+16:33:44    [ 720/1218] 2026 net   AM  base     P=  335 d=4 k=200  CC  0.957 (uncapped 0.957, 2 pass)  H100 4,022.5 -> 3,702.0   2.08s  ok
+16:33:44    [ 721/1218] 2026 net   AM  base     P=  500 d=1 k=200  CC  0.335 (uncapped 0.335, 2 pass)  H100 4,022.5 -> 3,855.1   2.32s  ok
+16:33:44    [ 722/1218] 2026 net   all base     P= 1500 d=4 k=200  CC  0.451 (uncapped 0.510, 3 pass)  H100 4,336.6 -> 3,660.0   5.85s  ok
+16:33:44    [ 723/1218] 2026 net   AM  base     P=  500 d=2 k=200  CC  0.603 (uncapped 0.603, 2 pass)  H100 4,022.5 -> 3,720.8   2.18s  ok
+16:33:46    [ 724/1218] 2026 net   AM  base     P=  750 d=1 k=200  CC  0.316 (uncapped 0.316, 2 pass)  H100 4,022.5 -> 3,785.4   2.28s  ok
+16:33:46    [ 725/1218] 2026 net   AM  base     P=  750 d=2 k=200  CC  0.563 (uncapped 0.563, 2 pass)  H100 4,022.5 -> 3,600.5   2.23s  ok
+16:33:46    [ 726/1218] 2026 net   all base     P= 1000 d=2 k=200  CC  0.462 (uncapped 0.462, 2 pass)  H100 4,336.6 -> 3,875.0   8.36s  ok
+16:33:46    [ 727/1218] 2026 net   AM  base     P= 1000 d=1 k=200  CC  0.303 (uncapped 0.303, 2 pass)  H100 4,022.5 -> 3,719.6   2.41s  ok
+16:33:46    [ 728/1218] 2026 net   AM  base     P=  500 d=4 k=200  CC  0.936 (uncapped 0.942, 3 pass)  H100 4,022.5 -> 3,554.7   3.19s  ok
+16:33:47    [ 729/1218] 2026 net   AM  base     P= 1500 d=1 k=200  CC  0.282 (uncapped 0.282, 2 pass)  H100 4,022.5 -> 3,599.4   2.86s  ok
+16:33:47    [ 730/1218] 2026 net   PM  base     P=   35 d=1 k=200  CC  0.309 (uncapped 0.309, 2 pass)  H100 4,215.4 -> 4,204.6   1.77s  ok
+16:33:47    [ 731/1218] 2026 net   PM  base     P=   35 d=2 k=200  CC  0.596 (uncapped 0.596, 2 pass)  H100 4,215.4 -> 4,194.6   1.74s  ok
+16:33:48    [ 732/1218] 2026 net   AM  base     P=  750 d=4 k=200  CC  0.811 (uncapped 0.919, 3 pass)  H100 4,022.5 -> 3,414.3   3.94s  ok
+16:33:48    [ 733/1218] 2026 net   PM  base     P=   35 d=4 k=200  CC  0.933 (uncapped 0.933, 2 pass)  H100 4,215.4 -> 4,182.8   1.78s  ok
+16:33:48    [ 734/1218] 2026 net   all base     P= 1500 d=2 k=200  CC  0.372 (uncapped 0.372, 2 pass)  H100 4,336.6 -> 3,778.0   9.55s  ok
+16:33:48    [ 735/1218] 2026 net   PM  base     P=  135 d=1 k=200  CC  0.299 (uncapped 0.299, 2 pass)  H100 4,215.4 -> 4,175.1   1.89s  ok
+16:33:49    [ 736/1218] 2026 net   AM  base     P= 1000 d=2 k=200  CC  0.520 (uncapped 0.528, 4 pass)  H100 4,022.5 -> 3,502.9   5.04s  ok
+16:33:49    [ 737/1218] 2026 net   PM  base     P=  135 d=2 k=200  CC  0.563 (uncapped 0.563, 2 pass)  H100 4,215.4 -> 4,139.4   1.91s  ok
+16:33:49    [ 738/1218] 2026 net   PM  base     P=  135 d=4 k=200  CC  0.914 (uncapped 0.914, 2 pass)  H100 4,215.4 -> 4,092.1   1.97s  ok
+16:33:50    [ 739/1218] 2026 net   PM  base     P=  335 d=1 k=200  CC  0.277 (uncapped 0.277, 2 pass)  H100 4,215.4 -> 4,122.5   2.40s  ok
+16:33:50    [ 740/1218] 2026 net   AM  base     P= 1000 d=4 k=200  CC  0.696 (uncapped 0.904, 4 pass)  H100 4,022.5 -> 3,326.4   5.69s  ok
+16:33:50    [ 741/1218] 2026 net   PM  base     P=  335 d=2 k=200  CC  0.516 (uncapped 0.516, 2 pass)  H100 4,215.4 -> 4,042.7   2.49s  ok
+16:33:50    [ 742/1218] 2026 net   PM  base     P=  335 d=4 k=200  CC  0.884 (uncapped 0.884, 2 pass)  H100 4,215.4 -> 3,919.3   2.21s  ok
+16:33:50    [ 743/1218] 2026 net   AM  base     P= 1500 d=2 k=200  CC  0.423 (uncapped 0.486, 4 pass)  H100 4,022.5 -> 3,387.3   5.76s  ok
+16:33:50    [ 744/1218] 2026 net   PM  base     P=  500 d=2 k=200  CC  0.491 (uncapped 0.491, 2 pass)  H100 4,215.4 -> 3,969.7   2.14s  ok
+16:33:51    [ 745/1218] 2026 net   PM  base     P=  500 d=1 k=200  CC  0.267 (uncapped 0.267, 2 pass)  H100 4,215.4 -> 4,082.0   3.24s  ok
+16:33:51    [ 746/1218] 2026 net   PM  base     P=  500 d=4 k=200  CC  0.857 (uncapped 0.857, 2 pass)  H100 4,215.4 -> 3,787.1   2.45s  ok
+16:33:52    [ 747/1218] 2026 net   PM  base     P=  750 d=1 k=200  CC  0.255 (uncapped 0.255, 2 pass)  H100 4,215.4 -> 4,024.3   2.36s  ok
+16:33:52    [ 748/1218] 2026 net   PM  base     P=  750 d=2 k=200  CC  0.460 (uncapped 0.460, 2 pass)  H100 4,215.4 -> 3,870.2   2.57s  ok
+16:33:53    [ 749/1218] 2026 net   PM  base     P= 1000 d=1 k=200  CC  0.246 (uncapped 0.246, 2 pass)  H100 4,215.4 -> 3,969.7   2.60s  ok
+16:33:53    [ 750/1218] 2026 net   PM  base     P= 1000 d=2 k=200  CC  0.438 (uncapped 0.438, 2 pass)  H100 4,215.4 -> 3,777.1   2.85s  ok
+16:33:53    [ 751/1218] 2026 net   PM  base     P= 1500 d=1 k=200  CC  0.230 (uncapped 0.230, 2 pass)  H100 4,215.4 -> 3,870.2   3.02s  ok
+16:33:54    [ 752/1218] 2026 net   PM  base     P=  750 d=4 k=200  CC  0.809 (uncapped 0.814, 3 pass)  H100 4,215.4 -> 3,608.7   4.21s  ok
+16:33:54    [ 753/1218] 2021 gross all usable70 P=  135 d=2 k=200  CC  0.508 (uncapped 0.508, 2 pass)  H100 4,433.8 -> 4,365.2   2.58s  ok
+16:33:54    [ 754/1218] 2021 gross all usable70 P=   35 d=2 k=200  CC  0.581 (uncapped 0.581, 2 pass)  H100 4,433.8 -> 4,413.4   2.64s  ok
+16:33:56    [ 755/1218] 2021 gross all usable70 P=  500 d=2 k=200  CC  0.372 (uncapped 0.372, 2 pass)  H100 4,433.8 -> 4,247.7   3.06s  ok
+16:33:56    [ 756/1218] 2021 gross all usable70 P=  750 d=2 k=200  CC  0.328 (uncapped 0.328, 2 pass)  H100 4,433.8 -> 4,187.5   3.15s  ok
+16:33:56    [ 757/1218] 2021 gross AM  usable70 P=   35 d=2 k=200  CC  0.523 (uncapped 0.523, 2 pass)  H100 4,264.5 -> 4,246.2   2.13s  ok
+16:33:56    [ 758/1218] 2021 gross all usable70 P=  335 d=2 k=200  CC  0.416 (uncapped 0.416, 2 pass)  H100 4,433.8 -> 4,294.3   4.38s  ok
+16:33:56    [ 759/1218] 2026 net   PM  base     P= 1500 d=2 k=200  CC  0.406 (uncapped 0.409, 3 pass)  H100 4,215.4 -> 3,606.7   5.99s  ok
+16:33:57    [ 760/1218] 2021 gross AM  usable70 P=  135 d=2 k=200  CC  0.482 (uncapped 0.482, 2 pass)  H100 4,264.5 -> 4,199.4   2.45s  ok
+16:33:57    [ 761/1218] 2026 net   AM  base     P= 1500 d=4 k=200  CC  0.520 (uncapped 0.880, 7 pass)  H100 4,022.5 -> 3,243.0  11.63s  ok
+16:33:58    [ 762/1218] 2021 gross all usable70 P= 1000 d=2 k=200  CC  0.287 (uncapped 0.287, 2 pass)  H100 4,433.8 -> 4,146.9   4.59s  ok
+16:33:58    [ 763/1218] 2021 gross AM  usable70 P=  335 d=2 k=200  CC  0.425 (uncapped 0.425, 2 pass)  H100 4,264.5 -> 4,122.2   2.46s  ok
+16:33:58    [ 764/1218] 2021 gross AM  usable70 P=  500 d=2 k=200  CC  0.397 (uncapped 0.397, 2 pass)  H100 4,264.5 -> 4,066.3   2.42s  ok
+16:33:59    [ 765/1218] 2021 gross PM  usable70 P=   35 d=2 k=200  CC  0.549 (uncapped 0.549, 2 pass)  H100 4,387.3 -> 4,368.1   2.29s  ok
+16:33:59    [ 766/1218] 2021 gross all usable70 P= 1500 d=2 k=200  CC  0.225 (uncapped 0.225, 2 pass)  H100 4,433.8 -> 4,096.4   5.24s  ok
+16:33:59    [ 767/1218] 2026 net   PM  base     P= 1000 d=4 k=200  CC  0.712 (uncapped 0.781, 4 pass)  H100 4,215.4 -> 3,503.4   9.23s  ok
+16:34:00    [ 768/1218] 2021 gross PM  usable70 P=  135 d=2 k=200  CC  0.495 (uncapped 0.495, 2 pass)  H100 4,387.3 -> 4,320.6   2.33s  ok
+16:34:00    [ 769/1218] 2026 net   PM  base     P= 1500 d=4 k=200  CC  0.519 (uncapped 0.743, 4 pass)  H100 4,215.4 -> 3,436.9   8.53s  ok
+16:34:00    [ 770/1218] 2021 gross AM  usable70 P=  750 d=2 k=200  CC  0.369 (uncapped 0.369, 2 pass)  H100 4,264.5 -> 3,987.7   3.60s  ok
+16:34:00    [ 771/1218] 2021 gross AM  usable70 P= 1000 d=2 k=200  CC  0.350 (uncapped 0.350, 2 pass)  H100 4,264.5 -> 3,914.2   3.55s  ok
+16:34:00    [ 772/1218] 2021 gross AM  usable70 P= 1500 d=2 k=200  CC  0.328 (uncapped 0.328, 2 pass)  H100 4,264.5 -> 3,773.1   3.79s  ok
+16:34:01    [ 773/1218] 2021 gross PM  usable70 P=  500 d=2 k=200  CC  0.397 (uncapped 0.397, 2 pass)  H100 4,387.3 -> 4,189.0   2.72s  ok
+16:34:01    [ 774/1218] 2021 gross PM  usable70 P=  335 d=2 k=200  CC  0.429 (uncapped 0.429, 2 pass)  H100 4,387.3 -> 4,243.7   3.28s  ok
+16:34:01    [ 775/1218] 2021 gross PM  usable70 P=  750 d=2 k=200  CC  0.365 (uncapped 0.365, 2 pass)  H100 4,387.3 -> 4,113.8   2.94s  ok
+16:34:02    [ 776/1218] 2021 net   all usable70 P=   35 d=2 k=200  CC  0.576 (uncapped 0.576, 2 pass)  H100 4,235.6 -> 4,215.5   2.23s  ok
+16:34:02    [ 777/1218] 2021 net   all usable70 P=  135 d=2 k=200  CC  0.518 (uncapped 0.518, 2 pass)  H100 4,235.6 -> 4,165.6   2.45s  ok
+16:34:03    [ 778/1218] 2021 net   all usable70 P=  500 d=2 k=200  CC  0.388 (uncapped 0.388, 2 pass)  H100 4,235.6 -> 4,041.5   2.72s  ok
+16:34:03    [ 779/1218] 2021 net   all usable70 P=  335 d=2 k=200  CC  0.425 (uncapped 0.425, 2 pass)  H100 4,235.6 -> 4,093.4   2.88s  ok
+16:34:03    [ 780/1218] 2021 gross PM  usable70 P= 1000 d=2 k=200  CC  0.342 (uncapped 0.342, 2 pass)  H100 4,387.3 -> 4,045.0   4.06s  ok
+16:34:03    [ 781/1218] 2021 gross PM  usable70 P= 1500 d=2 k=200  CC  0.314 (uncapped 0.314, 2 pass)  H100 4,387.3 -> 3,916.7   3.69s  ok
+16:34:03    [ 782/1218] 2021 net   all usable70 P=  750 d=2 k=200  CC  0.343 (uncapped 0.343, 2 pass)  H100 4,235.6 -> 3,978.6   3.30s  ok
+16:34:04    [ 783/1218] 2021 net   AM  usable70 P=  135 d=2 k=200  CC  0.448 (uncapped 0.448, 2 pass)  H100 4,060.3 -> 3,999.8   2.50s  ok
+16:34:04    [ 784/1218] 2021 net   AM  usable70 P=   35 d=2 k=200  CC  0.476 (uncapped 0.476, 2 pass)  H100 4,060.3 -> 4,043.6   2.94s  ok
+16:34:04    [ 785/1218] 2021 net   AM  usable70 P=  335 d=2 k=200  CC  0.401 (uncapped 0.401, 2 pass)  H100 4,060.3 -> 3,925.8   2.55s  ok
+16:34:04    [ 786/1218] 2021 net   AM  usable70 P=  500 d=2 k=200  CC  0.377 (uncapped 0.377, 2 pass)  H100 4,060.3 -> 3,871.7   2.45s  ok
+16:34:05    [ 787/1218] 2021 net   all usable70 P= 1000 d=2 k=200  CC  0.302 (uncapped 0.302, 2 pass)  H100 4,235.6 -> 3,933.4   4.52s  ok
+16:34:05    [ 788/1218] 2021 net   PM  usable70 P=   35 d=2 k=200  CC  0.538 (uncapped 0.538, 2 pass)  H100 4,181.7 -> 4,162.9   2.15s  ok
+16:34:05    [ 789/1218] 2021 net   AM  usable70 P=  750 d=2 k=200  CC  0.355 (uncapped 0.355, 2 pass)  H100 4,060.3 -> 3,794.3   2.66s  ok
+16:34:05    [ 790/1218] 2021 net   PM  usable70 P=  135 d=2 k=200  CC  0.485 (uncapped 0.485, 2 pass)  H100 4,181.7 -> 4,116.2   2.16s  ok
+16:34:06    [ 791/1218] 2021 net   all usable70 P= 1500 d=2 k=200  CC  0.249 (uncapped 0.249, 2 pass)  H100 4,235.6 -> 3,862.8   5.41s  ok
+16:34:07    [ 792/1218] 2021 net   AM  usable70 P= 1000 d=2 k=200  CC  0.339 (uncapped 0.339, 2 pass)  H100 4,060.3 -> 3,721.2   4.08s  ok
+16:34:07    [ 793/1218] 2021 net   PM  usable70 P=  335 d=2 k=200  CC  0.431 (uncapped 0.431, 2 pass)  H100 4,181.7 -> 4,037.5   3.11s  ok
+16:34:07    [ 794/1218] 2021 net   PM  usable70 P=  500 d=2 k=200  CC  0.402 (uncapped 0.402, 2 pass)  H100 4,181.7 -> 3,980.8   3.03s  ok
+16:34:07    [ 795/1218] 2021 net   AM  usable70 P= 1500 d=2 k=200  CC  0.320 (uncapped 0.320, 2 pass)  H100 4,060.3 -> 3,580.5   4.14s  ok
+16:34:08    [ 796/1218] 2022 gross all usable70 P=   35 d=2 k=200  CC  0.618 (uncapped 0.618, 2 pass)  H100 4,399.3 -> 4,377.7   2.67s  ok
+16:34:08    [ 797/1218] 2021 net   PM  usable70 P=  750 d=2 k=200  CC  0.370 (uncapped 0.370, 2 pass)  H100 4,181.7 -> 3,904.0   3.73s  ok
+16:34:08    [ 798/1218] 2022 gross all usable70 P=  135 d=2 k=200  CC  0.577 (uncapped 0.577, 2 pass)  H100 4,399.3 -> 4,321.4   2.94s  ok
+16:34:08    [ 799/1218] 2021 net   PM  usable70 P= 1000 d=2 k=200  CC  0.349 (uncapped 0.349, 2 pass)  H100 4,181.7 -> 3,832.6   3.82s  ok
+16:34:09    [ 800/1218] 2022 gross all usable70 P=  335 d=2 k=200  CC  0.502 (uncapped 0.502, 2 pass)  H100 4,399.3 -> 4,231.2   3.36s  ok
+16:34:09    [ 801/1218] 2021 net   PM  usable70 P= 1500 d=2 k=200  CC  0.319 (uncapped 0.319, 2 pass)  H100 4,181.7 -> 3,702.6   4.76s  ok
+16:34:09    [ 802/1218] 2022 gross all usable70 P=  500 d=2 k=200  CC  0.455 (uncapped 0.455, 2 pass)  H100 4,399.3 -> 4,171.6   3.13s  ok
+16:34:11    [ 803/1218] 2022 gross AM  usable70 P=  135 d=2 k=200  CC  0.539 (uncapped 0.539, 2 pass)  H100 4,157.0 -> 4,084.2   3.29s  ok
+16:34:11    [ 804/1218] 2022 gross AM  usable70 P=   35 d=2 k=200  CC  0.565 (uncapped 0.565, 2 pass)  H100 4,157.0 -> 4,137.3   4.05s  ok
+16:34:11    [ 805/1218] 2022 gross AM  usable70 P=  335 d=2 k=200  CC  0.479 (uncapped 0.479, 2 pass)  H100 4,157.0 -> 3,996.5   3.36s  ok
+16:34:11    [ 806/1218] 2022 gross AM  usable70 P=  500 d=2 k=200  CC  0.440 (uncapped 0.440, 2 pass)  H100 4,157.0 -> 3,936.8   3.24s  ok
+16:34:11    [ 807/1218] 2022 gross AM  usable70 P=  750 d=2 k=200  CC  0.401 (uncapped 0.401, 2 pass)  H100 4,157.0 -> 3,856.0   3.17s  ok
+16:34:12    [ 808/1218] 2022 gross PM  usable70 P=   35 d=2 k=200  CC  0.536 (uncapped 0.536, 2 pass)  H100 4,364.3 -> 4,345.5   2.23s  ok
+16:34:12    [ 809/1218] 2022 gross all usable70 P=  750 d=2 k=200  CC  0.399 (uncapped 0.399, 2 pass)  H100 4,399.3 -> 4,100.1   5.15s  ok
+16:34:12    [ 810/1218] 2022 gross AM  usable70 P= 1000 d=2 k=200  CC  0.376 (uncapped 0.376, 2 pass)  H100 4,157.0 -> 3,781.0   3.47s  ok
+16:34:13    [ 811/1218] 2022 gross all usable70 P= 1000 d=2 k=200  CC  0.347 (uncapped 0.347, 2 pass)  H100 4,399.3 -> 4,052.4   5.57s  ok
+16:34:14    [ 812/1218] 2022 gross PM  usable70 P=  500 d=2 k=200  CC  0.433 (uncapped 0.433, 2 pass)  H100 4,364.3 -> 4,147.9   2.50s  ok
+16:34:14    [ 813/1218] 2022 gross all usable70 P= 1500 d=2 k=200  CC  0.273 (uncapped 0.273, 2 pass)  H100 4,399.3 -> 3,989.6   6.69s  ok
+16:34:14    [ 814/1218] 2022 gross PM  usable70 P=  135 d=2 k=200  CC  0.506 (uncapped 0.506, 2 pass)  H100 4,364.3 -> 4,295.9   2.97s  ok
+16:34:14    [ 815/1218] 2022 gross AM  usable70 P= 1500 d=2 k=200  CC  0.345 (uncapped 0.345, 2 pass)  H100 4,157.0 -> 3,639.2   5.02s  ok
+16:34:14    [ 816/1218] 2022 net   all usable70 P=  135 d=2 k=200  CC  0.544 (uncapped 0.544, 2 pass)  H100 4,190.9 -> 4,117.5   2.28s  ok
+16:34:15    [ 817/1218] 2022 gross PM  usable70 P= 1000 d=2 k=200  CC  0.380 (uncapped 0.380, 2 pass)  H100 4,364.3 -> 3,984.4   3.27s  ok
+16:34:15    [ 818/1218] 2022 gross PM  usable70 P= 1500 d=2 k=200  CC  0.345 (uncapped 0.345, 2 pass)  H100 4,364.3 -> 3,846.9   3.81s  ok
+16:34:16    [ 819/1218] 2022 gross PM  usable70 P=  335 d=2 k=200  CC  0.459 (uncapped 0.459, 2 pass)  H100 4,364.3 -> 4,210.3   4.43s  ok
+16:34:16    [ 820/1218] 2022 net   all usable70 P=  335 d=2 k=200  CC  0.471 (uncapped 0.471, 2 pass)  H100 4,190.9 -> 4,033.1   3.21s  ok
+16:34:16    [ 821/1218] 2022 net   all usable70 P=   35 d=2 k=200  CC  0.585 (uncapped 0.585, 2 pass)  H100 4,190.9 -> 4,170.5   4.01s  ok
+16:34:16    [ 822/1218] 2022 gross PM  usable70 P=  750 d=2 k=200  CC  0.403 (uncapped 0.403, 2 pass)  H100 4,364.3 -> 4,061.8   4.88s  ok
+16:34:17    [ 823/1218] 2022 net   all usable70 P=  500 d=2 k=200  CC  0.423 (uncapped 0.423, 2 pass)  H100 4,190.9 -> 3,979.5   2.78s  ok
+16:34:17    [ 824/1218] 2022 net   AM  usable70 P=   35 d=2 k=200  CC  0.496 (uncapped 0.496, 2 pass)  H100 3,955.1 -> 3,937.7   2.06s  ok
+16:34:17    [ 825/1218] 2022 net   AM  usable70 P=  135 d=2 k=200  CC  0.460 (uncapped 0.460, 2 pass)  H100 3,955.1 -> 3,892.9   2.19s  ok
+16:34:18    [ 826/1218] 2022 net   all usable70 P=  750 d=2 k=200  CC  0.374 (uncapped 0.374, 2 pass)  H100 4,190.9 -> 3,910.4   3.76s  ok
+16:34:18    [ 827/1218] 2022 net   AM  usable70 P=  335 d=2 k=200  CC  0.414 (uncapped 0.414, 2 pass)  H100 3,955.1 -> 3,816.4   2.33s  ok
+16:34:19    [ 828/1218] 2022 net   PM  usable70 P=   35 d=2 k=200  CC  0.532 (uncapped 0.532, 2 pass)  H100 4,122.3 -> 4,103.7   2.18s  ok
+16:34:19    [ 829/1218] 2022 net   all usable70 P= 1000 d=2 k=200  CC  0.337 (uncapped 0.337, 2 pass)  H100 4,190.9 -> 3,854.0   4.63s  ok
+16:34:19    [ 830/1218] 2022 net   PM  usable70 P=  135 d=2 k=200  CC  0.489 (uncapped 0.489, 2 pass)  H100 4,122.3 -> 4,056.2   2.39s  ok
+16:34:19    [ 831/1218] 2022 net   AM  usable70 P=  750 d=2 k=200  CC  0.377 (uncapped 0.377, 2 pass)  H100 3,955.1 -> 3,672.4   3.52s  ok
+16:34:19    [ 832/1218] 2022 net   PM  usable70 P=  335 d=2 k=200  CC  0.426 (uncapped 0.426, 2 pass)  H100 4,122.3 -> 3,979.5   2.56s  ok
+16:34:20    [ 833/1218] 2022 net   all usable70 P= 1500 d=2 k=200  CC  0.269 (uncapped 0.269, 2 pass)  H100 4,190.9 -> 3,787.4   5.62s  ok
+16:34:20    [ 834/1218] 2022 net   AM  usable70 P=  500 d=2 k=200  CC  0.397 (uncapped 0.397, 2 pass)  H100 3,955.1 -> 3,756.7   4.66s  ok
+16:34:21    [ 835/1218] 2022 net   PM  usable70 P=  500 d=2 k=200  CC  0.399 (uncapped 0.399, 2 pass)  H100 4,122.3 -> 3,922.9   3.13s  ok
+16:34:21    [ 836/1218] 2023 gross all usable70 P=   35 d=2 k=200  CC  0.653 (uncapped 0.653, 2 pass)  H100 4,454.2 -> 4,431.3   2.27s  ok
+16:34:22    [ 837/1218] 2022 net   AM  usable70 P= 1500 d=2 k=200  CC  0.338 (uncapped 0.338, 2 pass)  H100 3,955.1 -> 3,448.8   5.33s  ok
+16:34:22    [ 838/1218] 2022 net   PM  usable70 P= 1000 d=2 k=200  CC  0.348 (uncapped 0.348, 2 pass)  H100 4,122.3 -> 3,774.2   3.14s  ok
+16:34:22    [ 839/1218] 2023 gross all usable70 P=  135 d=2 k=200  CC  0.613 (uncapped 0.613, 2 pass)  H100 4,454.2 -> 4,371.5   2.78s  ok
+16:34:22    [ 840/1218] 2022 net   PM  usable70 P= 1500 d=2 k=200  CC  0.319 (uncapped 0.319, 2 pass)  H100 4,122.3 -> 3,643.2   3.47s  ok
+16:34:22    [ 841/1218] 2023 gross all usable70 P=  335 d=2 k=200  CC  0.541 (uncapped 0.541, 2 pass)  H100 4,454.2 -> 4,272.9   2.69s  ok
+16:34:22    [ 842/1218] 2022 net   PM  usable70 P=  750 d=2 k=200  CC  0.369 (uncapped 0.369, 2 pass)  H100 4,122.3 -> 3,845.5   4.43s  ok
+16:34:22    [ 843/1218] 2022 net   AM  usable70 P= 1000 d=2 k=200  CC  0.361 (uncapped 0.361, 2 pass)  H100 3,955.1 -> 3,594.0   6.37s  ok
+16:34:23    [ 844/1218] 2023 gross all usable70 P=  500 d=2 k=200  CC  0.499 (uncapped 0.499, 2 pass)  H100 4,454.2 -> 4,204.5   3.22s  ok
+16:34:24    [ 845/1218] 2023 gross AM  usable70 P=   35 d=2 k=200  CC  0.600 (uncapped 0.600, 2 pass)  H100 4,249.3 -> 4,228.3   2.23s  ok
+16:34:24    [ 846/1218] 2023 gross AM  usable70 P=  135 d=2 k=200  CC  0.556 (uncapped 0.556, 2 pass)  H100 4,249.3 -> 4,174.3   2.05s  ok
+16:34:24    [ 847/1218] 2023 gross all usable70 P=  750 d=2 k=200  CC  0.444 (uncapped 0.444, 2 pass)  H100 4,454.2 -> 4,120.8   4.05s  ok
+16:34:25    [ 848/1218] 2023 gross AM  usable70 P=  500 d=2 k=200  CC  0.476 (uncapped 0.476, 2 pass)  H100 4,249.3 -> 4,011.3   2.43s  ok
+16:34:25    [ 849/1218] 2023 gross AM  usable70 P=  750 d=2 k=200  CC  0.441 (uncapped 0.441, 2 pass)  H100 4,249.3 -> 3,918.8   2.55s  ok
+16:34:25    [ 850/1218] 2023 gross AM  usable70 P=  335 d=2 k=200  CC  0.503 (uncapped 0.503, 2 pass)  H100 4,249.3 -> 4,080.7   2.74s  ok
+16:34:25    [ 851/1218] 2023 gross all usable70 P= 1000 d=2 k=200  CC  0.394 (uncapped 0.394, 2 pass)  H100 4,454.2 -> 4,060.7   4.48s  ok
+16:34:26    [ 852/1218] 2023 gross all usable70 P= 1500 d=2 k=200  CC  0.310 (uncapped 0.310, 2 pass)  H100 4,454.2 -> 3,989.5   4.50s  ok
+16:34:26    [ 853/1218] 2023 gross PM  usable70 P=   35 d=2 k=200  CC  0.610 (uncapped 0.610, 2 pass)  H100 4,395.6 -> 4,374.2   2.45s  ok
+16:34:26    [ 854/1218] 2023 gross AM  usable70 P= 1000 d=2 k=200  CC  0.413 (uncapped 0.413, 2 pass)  H100 4,249.3 -> 3,836.0   3.76s  ok
+16:34:26    [ 855/1218] 2023 gross PM  usable70 P=  335 d=2 k=200  CC  0.489 (uncapped 0.489, 2 pass)  H100 4,395.6 -> 4,231.6   2.43s  ok
+16:34:26    [ 856/1218] 2023 gross PM  usable70 P=  135 d=2 k=200  CC  0.559 (uncapped 0.559, 2 pass)  H100 4,395.6 -> 4,320.1   2.55s  ok
+16:34:27    [ 857/1218] 2023 gross AM  usable70 P= 1500 d=2 k=200  CC  0.375 (uncapped 0.375, 2 pass)  H100 4,249.3 -> 3,687.4   4.44s  ok
+16:34:27    [ 858/1218] 2023 gross PM  usable70 P=  750 d=2 k=200  CC  0.415 (uncapped 0.415, 2 pass)  H100 4,395.6 -> 4,084.6   2.79s  ok
+16:34:28    [ 859/1218] 2023 gross PM  usable70 P=  500 d=2 k=200  CC  0.453 (uncapped 0.453, 2 pass)  H100 4,395.6 -> 4,168.9   3.25s  ok
+16:34:28    [ 860/1218] 2023 net   all usable70 P=   35 d=2 k=200  CC  0.568 (uncapped 0.568, 2 pass)  H100 4,261.4 -> 4,241.6   2.60s  ok
+16:34:28    [ 861/1218] 2023 net   all usable70 P=  135 d=2 k=200  CC  0.531 (uncapped 0.531, 2 pass)  H100 4,261.4 -> 4,189.8   2.23s  ok
+16:34:28    [ 862/1218] 2023 gross PM  usable70 P= 1000 d=2 k=200  CC  0.387 (uncapped 0.387, 2 pass)  H100 4,395.6 -> 4,008.9   3.22s  ok
+16:34:29    [ 863/1218] 2023 net   all usable70 P=  750 d=2 k=200  CC  0.417 (uncapped 0.417, 2 pass)  H100 4,261.4 -> 3,948.5   2.86s  ok
+16:34:29    [ 864/1218] 2023 net   all usable70 P=  500 d=2 k=200  CC  0.450 (uncapped 0.450, 2 pass)  H100 4,261.4 -> 4,036.6   3.35s  ok
+16:34:30    [ 865/1218] 2023 net   AM  usable70 P=   35 d=2 k=200  CC  0.569 (uncapped 0.569, 2 pass)  H100 4,032.6 -> 4,012.7   2.17s  ok
+16:34:30    [ 866/1218] 2023 gross PM  usable70 P= 1500 d=2 k=200  CC  0.347 (uncapped 0.347, 2 pass)  H100 4,395.6 -> 3,874.5   5.17s  ok
+16:34:30    [ 867/1218] 2023 net   all usable70 P=  335 d=2 k=200  CC  0.475 (uncapped 0.475, 2 pass)  H100 4,261.4 -> 4,102.2   4.31s  ok
+16:34:30    [ 868/1218] 2023 net   AM  usable70 P=  135 d=2 k=200  CC  0.530 (uncapped 0.530, 2 pass)  H100 4,032.6 -> 3,961.0   2.77s  ok
+16:34:31    [ 869/1218] 2023 net   AM  usable70 P=  500 d=2 k=200  CC  0.452 (uncapped 0.452, 2 pass)  H100 4,032.6 -> 3,806.6   2.70s  ok
+16:34:31    [ 870/1218] 2023 net   all usable70 P= 1000 d=2 k=200  CC  0.391 (uncapped 0.391, 2 pass)  H100 4,261.4 -> 3,870.1   4.34s  ok
+16:34:31    [ 871/1218] 2023 net   AM  usable70 P=  335 d=2 k=200  CC  0.480 (uncapped 0.480, 2 pass)  H100 4,032.6 -> 3,871.7   3.19s  ok
+16:34:31    [ 872/1218] 2023 net   AM  usable70 P=  750 d=2 k=200  CC  0.417 (uncapped 0.417, 2 pass)  H100 4,032.6 -> 3,719.6   2.96s  ok
+16:34:33    [ 873/1218] 2023 net   AM  usable70 P= 1000 d=2 k=200  CC  0.393 (uncapped 0.393, 2 pass)  H100 4,032.6 -> 3,640.0   3.38s  ok
+16:34:33    [ 874/1218] 2023 net   PM  usable70 P=   35 d=2 k=200  CC  0.521 (uncapped 0.521, 2 pass)  H100 4,184.1 -> 4,165.8   3.30s  ok
+16:34:33    [ 875/1218] 2023 net   PM  usable70 P=  335 d=2 k=200  CC  0.431 (uncapped 0.431, 2 pass)  H100 4,184.1 -> 4,039.8   2.91s  ok
+16:34:33    [ 876/1218] 2024 gross all usable70 P=   35 d=2 k=200  CC  0.695 (uncapped 0.695, 2 pass)  H100 4,424.1 -> 4,399.8   2.29s  ok
+16:34:33    [ 877/1218] 2023 net   PM  usable70 P=  750 d=2 k=200  CC  0.372 (uncapped 0.372, 2 pass)  H100 4,184.1 -> 3,905.4   2.70s  ok
+16:34:33    [ 878/1218] 2023 net   AM  usable70 P= 1500 d=2 k=200  CC  0.359 (uncapped 0.359, 2 pass)  H100 4,032.6 -> 3,494.3   4.07s  ok
+16:34:34    [ 879/1218] 2023 net   PM  usable70 P=  135 d=2 k=200  CC  0.486 (uncapped 0.486, 2 pass)  H100 4,184.1 -> 4,118.4   3.49s  ok
+16:34:34    [ 880/1218] 2023 net   all usable70 P= 1500 d=2 k=200  CC  0.329 (uncapped 0.329, 2 pass)  H100 4,261.4 -> 3,768.5   6.86s  ok
+16:34:34    [ 881/1218] 2023 net   PM  usable70 P=  500 d=2 k=200  CC  0.402 (uncapped 0.402, 2 pass)  H100 4,184.1 -> 3,982.9   3.31s  ok
+16:34:35    [ 882/1218] 2023 net   PM  usable70 P= 1000 d=2 k=200  CC  0.349 (uncapped 0.349, 2 pass)  H100 4,184.1 -> 3,835.2   4.24s  ok
+16:34:35    [ 883/1218] 2024 gross all usable70 P=  135 d=2 k=200  CC  0.639 (uncapped 0.639, 2 pass)  H100 4,424.1 -> 4,337.8   2.65s  ok
+16:34:35    [ 884/1218] 2023 net   PM  usable70 P= 1500 d=2 k=200  CC  0.320 (uncapped 0.320, 2 pass)  H100 4,184.1 -> 3,703.5   4.52s  ok
+16:34:36    [ 885/1218] 2024 gross AM  usable70 P=  135 d=2 k=200  CC  0.583 (uncapped 0.583, 2 pass)  H100 4,202.3 -> 4,123.6   2.54s  ok
+16:34:36    [ 886/1218] 2024 gross all usable70 P=  500 d=2 k=200  CC  0.503 (uncapped 0.503, 2 pass)  H100 4,424.1 -> 4,172.6   3.26s  ok
+16:34:36    [ 887/1218] 2024 gross AM  usable70 P=  335 d=2 k=200  CC  0.509 (uncapped 0.509, 2 pass)  H100 4,202.3 -> 4,031.7   2.75s  ok
+16:34:37    [ 888/1218] 2024 gross AM  usable70 P=   35 d=2 k=200  CC  0.637 (uncapped 0.637, 2 pass)  H100 4,202.3 -> 4,180.0   3.16s  ok
+16:34:37    [ 889/1218] 2024 gross all usable70 P=  335 d=2 k=200  CC  0.552 (uncapped 0.552, 2 pass)  H100 4,424.1 -> 4,239.1   3.97s  ok
+16:34:37    [ 890/1218] 2024 gross all usable70 P=  750 d=2 k=200  CC  0.444 (uncapped 0.444, 2 pass)  H100 4,424.1 -> 4,090.9   3.70s  ok
+16:34:38    [ 891/1218] 2024 gross all usable70 P= 1000 d=2 k=200  CC  0.395 (uncapped 0.395, 2 pass)  H100 4,424.1 -> 4,029.5   4.33s  ok
+16:34:38    [ 892/1218] 2024 gross AM  usable70 P=  750 d=2 k=200  CC  0.434 (uncapped 0.434, 2 pass)  H100 4,202.3 -> 3,876.7   2.81s  ok
+16:34:38    [ 893/1218] 2024 gross AM  usable70 P=  500 d=2 k=200  CC  0.473 (uncapped 0.473, 2 pass)  H100 4,202.3 -> 3,966.0   3.06s  ok
+16:34:39    [ 894/1218] 2024 gross PM  usable70 P=  135 d=2 k=200  CC  0.589 (uncapped 0.589, 2 pass)  H100 4,387.4 -> 4,307.9   2.28s  ok
+16:34:39    [ 895/1218] 2024 gross PM  usable70 P=   35 d=2 k=200  CC  0.627 (uncapped 0.627, 2 pass)  H100 4,387.4 -> 4,365.5   2.55s  ok
+16:34:39    [ 896/1218] 2024 gross all usable70 P= 1500 d=2 k=200  CC  0.313 (uncapped 0.313, 2 pass)  H100 4,424.1 -> 3,954.4   5.88s  ok
+16:34:40    [ 897/1218] 2024 gross PM  usable70 P=  750 d=2 k=200  CC  0.428 (uncapped 0.428, 2 pass)  H100 4,387.4 -> 4,066.5   3.06s  ok
+16:34:40    [ 898/1218] 2024 gross AM  usable70 P= 1000 d=2 k=200  CC  0.405 (uncapped 0.405, 2 pass)  H100 4,202.3 -> 3,797.6   4.90s  ok
+16:34:41    [ 899/1218] 2024 gross AM  usable70 P= 1500 d=2 k=200  CC  0.366 (uncapped 0.366, 2 pass)  H100 4,202.3 -> 3,653.1   4.42s  ok
+16:34:41    [ 900/1218] 2024 net   all usable70 P=   35 d=2 k=200  CC  0.664 (uncapped 0.664, 2 pass)  H100 4,187.0 -> 4,163.7   2.80s  ok
+16:34:41    [ 901/1218] 2024 gross PM  usable70 P= 1000 d=2 k=200  CC  0.395 (uncapped 0.395, 2 pass)  H100 4,387.4 -> 3,992.0   3.48s  ok
+16:34:42    [ 902/1218] 2024 net   all usable70 P=  335 d=2 k=200  CC  0.525 (uncapped 0.525, 2 pass)  H100 4,187.0 -> 4,010.9   3.06s  ok
+16:34:42    [ 903/1218] 2024 gross PM  usable70 P= 1500 d=2 k=200  CC  0.353 (uncapped 0.353, 2 pass)  H100 4,387.4 -> 3,858.6   3.99s  ok
+16:34:43    [ 904/1218] 2024 gross PM  usable70 P=  335 d=2 k=200  CC  0.515 (uncapped 0.515, 2 pass)  H100 4,387.4 -> 4,215.0   6.02s  ok
+16:34:43    [ 905/1218] 2024 net   all usable70 P=  500 d=2 k=200  CC  0.484 (uncapped 0.484, 2 pass)  H100 4,187.0 -> 3,945.2   3.60s  ok
+16:34:43    [ 906/1218] 2024 gross PM  usable70 P=  500 d=2 k=200  CC  0.473 (uncapped 0.473, 2 pass)  H100 4,387.4 -> 4,150.9   6.28s  ok
+16:34:43    [ 907/1218] 2024 net   all usable70 P=  750 d=2 k=200  CC  0.429 (uncapped 0.429, 2 pass)  H100 4,187.0 -> 3,865.5   3.27s  ok
+16:34:43    [ 908/1218] 2024 net   AM  usable70 P=   35 d=2 k=200  CC  0.543 (uncapped 0.543, 2 pass)  H100 3,988.3 -> 3,969.3   2.49s  ok
+16:34:43    [ 909/1218] 2024 net   AM  usable70 P=  135 d=2 k=200  CC  0.514 (uncapped 0.514, 2 pass)  H100 3,988.3 -> 3,918.9   2.29s  ok
+16:34:44    [ 910/1218] 2024 net   AM  usable70 P=  335 d=2 k=200  CC  0.462 (uncapped 0.462, 2 pass)  H100 3,988.3 -> 3,833.5   2.58s  ok
+16:34:45    [ 911/1218] 2024 net   AM  usable70 P=  500 d=2 k=200  CC  0.435 (uncapped 0.435, 2 pass)  H100 3,988.3 -> 3,770.9   2.77s  ok
+16:34:45    [ 912/1218] 2024 net   all usable70 P=  135 d=2 k=200  CC  0.599 (uncapped 0.599, 2 pass)  H100 4,187.0 -> 4,106.0   6.60s  ok
+16:34:46    [ 913/1218] 2024 net   PM  usable70 P=   35 d=2 k=200  CC  0.580 (uncapped 0.580, 2 pass)  H100 4,122.7 -> 4,102.4   2.30s  ok
+16:34:46    [ 914/1218] 2024 net   all usable70 P= 1000 d=2 k=200  CC  0.381 (uncapped 0.381, 2 pass)  H100 4,187.0 -> 3,805.7   5.31s  ok
+16:34:46    [ 915/1218] 2024 net   AM  usable70 P=  750 d=2 k=200  CC  0.405 (uncapped 0.405, 2 pass)  H100 3,988.3 -> 3,684.7   3.29s  ok
+16:34:46    [ 916/1218] 2024 net   PM  usable70 P=  335 d=2 k=200  CC  0.478 (uncapped 0.478, 2 pass)  H100 4,122.7 -> 3,962.4   2.81s  ok
+16:34:46    [ 917/1218] 2024 net   PM  usable70 P=  135 d=2 k=200  CC  0.536 (uncapped 0.536, 2 pass)  H100 4,122.7 -> 4,050.4   3.00s  ok
+16:34:47    [ 918/1218] 2024 net   PM  usable70 P=  500 d=2 k=200  CC  0.442 (uncapped 0.442, 2 pass)  H100 4,122.7 -> 3,901.9   2.63s  ok
+16:34:48    [ 919/1218] 2024 net   PM  usable70 P=  750 d=2 k=200  CC  0.401 (uncapped 0.401, 2 pass)  H100 4,122.7 -> 3,822.2   3.24s  ok
+16:34:49    [ 920/1218] 2024 net   AM  usable70 P= 1000 d=2 k=200  CC  0.382 (uncapped 0.382, 2 pass)  H100 3,988.3 -> 3,606.1   5.61s  ok
+16:34:49    [ 921/1218] 2025 gross all usable70 P=   35 d=2 k=200  CC  0.651 (uncapped 0.651, 2 pass)  H100 4,459.1 -> 4,436.3   3.06s  ok
+16:34:49    [ 922/1218] 2025 gross all usable70 P=  135 d=2 k=200  CC  0.602 (uncapped 0.602, 2 pass)  H100 4,459.1 -> 4,377.8   2.75s  ok
+16:34:49    [ 923/1218] 2025 gross all usable70 P=  500 d=2 k=200  CC  0.492 (uncapped 0.492, 2 pass)  H100 4,459.1 -> 4,213.0   3.08s  ok
+16:34:50    [ 924/1218] 2024 net   all usable70 P= 1500 d=2 k=200  CC  0.304 (uncapped 0.304, 2 pass)  H100 4,187.0 -> 3,730.8   9.12s  ok
+16:34:50    [ 925/1218] 2024 net   AM  usable70 P= 1500 d=2 k=200  CC  0.352 (uncapped 0.352, 2 pass)  H100 3,988.3 -> 3,461.0   6.66s  ok
+16:34:50    [ 926/1218] 2025 gross all usable70 P=  750 d=2 k=200  CC  0.447 (uncapped 0.447, 2 pass)  H100 4,459.1 -> 4,123.7   3.00s  ok
+16:34:50    [ 927/1218] 2024 net   PM  usable70 P= 1000 d=2 k=200  CC  0.374 (uncapped 0.374, 2 pass)  H100 4,122.7 -> 3,749.1   5.13s  ok
+16:34:51    [ 928/1218] 2025 gross all usable70 P=  335 d=2 k=200  CC  0.530 (uncapped 0.530, 2 pass)  H100 4,459.1 -> 4,281.4   4.39s  ok
+16:34:51    [ 929/1218] 2024 net   PM  usable70 P= 1500 d=2 k=200  CC  0.339 (uncapped 0.339, 2 pass)  H100 4,122.7 -> 3,614.1   5.40s  ok
+16:34:51    [ 930/1218] 2025 gross AM  usable70 P=  135 d=2 k=200  CC  0.573 (uncapped 0.573, 2 pass)  H100 4,251.3 -> 4,173.9   2.28s  ok
+16:34:52    [ 931/1218] 2025 gross AM  usable70 P=   35 d=2 k=200  CC  0.604 (uncapped 0.604, 2 pass)  H100 4,251.3 -> 4,230.1   2.97s  ok
+16:34:52    [ 932/1218] 2025 gross AM  usable70 P=  335 d=2 k=200  CC  0.516 (uncapped 0.516, 2 pass)  H100 4,251.3 -> 4,078.4   2.50s  ok
+16:34:52    [ 933/1218] 2025 gross all usable70 P= 1000 d=2 k=200  CC  0.406 (uncapped 0.406, 2 pass)  H100 4,459.1 -> 4,052.7   4.49s  ok
+16:34:53    [ 934/1218] 2025 gross AM  usable70 P=  500 d=2 k=200  CC  0.478 (uncapped 0.478, 2 pass)  H100 4,251.3 -> 4,012.2   3.01s  ok
+16:34:53    [ 935/1218] 2025 gross PM  usable70 P=   35 d=2 k=200  CC  0.566 (uncapped 0.566, 2 pass)  H100 4,369.4 -> 4,349.5   2.60s  ok
+16:34:53    [ 936/1218] 2025 gross AM  usable70 P= 1000 d=2 k=200  CC  0.411 (uncapped 0.411, 2 pass)  H100 4,251.3 -> 3,840.0   3.42s  ok
+16:34:53    [ 937/1218] 2025 gross AM  usable70 P=  750 d=2 k=200  CC  0.438 (uncapped 0.438, 2 pass)  H100 4,251.3 -> 3,922.4   3.72s  ok
+16:34:54    [ 938/1218] 2025 gross PM  usable70 P=  335 d=2 k=200  CC  0.453 (uncapped 0.453, 2 pass)  H100 4,369.4 -> 4,217.5   2.57s  ok
+16:34:54    [ 939/1218] 2025 gross PM  usable70 P=  135 d=2 k=200  CC  0.517 (uncapped 0.517, 2 pass)  H100 4,369.4 -> 4,299.6   3.00s  ok
+16:34:55    [ 940/1218] 2025 gross all usable70 P= 1500 d=2 k=200  CC  0.337 (uncapped 0.337, 2 pass)  H100 4,459.1 -> 3,953.9   6.20s  ok
+16:34:55    [ 941/1218] 2025 gross PM  usable70 P=  500 d=2 k=200  CC  0.423 (uncapped 0.423, 2 pass)  H100 4,369.4 -> 4,158.0   3.16s  ok
+16:34:55    [ 942/1218] 2025 gross PM  usable70 P=  750 d=2 k=200  CC  0.388 (uncapped 0.388, 2 pass)  H100 4,369.4 -> 4,078.6   3.49s  ok
+16:34:56    [ 943/1218] 2025 gross AM  usable70 P= 1500 d=2 k=200  CC  0.373 (uncapped 0.373, 2 pass)  H100 4,251.3 -> 3,691.7   5.21s  ok
+16:34:57    [ 944/1218] 2025 net   all usable70 P=  135 d=2 k=200  CC  0.560 (uncapped 0.560, 2 pass)  H100 4,201.3 -> 4,125.7   3.13s  ok
+16:34:57    [ 945/1218] 2025 net   all usable70 P=  500 d=2 k=200  CC  0.468 (uncapped 0.468, 2 pass)  H100 4,201.3 -> 3,967.2   3.33s  ok
+16:34:57    [ 946/1218] 2025 net   all usable70 P=  335 d=2 k=200  CC  0.504 (uncapped 0.504, 2 pass)  H100 4,201.3 -> 4,032.6   4.00s  ok
+16:34:58    [ 947/1218] 2025 net   AM  usable70 P=   35 d=2 k=200  CC  0.579 (uncapped 0.579, 2 pass)  H100 3,991.6 -> 3,971.4   2.18s  ok
+16:34:58    [ 948/1218] 2025 net   all usable70 P=  750 d=2 k=200  CC  0.429 (uncapped 0.429, 2 pass)  H100 4,201.3 -> 3,879.9   3.81s  ok
+16:34:58    [ 949/1218] 2025 net   all usable70 P=   35 d=2 k=200  CC  0.612 (uncapped 0.612, 2 pass)  H100 4,201.3 -> 4,179.9   4.54s  ok
+16:34:58    [ 950/1218] 2025 net   AM  usable70 P=  135 d=2 k=200  CC  0.552 (uncapped 0.552, 2 pass)  H100 3,991.6 -> 3,917.1   2.90s  ok
+16:34:59    [ 951/1218] 2025 gross PM  usable70 P= 1000 d=2 k=200  CC  0.365 (uncapped 0.365, 2 pass)  H100 4,369.4 -> 4,004.0   6.45s  ok
+16:34:59    [ 952/1218] 2025 gross PM  usable70 P= 1500 d=2 k=200  CC  0.333 (uncapped 0.333, 2 pass)  H100 4,369.4 -> 3,869.2   6.79s  ok
+16:35:00    [ 953/1218] 2025 net   AM  usable70 P=  500 d=2 k=200  CC  0.456 (uncapped 0.456, 2 pass)  H100 3,991.6 -> 3,763.5   2.78s  ok
+16:35:00    [ 954/1218] 2025 net   AM  usable70 P=  335 d=2 k=200  CC  0.489 (uncapped 0.489, 2 pass)  H100 3,991.6 -> 3,827.7   3.28s  ok
+16:35:00    [ 955/1218] 2025 net   all usable70 P= 1500 d=2 k=200  CC  0.326 (uncapped 0.326, 2 pass)  H100 4,201.3 -> 3,712.6   5.15s  ok
+16:35:00    [ 956/1218] 2025 net   all usable70 P= 1000 d=2 k=200  CC  0.396 (uncapped 0.396, 2 pass)  H100 4,201.3 -> 3,805.2   5.34s  ok
+16:35:01    [ 957/1218] 2025 net   AM  usable70 P= 1500 d=2 k=200  CC  0.360 (uncapped 0.360, 2 pass)  H100 3,991.6 -> 3,450.9   3.36s  ok
+16:35:01    [ 958/1218] 2025 net   AM  usable70 P= 1000 d=2 k=200  CC  0.394 (uncapped 0.394, 2 pass)  H100 3,991.6 -> 3,597.2   3.54s  ok
+16:35:01    [ 959/1218] 2025 net   AM  usable70 P=  750 d=2 k=200  CC  0.420 (uncapped 0.420, 2 pass)  H100 3,991.6 -> 3,676.8   3.81s  ok
+16:35:01    [ 960/1218] 2025 net   PM  usable70 P=  135 d=2 k=200  CC  0.504 (uncapped 0.504, 2 pass)  H100 4,089.2 -> 4,021.2   2.98s  ok
+16:35:02    [ 961/1218] 2025 net   PM  usable70 P=   35 d=2 k=200  CC  0.539 (uncapped 0.539, 2 pass)  H100 4,089.2 -> 4,070.3   3.78s  ok
+16:35:03    [ 962/1218] 2025 net   PM  usable70 P=  750 d=2 k=200  CC  0.381 (uncapped 0.381, 2 pass)  H100 4,089.2 -> 3,803.3   3.13s  ok
+16:35:03    [ 963/1218] 2026 gross all usable70 P=   35 d=2 k=200  CC  0.600 (uncapped 0.600, 2 pass)  H100 4,579.1 -> 4,558.1   2.81s  ok
+16:35:03    [ 964/1218] 2026 gross all usable70 P=  135 d=2 k=200  CC  0.545 (uncapped 0.545, 2 pass)  H100 4,579.1 -> 4,505.5   1.97s  ok
+16:35:03    [ 965/1218] 2025 net   PM  usable70 P=  335 d=2 k=200  CC  0.444 (uncapped 0.444, 2 pass)  H100 4,089.2 -> 3,940.5   4.34s  ok
+16:35:04    [ 966/1218] 2026 gross all usable70 P=  335 d=2 k=200  CC  0.483 (uncapped 0.483, 2 pass)  H100 4,579.1 -> 4,417.3   2.38s  ok
+16:35:04    [ 967/1218] 2025 net   PM  usable70 P= 1500 d=2 k=200  CC  0.327 (uncapped 0.327, 2 pass)  H100 4,089.2 -> 3,599.2   3.67s  ok
+16:35:04    [ 968/1218] 2025 net   PM  usable70 P=  500 d=2 k=200  CC  0.412 (uncapped 0.412, 2 pass)  H100 4,089.2 -> 3,883.1   4.30s  ok
+16:35:04    [ 969/1218] 2025 net   PM  usable70 P= 1000 d=2 k=200  CC  0.358 (uncapped 0.358, 2 pass)  H100 4,089.2 -> 3,731.5   4.06s  ok
+16:35:04    [ 970/1218] 2026 gross all usable70 P=  500 d=2 k=200  CC  0.449 (uncapped 0.449, 2 pass)  H100 4,579.1 -> 4,354.5   2.78s  ok
+16:35:04    [ 971/1218] 2026 gross all usable70 P=  750 d=2 k=200  CC  0.415 (uncapped 0.415, 2 pass)  H100 4,579.1 -> 4,268.1   2.68s  ok
+16:35:05    [ 972/1218] 2026 gross AM  usable70 P=  135 d=2 k=200  CC  0.512 (uncapped 0.512, 2 pass)  H100 4,316.0 -> 4,246.9   2.04s  ok
+16:35:06    [ 973/1218] 2026 gross AM  usable70 P=   35 d=2 k=200  CC  0.542 (uncapped 0.542, 2 pass)  H100 4,316.0 -> 4,297.0   2.93s  ok
+16:35:06    [ 974/1218] 2026 gross AM  usable70 P=  500 d=2 k=200  CC  0.444 (uncapped 0.444, 2 pass)  H100 4,316.0 -> 4,094.1   2.48s  ok
+16:35:06    [ 975/1218] 2026 gross all usable70 P= 1000 d=2 k=200  CC  0.386 (uncapped 0.386, 2 pass)  H100 4,579.1 -> 4,193.4   4.59s  ok
+16:35:07    [ 976/1218] 2026 gross AM  usable70 P=  750 d=2 k=200  CC  0.417 (uncapped 0.417, 2 pass)  H100 4,316.0 -> 4,003.5   3.08s  ok
+16:35:07    [ 977/1218] 2026 gross PM  usable70 P=  135 d=2 k=200  CC  0.460 (uncapped 0.460, 2 pass)  H100 4,470.9 -> 4,408.8   2.70s  ok
+16:35:07    [ 978/1218] 2026 gross AM  usable70 P=  335 d=2 k=200  CC  0.469 (uncapped 0.469, 2 pass)  H100 4,316.0 -> 4,158.9   3.64s  ok
+16:35:07    [ 979/1218] 2026 gross PM  usable70 P=   35 d=2 k=200  CC  0.493 (uncapped 0.493, 2 pass)  H100 4,470.9 -> 4,453.6   3.10s  ok
+16:35:08    [ 980/1218] 2026 gross AM  usable70 P= 1000 d=2 k=200  CC  0.394 (uncapped 0.394, 2 pass)  H100 4,316.0 -> 3,921.7   4.13s  ok
+16:35:08    [ 981/1218] 2026 gross all usable70 P= 1500 d=2 k=200  CC  0.316 (uncapped 0.316, 2 pass)  H100 4,579.1 -> 4,104.8   5.26s  ok
+16:35:09    [ 982/1218] 2026 gross AM  usable70 P= 1500 d=2 k=200  CC  0.362 (uncapped 0.362, 2 pass)  H100 4,316.0 -> 3,772.6   4.69s  ok
+16:35:09    [ 983/1218] 2026 gross PM  usable70 P=  335 d=2 k=200  CC  0.425 (uncapped 0.425, 2 pass)  H100 4,470.9 -> 4,328.4   3.57s  ok
+16:35:09    [ 984/1218] 2026 gross PM  usable70 P=  500 d=2 k=200  CC  0.400 (uncapped 0.400, 2 pass)  H100 4,470.9 -> 4,270.7   3.69s  ok
+16:35:10    [ 985/1218] 2026 net   all usable70 P=   35 d=2 k=200  CC  0.538 (uncapped 0.538, 2 pass)  H100 4,336.6 -> 4,317.8   2.83s  ok
+16:35:10    [ 986/1218] 2026 gross PM  usable70 P=  750 d=2 k=200  CC  0.370 (uncapped 0.370, 2 pass)  H100 4,470.9 -> 4,193.5   3.66s  ok
+16:35:10    [ 987/1218] 2026 gross PM  usable70 P= 1000 d=2 k=200  CC  0.349 (uncapped 0.349, 2 pass)  H100 4,470.9 -> 4,121.5   3.69s  ok
+16:35:10    [ 988/1218] 2026 net   all usable70 P=  135 d=2 k=200  CC  0.502 (uncapped 0.502, 2 pass)  H100 4,336.6 -> 4,268.8   3.07s  ok
+16:35:10    [ 989/1218] 2026 gross PM  usable70 P= 1500 d=2 k=200  CC  0.321 (uncapped 0.321, 2 pass)  H100 4,470.9 -> 3,989.6   3.59s  ok
+16:35:10    [ 990/1218] 2026 net   all usable70 P=  335 d=2 k=200  CC  0.455 (uncapped 0.455, 2 pass)  H100 4,336.6 -> 4,184.3   3.17s  ok
+16:35:11    [ 991/1218] 2026 net   all usable70 P=  750 d=2 k=200  CC  0.403 (uncapped 0.403, 2 pass)  H100 4,336.6 -> 4,034.0   2.71s  ok
+16:35:11    [ 992/1218] 2026 net   all usable70 P=  500 d=2 k=200  CC  0.431 (uncapped 0.431, 2 pass)  H100 4,336.6 -> 4,121.3   3.00s  ok
+16:35:12    [ 993/1218] 2026 net   AM  usable70 P=   35 d=2 k=200  CC  0.545 (uncapped 0.545, 2 pass)  H100 4,022.5 -> 4,003.5   2.30s  ok
+16:35:12    [ 994/1218] 2026 net   AM  usable70 P=  135 d=2 k=200  CC  0.512 (uncapped 0.512, 2 pass)  H100 4,022.5 -> 3,953.4   2.20s  ok
+16:35:12    [ 995/1218] 2026 net   AM  usable70 P=  500 d=2 k=200  CC  0.447 (uncapped 0.447, 2 pass)  H100 4,022.5 -> 3,798.9   2.19s  ok
+16:35:12    [ 996/1218] 2026 net   all usable70 P= 1000 d=2 k=200  CC  0.376 (uncapped 0.376, 2 pass)  H100 4,336.6 -> 3,960.2   3.59s  ok
+16:35:12    [ 997/1218] 2026 net   AM  usable70 P=  335 d=2 k=200  CC  0.473 (uncapped 0.473, 2 pass)  H100 4,022.5 -> 3,864.1   2.72s  ok
+16:35:12    [ 998/1218] 2026 net   all usable70 P= 1500 d=2 k=200  CC  0.316 (uncapped 0.316, 2 pass)  H100 4,336.6 -> 3,863.1   3.74s  ok
+16:35:13    [ 999/1218] 2026 net   PM  usable70 P=   35 d=2 k=200  CC  0.429 (uncapped 0.429, 2 pass)  H100 4,215.4 -> 4,200.4   1.95s  ok
+16:35:13    [1000/1218] 2026 net   AM  usable70 P= 1000 d=2 k=200  CC  0.401 (uncapped 0.401, 2 pass)  H100 4,022.5 -> 3,622.0   2.54s  ok
+16:35:13    [1001/1218] 2026 net   AM  usable70 P=  750 d=2 k=200  CC  0.421 (uncapped 0.421, 2 pass)  H100 4,022.5 -> 3,706.9   3.09s  ok
+16:35:13    [1002/1218] 2026 net   PM  usable70 P=  135 d=2 k=200  CC  0.409 (uncapped 0.409, 2 pass)  H100 4,215.4 -> 4,160.2   2.27s  ok
+16:35:15    [1003/1218] 2026 net   PM  usable70 P=  750 d=2 k=200  CC  0.341 (uncapped 0.341, 2 pass)  H100 4,215.4 -> 3,959.5   2.68s  ok
+16:35:15    [1004/1218] 2026 net   PM  usable70 P=  500 d=2 k=200  CC  0.359 (uncapped 0.359, 2 pass)  H100 4,215.4 -> 4,035.8   3.11s  ok
+16:35:15    [1005/1218] 2021 net   all solar3x  P=   35 d=2 k=200  CC  0.740 (uncapped 0.740, 2 pass)  H100 4,235.6 -> 4,209.7   2.78s  ok
+16:35:15    [1006/1218] 2026 net   PM  usable70 P=  335 d=2 k=200  CC  0.376 (uncapped 0.376, 2 pass)  H100 4,215.4 -> 4,089.4   3.59s  ok
+16:35:16    [1007/1218] 2026 net   PM  usable70 P= 1000 d=2 k=200  CC  0.326 (uncapped 0.326, 2 pass)  H100 4,215.4 -> 3,889.5   3.84s  ok
+16:35:16    [1008/1218] 2021 net   all solar3x  P=  135 d=2 k=200  CC  0.674 (uncapped 0.674, 2 pass)  H100 4,235.6 -> 4,144.6   3.33s  ok
+16:35:16    [1009/1218] 2021 net   all solar3x  P=  335 d=2 k=200  CC  0.560 (uncapped 0.560, 2 pass)  H100 4,235.6 -> 4,047.9   3.42s  ok
+16:35:17    [1010/1218] 2026 net   PM  usable70 P= 1500 d=2 k=200  CC  0.304 (uncapped 0.304, 2 pass)  H100 4,215.4 -> 3,759.1   4.43s  ok
+16:35:17    [1011/1218] 2021 net   all solar3x  P=  750 d=2 k=200  CC  0.418 (uncapped 0.418, 2 pass)  H100 4,235.6 -> 3,922.4   3.84s  ok
+16:35:18    [1012/1218] 2021 net   AM  solar3x  P=   35 d=2 k=200  CC  0.639 (uncapped 0.639, 2 pass)  H100 4,060.3 -> 4,037.9   2.41s  ok
+16:35:19    [1013/1218] 2021 net   all solar3x  P=  500 d=2 k=200  CC  0.499 (uncapped 0.499, 2 pass)  H100 4,235.6 -> 3,986.1   5.42s  ok
+16:35:19    [1014/1218] 2026 net   AM  usable70 P= 1500 d=2 k=200  CC  0.356 (uncapped 0.366, 4 pass)  H100 4,022.5 -> 3,489.3   8.40s  ok
+16:35:19    [1015/1218] 2021 net   AM  solar3x  P=  135 d=2 k=200  CC  0.603 (uncapped 0.603, 2 pass)  H100 4,060.3 -> 3,978.9   3.66s  ok
+16:35:20    [1016/1218] 2021 net   all solar3x  P= 1000 d=2 k=200  CC  0.365 (uncapped 0.365, 2 pass)  H100 4,235.6 -> 3,871.0   4.81s  ok
+16:35:20    [1017/1218] 2021 net   AM  solar3x  P=  500 d=2 k=200  CC  0.511 (uncapped 0.511, 2 pass)  H100 4,060.3 -> 3,804.9   3.50s  ok
+16:35:20    [1018/1218] 2021 net   AM  solar3x  P=  335 d=2 k=200  CC  0.542 (uncapped 0.542, 2 pass)  H100 4,060.3 -> 3,878.6   3.72s  ok
+16:35:20    [1019/1218] 2021 net   PM  solar3x  P=   35 d=2 k=200  CC  0.708 (uncapped 0.708, 2 pass)  H100 4,181.7 -> 4,156.9   2.38s  ok
+16:35:21    [1020/1218] 2021 net   AM  solar3x  P= 1000 d=2 k=200  CC  0.460 (uncapped 0.460, 2 pass)  H100 4,060.3 -> 3,600.5   3.86s  ok
+16:35:21    [1021/1218] 2021 net   AM  solar3x  P=  750 d=2 k=200  CC  0.479 (uncapped 0.479, 2 pass)  H100 4,060.3 -> 3,700.9   4.85s  ok
+16:35:21    [1022/1218] 2021 net   all solar3x  P= 1500 d=2 k=200  CC  0.293 (uncapped 0.293, 2 pass)  H100 4,235.6 -> 3,796.1   6.31s  ok
+16:35:22    [1023/1218] 2021 net   PM  solar3x  P=  135 d=2 k=200  CC  0.653 (uncapped 0.653, 2 pass)  H100 4,181.7 -> 4,093.5   3.84s  ok
+16:35:22    [1024/1218] 2021 net   PM  solar3x  P=  500 d=2 k=200  CC  0.534 (uncapped 0.534, 2 pass)  H100 4,181.7 -> 3,914.5   3.45s  ok
+16:35:23    [1025/1218] 2022 net   all solar3x  P=   35 d=2 k=200  CC  0.759 (uncapped 0.759, 2 pass)  H100 4,190.9 -> 4,164.4   2.49s  ok
+16:35:23    [1026/1218] 2021 net   PM  solar3x  P=  750 d=2 k=200  CC  0.491 (uncapped 0.491, 2 pass)  H100 4,181.7 -> 3,813.4   3.25s  ok
+16:35:23    [1027/1218] 2021 net   PM  solar3x  P=  335 d=2 k=200  CC  0.579 (uncapped 0.579, 2 pass)  H100 4,181.7 -> 3,987.9   4.46s  ok
+16:35:23    [1028/1218] 2022 net   all solar3x  P=  135 d=2 k=200  CC  0.710 (uncapped 0.710, 2 pass)  H100 4,190.9 -> 4,095.0   2.79s  ok
+16:35:24    [1029/1218] 2021 net   AM  solar3x  P= 1500 d=2 k=200  CC  0.440 (uncapped 0.440, 3 pass)  H100 4,060.3 -> 3,400.7   6.89s  ok
+16:35:24    [1030/1218] 2022 net   all solar3x  P=  500 d=2 k=200  CC  0.543 (uncapped 0.543, 2 pass)  H100 4,190.9 -> 3,919.7   3.09s  ok
+16:35:24    [1031/1218] 2021 net   PM  solar3x  P= 1000 d=2 k=200  CC  0.461 (uncapped 0.461, 2 pass)  H100 4,181.7 -> 3,720.6   4.79s  ok
+16:35:25    [1032/1218] 2021 net   PM  solar3x  P= 1500 d=2 k=200  CC  0.422 (uncapped 0.422, 2 pass)  H100 4,181.7 -> 3,548.4   5.08s  ok
+16:35:25    [1033/1218] 2022 net   AM  solar3x  P=   35 d=2 k=200  CC  0.662 (uncapped 0.662, 2 pass)  H100 3,955.1 -> 3,931.9   2.43s  ok
+16:35:26    [1034/1218] 2022 net   all solar3x  P=  335 d=2 k=200  CC  0.611 (uncapped 0.611, 2 pass)  H100 4,190.9 -> 3,986.1   4.68s  ok
+16:35:26    [1035/1218] 2022 net   AM  solar3x  P=  335 d=2 k=200  CC  0.568 (uncapped 0.568, 2 pass)  H100 3,955.1 -> 3,764.7   2.76s  ok
+16:35:27    [1036/1218] 2022 net   all solar3x  P= 1000 d=2 k=200  CC  0.396 (uncapped 0.396, 2 pass)  H100 4,190.9 -> 3,795.4   4.38s  ok
+16:35:27    [1037/1218] 2022 net   AM  solar3x  P=  135 d=2 k=200  CC  0.623 (uncapped 0.623, 2 pass)  H100 3,955.1 -> 3,870.9   3.74s  ok
+16:35:27    [1038/1218] 2022 net   all solar3x  P=  750 d=2 k=200  CC  0.465 (uncapped 0.465, 2 pass)  H100 4,190.9 -> 3,841.9   4.97s  ok
+16:35:28    [1039/1218] 2022 net   all solar3x  P= 1500 d=2 k=200  CC  0.312 (uncapped 0.312, 2 pass)  H100 4,190.9 -> 3,722.2   5.07s  ok
+16:35:28    [1040/1218] 2022 net   AM  solar3x  P=  750 d=2 k=200  CC  0.510 (uncapped 0.510, 2 pass)  H100 3,955.1 -> 3,572.4   3.30s  ok
+16:35:28    [1041/1218] 2022 net   PM  solar3x  P=   35 d=2 k=200  CC  0.682 (uncapped 0.682, 2 pass)  H100 4,122.3 -> 4,098.4   2.54s  ok
+16:35:28    [1042/1218] 2022 net   AM  solar3x  P=  500 d=2 k=200  CC  0.542 (uncapped 0.542, 2 pass)  H100 3,955.1 -> 3,684.0   4.33s  ok
+16:35:29    [1043/1218] 2022 net   AM  solar3x  P= 1000 d=2 k=200  CC  0.486 (uncapped 0.486, 2 pass)  H100 3,955.1 -> 3,469.0   4.20s  ok
+16:35:29    [1044/1218] 2022 net   AM  solar3x  P= 1500 d=2 k=200  CC  0.458 (uncapped 0.458, 2 pass)  H100 3,955.1 -> 3,268.1   3.97s  ok
+16:35:30    [1045/1218] 2022 net   PM  solar3x  P=  335 d=2 k=200  CC  0.574 (uncapped 0.574, 2 pass)  H100 4,122.3 -> 3,930.1   3.94s  ok
+16:35:30    [1046/1218] 2022 net   PM  solar3x  P=  135 d=2 k=200  CC  0.643 (uncapped 0.643, 2 pass)  H100 4,122.3 -> 4,035.4   4.39s  ok
+16:35:31    [1047/1218] 2023 net   all solar3x  P=   35 d=2 k=200  CC  0.748 (uncapped 0.748, 2 pass)  H100 4,261.4 -> 4,235.3   2.83s  ok
+16:35:31    [1048/1218] 2022 net   PM  solar3x  P=  500 d=2 k=200  CC  0.533 (uncapped 0.533, 2 pass)  H100 4,122.3 -> 3,856.0   3.73s  ok
+16:35:31    [1049/1218] 2023 net   all solar3x  P=  135 d=2 k=200  CC  0.711 (uncapped 0.711, 2 pass)  H100 4,261.4 -> 4,165.5   3.01s  ok
+16:35:31    [1050/1218] 2022 net   PM  solar3x  P=  750 d=2 k=200  CC  0.490 (uncapped 0.490, 2 pass)  H100 4,122.3 -> 3,754.6   3.88s  ok
+16:35:32    [1051/1218] 2023 net   all solar3x  P=  500 d=2 k=200  CC  0.602 (uncapped 0.602, 2 pass)  H100 4,261.4 -> 3,960.6   3.24s  ok
+16:35:32    [1052/1218] 2022 net   PM  solar3x  P= 1500 d=2 k=200  CC  0.423 (uncapped 0.423, 2 pass)  H100 4,122.3 -> 3,487.8   4.37s  ok
+16:35:33    [1053/1218] 2023 net   AM  solar3x  P=   35 d=2 k=200  CC  0.757 (uncapped 0.757, 2 pass)  H100 4,032.6 -> 4,006.1   2.44s  ok
+16:35:33    [1054/1218] 2023 net   all solar3x  P=  750 d=2 k=200  CC  0.548 (uncapped 0.548, 2 pass)  H100 4,261.4 -> 3,850.1   4.34s  ok
+16:35:33    [1055/1218] 2023 net   all solar3x  P=  335 d=2 k=200  CC  0.643 (uncapped 0.643, 2 pass)  H100 4,261.4 -> 4,046.0   4.96s  ok
+16:35:34    [1056/1218] 2022 net   PM  solar3x  P= 1000 d=2 k=200  CC  0.461 (uncapped 0.461, 2 pass)  H100 4,122.3 -> 3,661.1   6.22s  ok
+16:35:34    [1057/1218] 2023 net   AM  solar3x  P=  335 d=2 k=200  CC  0.647 (uncapped 0.647, 2 pass)  H100 4,032.6 -> 3,815.8   2.89s  ok
+16:35:34    [1058/1218] 2023 net   AM  solar3x  P=  135 d=2 k=200  CC  0.713 (uncapped 0.713, 2 pass)  H100 4,032.6 -> 3,936.4   3.09s  ok
+16:35:35    [1059/1218] 2023 net   AM  solar3x  P=  750 d=2 k=200  CC  0.553 (uncapped 0.553, 2 pass)  H100 4,032.6 -> 3,618.0   3.30s  ok
+16:35:36    [1060/1218] 2023 net   AM  solar3x  P= 1000 d=2 k=200  CC  0.518 (uncapped 0.518, 2 pass)  H100 4,032.6 -> 3,514.4   3.63s  ok
+16:35:36    [1061/1218] 2023 net   AM  solar3x  P=  500 d=2 k=200  CC  0.602 (uncapped 0.602, 2 pass)  H100 4,032.6 -> 3,731.5   4.77s  ok
+16:35:36    [1062/1218] 2023 net   all solar3x  P= 1000 d=2 k=200  CC  0.482 (uncapped 0.482, 2 pass)  H100 4,261.4 -> 3,779.6   6.02s  ok
+16:35:36    [1063/1218] 2023 net   PM  solar3x  P=   35 d=2 k=200  CC  0.683 (uncapped 0.683, 2 pass)  H100 4,184.1 -> 4,160.1   3.07s  ok
+16:35:36    [1064/1218] 2023 net   PM  solar3x  P=  135 d=2 k=200  CC  0.644 (uncapped 0.644, 2 pass)  H100 4,184.1 -> 4,097.1   3.17s  ok
+16:35:37    [1065/1218] 2023 net   PM  solar3x  P=  500 d=2 k=200  CC  0.536 (uncapped 0.536, 2 pass)  H100 4,184.1 -> 3,915.9   3.10s  ok
+16:35:37    [1066/1218] 2023 net   AM  solar3x  P= 1500 d=2 k=200  CC  0.479 (uncapped 0.479, 2 pass)  H100 4,032.6 -> 3,314.1   3.90s  ok
+16:35:37    [1067/1218] 2023 net   all solar3x  P= 1500 d=2 k=200  CC  0.383 (uncapped 0.383, 2 pass)  H100 4,261.4 -> 3,687.1   6.87s  ok
+16:35:38    [1068/1218] 2023 net   PM  solar3x  P=  335 d=2 k=200  CC  0.578 (uncapped 0.578, 2 pass)  H100 4,184.1 -> 3,990.4   4.14s  ok
+16:35:38    [1069/1218] 2023 net   PM  solar3x  P=  750 d=2 k=200  CC  0.491 (uncapped 0.491, 2 pass)  H100 4,184.1 -> 3,816.2   4.46s  ok
+16:35:38    [1070/1218] 2024 net   all solar3x  P=   35 d=2 k=200  CC  0.835 (uncapped 0.835, 2 pass)  H100 4,180.1 -> 4,150.9   2.80s  ok
+16:35:39    [1071/1218] 2023 net   PM  solar3x  P= 1000 d=2 k=200  CC  0.462 (uncapped 0.462, 2 pass)  H100 4,184.1 -> 3,721.8   3.69s  ok
+16:35:39    [1072/1218] 2024 net   all solar3x  P=  135 d=2 k=200  CC  0.789 (uncapped 0.789, 2 pass)  H100 4,180.1 -> 4,073.6   3.20s  ok
+16:35:40    [1073/1218] 2023 net   PM  solar3x  P= 1500 d=2 k=200  CC  0.426 (uncapped 0.426, 2 pass)  H100 4,184.1 -> 3,545.0   3.95s  ok
+16:35:40    [1074/1218] 2024 net   all solar3x  P=  335 d=2 k=200  CC  0.696 (uncapped 0.696, 2 pass)  H100 4,180.1 -> 3,947.1   3.49s  ok
+16:35:40    [1075/1218] 2024 net   all solar3x  P=  500 d=2 k=200  CC  0.628 (uncapped 0.628, 2 pass)  H100 4,180.1 -> 3,866.2   3.77s  ok
+16:35:40    [1076/1218] 2024 net   all solar3x  P=  750 d=2 k=200  CC  0.539 (uncapped 0.539, 2 pass)  H100 4,180.1 -> 3,776.1   3.41s  ok
+16:35:41    [1077/1218] 2024 net   AM  solar3x  P=   35 d=2 k=200  CC  0.757 (uncapped 0.757, 2 pass)  H100 3,961.4 -> 3,934.9   2.81s  ok
+16:35:41    [1078/1218] 2024 net   all solar3x  P= 1000 d=2 k=200  CC  0.462 (uncapped 0.462, 2 pass)  H100 4,180.1 -> 3,717.8   4.34s  ok
+16:35:41    [1079/1218] 2024 net   AM  solar3x  P=  135 d=2 k=200  CC  0.709 (uncapped 0.709, 2 pass)  H100 3,961.4 -> 3,865.6   3.13s  ok
+16:35:41    [1080/1218] 2024 net   AM  solar3x  P=  500 d=2 k=200  CC  0.604 (uncapped 0.604, 2 pass)  H100 3,961.4 -> 3,659.5   2.60s  ok
+16:35:42    [1081/1218] 2024 net   AM  solar3x  P=  335 d=2 k=200  CC  0.647 (uncapped 0.647, 2 pass)  H100 3,961.4 -> 3,744.7   3.33s  ok
+16:35:43    [1082/1218] 2024 net   PM  solar3x  P=   35 d=2 k=200  CC  0.765 (uncapped 0.765, 2 pass)  H100 4,122.7 -> 4,095.9   2.48s  ok
+16:35:43    [1083/1218] 2024 net   AM  solar3x  P= 1000 d=2 k=200  CC  0.520 (uncapped 0.520, 2 pass)  H100 3,961.4 -> 3,441.4   3.12s  ok
+16:35:43    [1084/1218] 2024 net   all solar3x  P= 1500 d=2 k=200  CC  0.365 (uncapped 0.365, 2 pass)  H100 4,180.1 -> 3,632.5   6.05s  ok
+16:35:44    [1085/1218] 2024 net   AM  solar3x  P=  750 d=2 k=200  CC  0.554 (uncapped 0.554, 2 pass)  H100 3,961.4 -> 3,545.7   4.17s  ok
+16:35:44    [1086/1218] 2024 net   PM  solar3x  P=  135 d=2 k=200  CC  0.714 (uncapped 0.714, 2 pass)  H100 4,122.7 -> 4,026.3   3.54s  ok
+16:35:44    [1087/1218] 2024 net   PM  solar3x  P=  335 d=2 k=200  CC  0.637 (uncapped 0.637, 2 pass)  H100 4,122.7 -> 3,909.3   3.44s  ok
+16:35:44    [1088/1218] 2024 net   PM  solar3x  P=  500 d=2 k=200  CC  0.580 (uncapped 0.580, 2 pass)  H100 4,122.7 -> 3,832.6   2.93s  ok
+16:35:45    [1089/1218] 2024 net   PM  solar3x  P=  750 d=2 k=200  CC  0.526 (uncapped 0.526, 2 pass)  H100 4,122.7 -> 3,728.1   3.48s  ok
+16:35:45    [1090/1218] 2025 net   all solar3x  P=  135 d=2 k=200  CC  0.750 (uncapped 0.750, 2 pass)  H100 4,188.5 -> 4,087.3   2.45s  ok
+16:35:45    [1091/1218] 2024 net   PM  solar3x  P= 1000 d=2 k=200  CC  0.492 (uncapped 0.492, 2 pass)  H100 4,122.7 -> 3,631.0   3.73s  ok
+16:35:45    [1092/1218] 2025 net   all solar3x  P=   35 d=2 k=200  CC  0.788 (uncapped 0.788, 2 pass)  H100 4,188.5 -> 4,160.9   2.79s  ok
+16:35:46    [1093/1218] 2025 net   all solar3x  P=  335 d=2 k=200  CC  0.671 (uncapped 0.671, 2 pass)  H100 4,188.5 -> 3,963.6   2.84s  ok
+16:35:47    [1094/1218] 2024 net   AM  solar3x  P= 1500 d=2 k=200  CC  0.473 (uncapped 0.480, 3 pass)  H100 3,961.4 -> 3,251.7   7.13s  ok
+16:35:47    [1095/1218] 2024 net   PM  solar3x  P= 1500 d=2 k=200  CC  0.446 (uncapped 0.446, 2 pass)  H100 4,122.7 -> 3,453.4   5.20s  ok
+16:35:47    [1096/1218] 2025 net   AM  solar3x  P=   35 d=2 k=200  CC  0.782 (uncapped 0.782, 2 pass)  H100 3,949.2 -> 3,921.8   2.42s  ok
+16:35:47    [1097/1218] 2025 net   all solar3x  P=  500 d=2 k=200  CC  0.626 (uncapped 0.626, 2 pass)  H100 4,188.5 -> 3,875.4   3.89s  ok
+16:35:48    [1098/1218] 2025 net   AM  solar3x  P=  135 d=2 k=200  CC  0.750 (uncapped 0.750, 2 pass)  H100 3,949.2 -> 3,848.0   2.53s  ok
+16:35:48    [1099/1218] 2025 net   AM  solar3x  P=  335 d=2 k=200  CC  0.684 (uncapped 0.684, 2 pass)  H100 3,949.2 -> 3,720.0   2.94s  ok
+16:35:48    [1100/1218] 2025 net   all solar3x  P=  750 d=2 k=200  CC  0.565 (uncapped 0.565, 2 pass)  H100 4,188.5 -> 3,764.9   4.41s  ok
+16:35:49    [1101/1218] 2025 net   AM  solar3x  P=  500 d=2 k=200  CC  0.638 (uncapped 0.638, 2 pass)  H100 3,949.2 -> 3,630.2   3.77s  ok
+16:35:49    [1102/1218] 2025 net   all solar3x  P= 1000 d=2 k=200  CC  0.502 (uncapped 0.502, 2 pass)  H100 4,188.5 -> 3,686.2   5.40s  ok
+16:35:50    [1103/1218] 2025 net   AM  solar3x  P=  750 d=2 k=200  CC  0.584 (uncapped 0.584, 2 pass)  H100 3,949.2 -> 3,511.2   3.79s  ok
+16:35:50    [1104/1218] 2025 net   PM  solar3x  P=   35 d=2 k=200  CC  0.705 (uncapped 0.705, 2 pass)  H100 4,089.1 -> 4,064.4   2.82s  ok
+16:35:50    [1105/1218] 2025 net   all solar3x  P= 1500 d=2 k=200  CC  0.390 (uncapped 0.390, 2 pass)  H100 4,188.5 -> 3,603.9   6.01s  ok
+16:35:51    [1106/1218] 2025 net   PM  solar3x  P=  335 d=2 k=200  CC  0.593 (uncapped 0.593, 2 pass)  H100 4,089.1 -> 3,890.3   3.17s  ok
+16:35:51    [1107/1218] 2025 net   PM  solar3x  P=  135 d=2 k=200  CC  0.665 (uncapped 0.665, 2 pass)  H100 4,089.1 -> 3,999.3   3.54s  ok
+16:35:51    [1108/1218] 2025 net   PM  solar3x  P=  500 d=2 k=200  CC  0.551 (uncapped 0.551, 2 pass)  H100 4,089.1 -> 3,813.6   3.16s  ok
+16:35:51    [1109/1218] 2025 net   AM  solar3x  P= 1000 d=2 k=200  CC  0.545 (uncapped 0.545, 2 pass)  H100 3,949.2 -> 3,403.9   4.48s  ok
+16:35:52    [1110/1218] 2026 net   all solar3x  P=   35 d=2 k=200  CC  0.728 (uncapped 0.728, 2 pass)  H100 4,318.3 -> 4,292.8   2.11s  ok
+16:35:52    [1111/1218] 2025 net   PM  solar3x  P=  750 d=2 k=200  CC  0.505 (uncapped 0.505, 2 pass)  H100 4,089.1 -> 3,710.7   3.99s  ok
+16:35:52    [1112/1218] 2026 net   all solar3x  P=  135 d=2 k=200  CC  0.684 (uncapped 0.684, 2 pass)  H100 4,318.3 -> 4,226.0   2.17s  ok
+16:35:53    [1113/1218] 2026 net   all solar3x  P=  335 d=2 k=200  CC  0.629 (uncapped 0.629, 2 pass)  H100 4,318.3 -> 4,107.7   2.78s  ok
+16:35:53    [1114/1218] 2026 net   all solar3x  P=  500 d=2 k=200  CC  0.592 (uncapped 0.592, 2 pass)  H100 4,318.3 -> 4,022.2   2.61s  ok
+16:35:54    [1115/1218] 2026 net   AM  solar3x  P=   35 d=2 k=200  CC  0.765 (uncapped 0.765, 2 pass)  H100 3,952.0 -> 3,925.2   2.09s  ok
+16:35:54    [1116/1218] 2025 net   PM  solar3x  P= 1000 d=2 k=200  CC  0.473 (uncapped 0.473, 2 pass)  H100 4,089.1 -> 3,615.7   5.00s  ok
+16:35:54    [1117/1218] 2025 net   PM  solar3x  P= 1500 d=2 k=200  CC  0.433 (uncapped 0.433, 2 pass)  H100 4,089.1 -> 3,439.5   4.87s  ok
+16:35:54    [1118/1218] 2026 net   AM  solar3x  P=  335 d=2 k=200  CC  0.688 (uncapped 0.688, 2 pass)  H100 3,952.0 -> 3,721.6   2.31s  ok
+16:35:54    [1119/1218] 2026 net   all solar3x  P=  750 d=2 k=200  CC  0.548 (uncapped 0.548, 2 pass)  H100 4,318.3 -> 3,907.4   3.50s  ok
+16:35:55    [1120/1218] 2026 net   AM  solar3x  P=  135 d=2 k=200  CC  0.741 (uncapped 0.741, 2 pass)  H100 3,952.0 -> 3,851.9   2.52s  ok
+16:35:55    [1121/1218] 2026 net   all solar3x  P= 1000 d=2 k=200  CC  0.499 (uncapped 0.499, 2 pass)  H100 4,318.3 -> 3,819.5   3.46s  ok
+16:35:55    [1122/1218] 2026 net   AM  solar3x  P=  500 d=2 k=200  CC  0.652 (uncapped 0.652, 2 pass)  H100 3,952.0 -> 3,626.1   2.50s  ok
+16:35:56    [1123/1218] 2025 net   AM  solar3x  P= 1500 d=2 k=200  CC  0.479 (uncapped 0.498, 4 pass)  H100 3,949.2 -> 3,230.7   9.26s  ok
+16:35:56    [1124/1218] 2026 net   all solar3x  P= 1500 d=2 k=200  CC  0.411 (uncapped 0.411, 2 pass)  H100 4,318.3 -> 3,701.1   4.95s  ok
+16:35:56    [1125/1218] 2026 net   PM  solar3x  P=  135 d=2 k=200  CC  0.564 (uncapped 0.564, 2 pass)  H100 4,214.9 -> 4,138.7   1.94s  ok
+16:35:56    [1126/1218] 2026 net   PM  solar3x  P=   35 d=2 k=200  CC  0.596 (uncapped 0.596, 2 pass)  H100 4,214.9 -> 4,194.0   2.22s  ok
+16:35:56    [1127/1218] 2026 net   AM  solar3x  P=  750 d=2 k=200  CC  0.607 (uncapped 0.607, 2 pass)  H100 3,952.0 -> 3,496.9   3.05s  ok
+16:35:57    [1128/1218] 2026 net   PM  solar3x  P=  335 d=2 k=200  CC  0.517 (uncapped 0.517, 2 pass)  H100 4,214.9 -> 4,041.5   2.42s  ok
+16:35:57    [1129/1218] 2026 net   PM  solar3x  P=  750 d=2 k=200  CC  0.463 (uncapped 0.463, 2 pass)  H100 4,214.9 -> 3,867.2   2.55s  ok
+16:35:57    [1130/1218] 2026 net   PM  solar3x  P=  500 d=2 k=200  CC  0.494 (uncapped 0.494, 2 pass)  H100 4,214.9 -> 3,967.9   2.79s  ok
+16:35:59    [1131/1218] 2026 net   AM  solar3x  P= 1000 d=2 k=200  CC  0.559 (uncapped 0.571, 3 pass)  H100 3,952.0 -> 3,393.1   4.57s  ok
+16:35:59    [1132/1218] 2021 gross all top50    P=   35 d=2 k=50  CC  0.845 (uncapped 0.845, 2 pass)  H100 4,598.8 -> 4,569.3   2.24s  ok
+16:35:59    [1133/1218] 2021 gross all top50    P=  135 d=2 k=50  CC  0.773 (uncapped 0.773, 2 pass)  H100 4,598.8 -> 4,494.4   2.19s  ok
+16:35:59    [1134/1218] 2026 net   PM  solar3x  P= 1000 d=2 k=200  CC  0.442 (uncapped 0.442, 2 pass)  H100 4,214.9 -> 3,772.6   3.45s  ok
+16:35:59    [1135/1218] 2021 gross all top50    P=  750 d=2 k=50  CC  0.437 (uncapped 0.437, 2 pass)  H100 4,598.8 -> 4,270.9   2.33s  ok
+16:35:59    [1136/1218] 2021 gross all top50    P=  335 d=2 k=50  CC  0.639 (uncapped 0.639, 2 pass)  H100 4,598.8 -> 4,384.6   2.90s  ok
+16:35:59    [1137/1218] 2021 gross all top50    P=  500 d=2 k=50  CC  0.536 (uncapped 0.536, 2 pass)  H100 4,598.8 -> 4,330.9   2.89s  ok
+16:36:00    [1138/1218] 2026 net   PM  solar3x  P= 1500 d=2 k=200  CC  0.413 (uncapped 0.413, 2 pass)  H100 4,214.9 -> 3,594.9   3.36s  ok
+16:36:00    [1139/1218] 2021 gross all top50    P= 1000 d=2 k=50  CC  0.371 (uncapped 0.371, 2 pass)  H100 4,598.8 -> 4,227.6   2.74s  ok
+16:36:01    [1140/1218] 2021 net   all top50    P=   35 d=2 k=50  CC  0.852 (uncapped 0.852, 2 pass)  H100 4,409.2 -> 4,379.4   2.19s  ok
+16:36:01    [1141/1218] 2021 net   all top50    P=  135 d=2 k=50  CC  0.763 (uncapped 0.763, 2 pass)  H100 4,409.2 -> 4,306.2   2.29s  ok
+16:36:01    [1142/1218] 2021 net   all top50    P=  335 d=2 k=50  CC  0.631 (uncapped 0.631, 2 pass)  H100 4,409.2 -> 4,198.0   2.28s  ok
+16:36:01    [1143/1218] 2021 gross all top50    P= 1500 d=2 k=50  CC  0.295 (uncapped 0.295, 2 pass)  H100 4,598.8 -> 4,156.9   4.03s  ok
+16:36:01    [1144/1218] 2021 net   all top50    P=  750 d=2 k=50  CC  0.464 (uncapped 0.464, 2 pass)  H100 4,409.2 -> 4,060.9   2.19s  ok
+16:36:02    [1145/1218] 2021 net   all top50    P=  500 d=2 k=50  CC  0.564 (uncapped 0.564, 2 pass)  H100 4,409.2 -> 4,127.1   3.07s  ok
+16:36:02    [1146/1218] 2022 gross all top50    P=   35 d=2 k=50  CC  0.929 (uncapped 0.929, 2 pass)  H100 4,577.3 -> 4,544.8   2.43s  ok
+16:36:02    [1147/1218] 2026 net   AM  solar3x  P= 1500 d=2 k=200  CC  0.445 (uncapped 0.519, 5 pass)  H100 3,952.0 -> 3,285.0   7.94s  ok
+16:36:02    [1148/1218] 2022 gross all top50    P=  135 d=2 k=50  CC  0.882 (uncapped 0.882, 2 pass)  H100 4,577.3 -> 4,458.2   2.14s  ok
+16:36:03    [1149/1218] 2021 net   all top50    P= 1000 d=2 k=50  CC  0.407 (uncapped 0.407, 2 pass)  H100 4,409.2 -> 4,001.9   3.21s  ok
+16:36:03    [1150/1218] 2022 gross all top50    P=  335 d=2 k=50  CC  0.754 (uncapped 0.754, 2 pass)  H100 4,577.3 -> 4,324.7   2.31s  ok
+16:36:03    [1151/1218] 2022 gross all top50    P=  750 d=2 k=50  CC  0.567 (uncapped 0.567, 2 pass)  H100 4,577.3 -> 4,151.7   2.18s  ok
+16:36:03    [1152/1218] 2022 gross all top50    P=  500 d=2 k=50  CC  0.670 (uncapped 0.670, 2 pass)  H100 4,577.3 -> 4,242.1   2.55s  ok
+16:36:04    [1153/1218] 2021 net   all top50    P= 1500 d=2 k=50  CC  0.325 (uncapped 0.325, 2 pass)  H100 4,409.2 -> 3,922.3   4.20s  ok
+16:36:04    [1154/1218] 2022 gross all top50    P= 1000 d=2 k=50  CC  0.498 (uncapped 0.498, 2 pass)  H100 4,577.3 -> 4,079.7   2.73s  ok
+16:36:04    [1155/1218] 2022 net   all top50    P=   35 d=2 k=50  CC  0.960 (uncapped 0.960, 2 pass)  H100 4,405.9 -> 4,372.3   2.42s  ok
+16:36:04    [1156/1218] 2022 net   all top50    P=  135 d=2 k=50  CC  0.927 (uncapped 0.927, 2 pass)  H100 4,405.9 -> 4,280.7   2.36s  ok
+16:36:04    [1157/1218] 2022 net   all top50    P=  500 d=2 k=50  CC  0.748 (uncapped 0.748, 2 pass)  H100 4,405.9 -> 4,031.9   2.33s  ok
+16:36:05    [1158/1218] 2022 net   all top50    P=  335 d=2 k=50  CC  0.823 (uncapped 0.823, 2 pass)  H100 4,405.9 -> 4,130.1   2.42s  ok
+16:36:05    [1159/1218] 2022 net   all top50    P=  750 d=2 k=50  CC  0.643 (uncapped 0.643, 2 pass)  H100 4,405.9 -> 3,923.9   2.55s  ok
+16:36:05    [1160/1218] 2022 gross all top50    P= 1500 d=2 k=50  CC  0.392 (uncapped 0.392, 2 pass)  H100 4,577.3 -> 3,988.8   3.97s  ok
+16:36:06    [1161/1218] 2023 gross all top50    P=   35 d=2 k=50  CC  0.842 (uncapped 0.842, 2 pass)  H100 4,655.2 -> 4,625.7   2.34s  ok
+16:36:06    [1162/1218] 2022 net   all top50    P= 1000 d=2 k=50  CC  0.534 (uncapped 0.534, 2 pass)  H100 4,405.9 -> 3,871.5   2.97s  ok
+16:36:06    [1163/1218] 2023 gross all top50    P=  135 d=2 k=50  CC  0.816 (uncapped 0.816, 2 pass)  H100 4,655.2 -> 4,545.1   2.45s  ok
+16:36:06    [1164/1218] 2022 net   all top50    P= 1500 d=2 k=50  CC  0.405 (uncapped 0.405, 2 pass)  H100 4,405.9 -> 3,798.6   3.01s  ok
+16:36:06    [1165/1218] 2023 gross all top50    P=  335 d=2 k=50  CC  0.735 (uncapped 0.735, 2 pass)  H100 4,655.2 -> 4,408.9   2.31s  ok
+16:36:07    [1166/1218] 2023 gross all top50    P=  750 d=2 k=50  CC  0.595 (uncapped 0.595, 2 pass)  H100 4,655.2 -> 4,209.0   2.41s  ok
+16:36:07    [1167/1218] 2023 gross all top50    P=  500 d=2 k=50  CC  0.665 (uncapped 0.665, 2 pass)  H100 4,655.2 -> 4,323.0   2.53s  ok
+16:36:07    [1168/1218] 2023 net   all top50    P=   35 d=2 k=50  CC  0.920 (uncapped 0.920, 2 pass)  H100 4,457.2 -> 4,425.0   2.36s  ok
+16:36:08    [1169/1218] 2023 gross all top50    P= 1000 d=2 k=50  CC  0.527 (uncapped 0.527, 2 pass)  H100 4,655.2 -> 4,128.4   3.05s  ok
+16:36:08    [1170/1218] 2023 gross all top50    P= 1500 d=2 k=50  CC  0.419 (uncapped 0.419, 2 pass)  H100 4,655.2 -> 4,027.1   3.18s  ok
+16:36:08    [1171/1218] 2023 net   all top50    P=  135 d=2 k=50  CC  0.879 (uncapped 0.879, 2 pass)  H100 4,457.2 -> 4,338.5   2.42s  ok
+16:36:08    [1172/1218] 2023 net   all top50    P=  335 d=2 k=50  CC  0.797 (uncapped 0.797, 2 pass)  H100 4,457.2 -> 4,190.2   2.24s  ok
+16:36:08    [1173/1218] 2023 net   all top50    P=  750 d=2 k=50  CC  0.635 (uncapped 0.635, 2 pass)  H100 4,457.2 -> 3,980.7   2.29s  ok
+16:36:08    [1174/1218] 2023 net   all top50    P=  500 d=2 k=50  CC  0.722 (uncapped 0.722, 2 pass)  H100 4,457.2 -> 4,095.9   2.44s  ok
+16:36:09    [1175/1218] 2023 net   all top50    P= 1000 d=2 k=50  CC  0.554 (uncapped 0.554, 2 pass)  H100 4,457.2 -> 3,903.0   2.70s  ok
+16:36:09    [1176/1218] 2024 gross all top50    P=   35 d=2 k=50  CC  0.940 (uncapped 0.940, 2 pass)  H100 4,572.7 -> 4,539.8   2.20s  ok
+16:36:09    [1177/1218] 2023 net   all top50    P= 1500 d=2 k=50  CC  0.450 (uncapped 0.450, 2 pass)  H100 4,457.2 -> 3,782.9   2.80s  ok
+16:36:09    [1178/1218] 2024 gross all top50    P=  135 d=2 k=50  CC  0.899 (uncapped 0.899, 2 pass)  H100 4,572.7 -> 4,451.4   2.44s  ok
+16:36:10    [1179/1218] 2024 gross all top50    P=  335 d=2 k=50  CC  0.798 (uncapped 0.798, 2 pass)  H100 4,572.7 -> 4,305.4   2.52s  ok
+16:36:10    [1180/1218] 2024 gross all top50    P=  500 d=2 k=50  CC  0.712 (uncapped 0.712, 2 pass)  H100 4,572.7 -> 4,216.6   2.46s  ok
+16:36:10    [1181/1218] 2024 gross all top50    P=  750 d=2 k=50  CC  0.617 (uncapped 0.617, 2 pass)  H100 4,572.7 -> 4,110.1   2.61s  ok
+16:36:10    [1182/1218] 2024 net   all top50    P=   35 d=2 k=50  CC  0.927 (uncapped 0.927, 2 pass)  H100 4,369.5 -> 4,337.0   2.04s  ok
+16:36:11    [1183/1218] 2024 net   all top50    P=  135 d=2 k=50  CC  0.895 (uncapped 0.895, 2 pass)  H100 4,369.5 -> 4,248.7   2.18s  ok
+16:36:11    [1184/1218] 2024 gross all top50    P= 1000 d=2 k=50  CC  0.553 (uncapped 0.553, 2 pass)  H100 4,572.7 -> 4,019.7   3.16s  ok
+16:36:11    [1185/1218] 2024 net   all top50    P=  335 d=2 k=50  CC  0.797 (uncapped 0.797, 2 pass)  H100 4,369.5 -> 4,102.3   2.32s  ok
+16:36:12    [1186/1218] 2024 net   all top50    P=  750 d=2 k=50  CC  0.644 (uncapped 0.644, 2 pass)  H100 4,369.5 -> 3,886.5   2.27s  ok
+16:36:12    [1187/1218] 2024 gross all top50    P= 1500 d=2 k=50  CC  0.444 (uncapped 0.444, 2 pass)  H100 4,572.7 -> 3,906.2   3.62s  ok
+16:36:12    [1188/1218] 2024 net   all top50    P=  500 d=2 k=50  CC  0.727 (uncapped 0.727, 2 pass)  H100 4,369.5 -> 4,005.9   2.63s  ok
+16:36:12    [1189/1218] 2025 gross all top50    P=   35 d=2 k=50  CC  0.947 (uncapped 0.947, 2 pass)  H100 4,652.5 -> 4,619.4   2.25s  ok
+16:36:12    [1190/1218] 2024 net   all top50    P= 1000 d=2 k=50  CC  0.549 (uncapped 0.549, 2 pass)  H100 4,369.5 -> 3,820.7   2.99s  ok
+16:36:12    [1191/1218] 2025 gross all top50    P=  135 d=2 k=50  CC  0.925 (uncapped 0.925, 2 pass)  H100 4,652.5 -> 4,527.7   2.07s  ok
+16:36:13    [1192/1218] 2025 gross all top50    P=  335 d=2 k=50  CC  0.828 (uncapped 0.828, 2 pass)  H100 4,652.5 -> 4,375.0   2.15s  ok
+16:36:13    [1193/1218] 2025 gross all top50    P=  500 d=2 k=50  CC  0.764 (uncapped 0.764, 2 pass)  H100 4,652.5 -> 4,270.3   2.22s  ok
+16:36:13    [1194/1218] 2025 gross all top50    P=  750 d=2 k=50  CC  0.674 (uncapped 0.674, 2 pass)  H100 4,652.5 -> 4,147.1   2.20s  ok
+16:36:13    [1195/1218] 2024 net   all top50    P= 1500 d=2 k=50  CC  0.419 (uncapped 0.419, 2 pass)  H100 4,369.5 -> 3,741.3   3.41s  ok
+16:36:14    [1196/1218] 2025 net   all top50    P=   35 d=2 k=50  CC  0.932 (uncapped 0.932, 2 pass)  H100 4,434.9 -> 4,402.3   2.06s  ok
+16:36:14    [1197/1218] 2025 gross all top50    P= 1000 d=2 k=50  CC  0.601 (uncapped 0.601, 2 pass)  H100 4,652.5 -> 4,051.7   2.67s  ok
+16:36:14    [1198/1218] 2025 net   all top50    P=  135 d=2 k=50  CC  0.871 (uncapped 0.871, 2 pass)  H100 4,434.9 -> 4,317.3   2.46s  ok
+16:36:15    [1199/1218] 2025 gross all top50    P= 1500 d=2 k=50  CC  0.473 (uncapped 0.473, 2 pass)  H100 4,652.5 -> 3,943.5   3.26s  ok
+16:36:15    [1200/1218] 2025 net   all top50    P=  750 d=2 k=50  CC  0.671 (uncapped 0.671, 2 pass)  H100 4,434.9 -> 3,931.4   2.49s  ok
+16:36:15    [1201/1218] 2025 net   all top50    P=  335 d=2 k=50  CC  0.795 (uncapped 0.795, 2 pass)  H100 4,434.9 -> 4,168.6   2.93s  ok
+16:36:15    [1202/1218] 2025 net   all top50    P=  500 d=2 k=50  CC  0.747 (uncapped 0.747, 2 pass)  H100 4,434.9 -> 4,061.6   2.93s  ok
+16:36:15    [1203/1218] 2025 net   all top50    P= 1000 d=2 k=50  CC  0.610 (uncapped 0.610, 2 pass)  H100 4,434.9 -> 3,824.9   2.85s  ok
+16:36:15    [1204/1218] 2026 gross all top50    P=   35 d=2 k=50  CC  0.900 (uncapped 0.900, 2 pass)  H100 4,837.6 -> 4,806.1   2.28s  ok
+16:36:16    [1205/1218] 2026 gross all top50    P=  135 d=2 k=50  CC  0.842 (uncapped 0.842, 2 pass)  H100 4,837.6 -> 4,723.9   2.33s  ok
+16:36:16    [1206/1218] 2026 gross all top50    P=  335 d=2 k=50  CC  0.738 (uncapped 0.738, 2 pass)  H100 4,837.6 -> 4,590.4   2.09s  ok
+16:36:16    [1207/1218] 2025 net   all top50    P= 1500 d=2 k=50  CC  0.476 (uncapped 0.476, 2 pass)  H100 4,434.9 -> 3,721.3   3.14s  ok
+16:36:16    [1208/1218] 2026 gross all top50    P=  500 d=2 k=50  CC  0.684 (uncapped 0.684, 2 pass)  H100 4,837.6 -> 4,495.6   2.49s  ok
+16:36:17    [1209/1218] 2026 gross all top50    P=  750 d=2 k=50  CC  0.626 (uncapped 0.626, 2 pass)  H100 4,837.6 -> 4,368.4   2.63s  ok
+16:36:17    [1210/1218] 2026 gross all top50    P= 1000 d=2 k=50  CC  0.574 (uncapped 0.574, 2 pass)  H100 4,837.6 -> 4,264.0   2.22s  ok
+16:36:17    [1211/1218] 2026 net   all top50    P=  335 d=2 k=50  CC  0.634 (uncapped 0.634, 2 pass)  H100 4,638.4 -> 4,425.9   1.89s  ok
+16:36:17    [1212/1218] 2026 net   all top50    P=   35 d=2 k=50  CC  0.737 (uncapped 0.737, 2 pass)  H100 4,638.4 -> 4,612.7   2.14s  ok
+16:36:17    [1213/1218] 2026 gross all top50    P= 1500 d=2 k=50  CC  0.474 (uncapped 0.474, 2 pass)  H100 4,837.6 -> 4,126.7   2.44s  ok
+16:36:17    [1214/1218] 2026 net   all top50    P=  135 d=2 k=50  CC  0.680 (uncapped 0.680, 2 pass)  H100 4,638.4 -> 4,546.6   2.16s  ok
+16:36:18    [1215/1218] 2026 net   all top50    P=  500 d=2 k=50  CC  0.605 (uncapped 0.605, 2 pass)  H100 4,638.4 -> 4,335.9   2.19s  ok
+16:36:18    [1216/1218] 2026 net   all top50    P= 1000 d=2 k=50  CC  0.534 (uncapped 0.534, 2 pass)  H100 4,638.4 -> 4,104.0   2.01s  ok
+16:36:18    [1217/1218] 2026 net   all top50    P=  750 d=2 k=50  CC  0.567 (uncapped 0.567, 2 pass)  H100 4,638.4 -> 4,213.1   2.17s  ok
+16:36:18    [1218/1218] 2026 net   all top50    P= 1500 d=2 k=50  CC  0.461 (uncapped 0.461, 2 pass)  H100 4,638.4 -> 3,946.7   2.16s  ok
+16:36:19  G5 checks
+16:36:20    solver: 1,218/1,218 optimal
+16:36:20    replayed H100 vs LP objective: max error 1.00e-04 MW (tolerance 0.01)
+16:36:20    state of charge recursion: max error 1.81e-10 MWh; bounds held in 1,218/1,218; power bounds held in 1,218/1,218
+16:36:20    energy: min slack -0.000 MWh (>= 0 means delivered <= sqrt(eta) E + eta x charged)
+16:36:20    no new peaks: the rule changed CC in 76/1,218 LPs (by 9.35 pp on average, 36.03 pp at most); 7 passes at most; split not converged in 0 LPs; off-window half-hours still above the line: 0
+16:36:20      window AM  d=1: CC changed in   0/84 LPs, by 0.00 pp at most
+16:36:20      window AM  d=2: CC changed in  10/210 LPs, by 7.43 pp at most
+16:36:20      window AM  d=4: CC changed in  30/84 LPs, by 36.03 pp at most
+16:36:20      window PM  d=1: CC changed in   0/84 LPs, by 0.00 pp at most
+16:36:20      window PM  d=2: CC changed in   2/210 LPs, by 0.28 pp at most
+16:36:20      window PM  d=4: CC changed in  23/84 LPs, by 22.54 pp at most
+16:36:20      window all d=1: CC changed in   0/84 LPs, by 0.00 pp at most
+16:36:20      window all d=2: CC changed in   0/294 LPs, by 0.00 pp at most
+16:36:20      window all d=4: CC changed in  11/84 LPs, by 5.93 pp at most
+16:36:20    CC curves: 174, monotone violations 0
+16:36:20    duration order (1 h <= usable70 <= 2 h <= 4 h): violations 0
+16:36:20    availability score (saved dispatch only, 84 LPs): exceeds CC by 3.1 pp on average
+16:36:20  outputs
+16:36:20    credit_table: 1,218 rows x 28 columns
+16:36:20    crossings: 290 rows x 18 columns
+16:36:20    dispatch_d2: 842,016 rows x 7 columns
+16:36:20  p*: gross base  mean           (n=5) d=2h window all: falls to 60% at 497 MW; CC 35 MW 0.818, 135 MW 0.768, 335 MW 0.667, 500 MW 0.599, 750 MW 0.505, 1000 MW 0.429, 1500 MW 0.336
+16:36:20  p*: gross base  min_of_winters (n=5) d=2h window all: falls to 60% at 234 MW (winter 2021); CC 35 MW 0.738, 135 MW 0.660, 335 MW 0.538, 500 MW 0.477, 750 MW 0.394, 1000 MW 0.330, 1500 MW 0.266
+16:36:20  p*: gross check mean           (n=1) d=2h window all: falls to 60% at 492 MW; CC 35 MW 0.763, 135 MW 0.713, 335 MW 0.641, 500 MW 0.598, 750 MW 0.536, 1000 MW 0.466, 1500 MW 0.360
+16:36:20  p*: gross check min_of_winters (n=1) d=2h window all: falls to 60% at 492 MW (winter 2026); CC 35 MW 0.763, 135 MW 0.713, 335 MW 0.641, 500 MW 0.598, 750 MW 0.536, 1000 MW 0.466, 1500 MW 0.360
+16:36:20  p*: net   base  mean           (n=5) d=2h window all: falls to 60% at 434 MW; CC 35 MW 0.774, 135 MW 0.725, 335 MW 0.635, 500 MW 0.577, 750 MW 0.502, 1000 MW 0.434, 1500 MW 0.342
+16:36:20  p*: net   base  min_of_winters (n=5) d=2h window all: falls to 60% at 265 MW (winter 2021); CC 35 MW 0.740, 135 MW 0.674, 335 MW 0.560, 500 MW 0.499, 750 MW 0.418, 1000 MW 0.365, 1500 MW 0.293
+16:36:20  p*: net   check mean           (n=1) d=2h window all: falls to 60% at 408 MW; CC 35 MW 0.723, 135 MW 0.678, 335 MW 0.617, 500 MW 0.579, 750 MW 0.527, 1000 MW 0.462, 1500 MW 0.372
+16:36:20  p*: net   check min_of_winters (n=1) d=2h window all: falls to 60% at 408 MW (winter 2026); CC 35 MW 0.723, 135 MW 0.678, 335 MW 0.617, 500 MW 0.579, 750 MW 0.527, 1000 MW 0.462, 1500 MW 0.372
+16:36:20  run_grid: done in 388 s

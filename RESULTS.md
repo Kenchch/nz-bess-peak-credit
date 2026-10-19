@@ -1,16 +1,16 @@
-# Results — Days 1–3
+# Results
 
-Sections 1–4 (Days 1–2) were built by `uv run bess all` from an empty `data/`
-(every download matched its pin in `data/manifest.csv`), then
-`uv run bess analyse --accept-gap …` with the final wording of the G4 reason.
-Outputs: `outputs/runs/20261018T062143Z_93f56cf/`.
+Sections 1–4 (Days 1–2) were first built by `uv run bess all` from an empty
+`data/` (every download matched its pin in `data/manifest.csv`).
 
-Section 5 (Day 3, the battery credit grid) and a fresh copy of sections 2-4
-come from `uv run bess analyse --accept-gap ...` after the four-agent review:
-`outputs/runs/20261018T100638Z_efa1852-dirty/` (code not yet committed, hence
-`-dirty`). Every LP, check and timing is in that folder's `run_grid.log`; the
-trace `outputs/trace/20261018T101413Z_efa1852-dirty/` rebuilt every output
-from raw files and matched it exactly.
+Everything below now comes from one run of `uv run bess analyse --accept-gap …`
+on commit d29a686, after a four-part review of the Day 3 work:
+`outputs/runs/20261019T032856Z_d29a686/`, published by gate G6 to `outputs/current/` (which is
+committed, with `run_manifest.json` recording the code, config and input
+hashes). Every LP, check and timing is in `run_grid.log`. A trace run
+(`scripts/trace_pipeline.py`) rebuilt every output from the raw files and
+matched the run exactly; a run on the reviewed but uncommitted code gave an
+identical `credit_table.csv`.
 
 ## 1. Data and quality gates
 
@@ -274,6 +274,27 @@ value, so the rule's effect is visible:
 The saved dispatch (`dispatch_d2.parquet`) comes from a tidy second pass. It
 keeps the same H100 and uses the least charge plus discharge, so it shows no
 cycling that the objective cannot see.
+
+## 6. What the visible batteries actually delivered (Day 4)
+
+Generation_MD carries two grid batteries as their own units: Ruakākā (100 MW /
+200 MWh) and Rotohiko (35 MW / 35 MWh). Glenbrook (100 MW, from December 2025)
+and Huntly (100 MW, commissioning from July 2026) have no rows. Over the 200
+tightest half-hours of the load before batteries (gross, NI-WCM window):
+
+| Winter | Units counted | Nameplate | Mean output | Share of nameplate | Ceiling for a 135 MW, 2 h fleet (SOSA-style score) |
+|---|---|---|---|---|---|
+| 2025 | Ruakākā (operating from July) | 100 MW | 2.5 MW | 2.5% | 81.8% |
+| 2026 (to Sep) | Ruakākā + Rotohiko | 135 MW | 25.6 MW | **19.0%** | **75.5%** |
+
+The batteries delivered about a quarter of the energy a perfect-foresight
+fleet of their size would have at those half-hours. That is not a behavioural
+factor on its own: Generation_MD is energy only, and Transpower's Winter 2025
+security of supply review
+notes that New Zealand batteries earn much of their peak value as FIR / SIR
+reserve, which never appears as energy. It does say that energy at the peak
+is a small part of what today's batteries do, so a capacity factor near 60%
+rests on their reserve role and on availability, not on discharge.
 
 ## Limitations
 

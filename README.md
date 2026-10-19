@@ -17,10 +17,12 @@ the ceiling directly against 60% (reading a); RESULTS.md also gives the
 ratio reading (b), which treats the two as multiplying, and SOSA's own
 availability-style score (c).
 
-Status: Days 1–3 of the plan are built (data, quality gates, calibration
-against SOSA, peak shape, top-200 comparison, and the 1,218-LP credit grid
-with p*). Publishing, Power BI and the memo are Day 4. Numbers are in
-[RESULTS.md](RESULTS.md). Headline: on the 2021–2025 average, a two-hour
+Status: built end to end — data, six quality gates, calibration against
+SOSA, peak shape, top-200 comparison, the 1,218-LP credit grid with p*,
+publication to `outputs/current`, and a two-page memo
+([memo/memo.pdf](memo/memo.pdf)). The Power BI report is built by hand from
+`outputs/current` (see `powerbi/`). Numbers are in [RESULTS.md](RESULTS.md).
+Headline: on the 2021–2025 average, a two-hour
 fleet's physical ceiling falls to 60% at about 500 MW on gross demand and
 430 MW on net, against about 335 MW on the grid once Huntly's battery is
 commissioned; single winters range from 234 to 642 MW (gross).
@@ -59,6 +61,7 @@ What the data turned out to say:
 
 ```
 ingest → stage → series → [G3 reconcile] → [G4 calibrate] → peak_shape, top200 → run_grid [G5]
+       → observed → [G6 publish] → outputs/current → figures, memo, Power BI
 ```
 
 | Step | Module | Output |
@@ -66,9 +69,13 @@ ingest → stage → series → [G3 reconcile] → [G4 calibrate] → peak_shape
 | ingest | `ingest.py` | `data/raw/<dataset>/*.csv`, `data/manifest.csv` |
 | stage | `stage.py` | `data/staging/generation.parquet`, `hvdc.parquet`, `quarantine.parquet`, `quality_report.csv` |
 | series | `series.py` | `data/series/ni_halfhourly.parquet` (one row per half-hour) |
-| analyse | `reconcile.py`, `calibrate.py`, `peak_shape.py`, `top200.py`, then `run_grid.py` | `outputs/runs/<run_id>/`, ending with `DONE.txt` or `FAILED.txt` |
+| analyse | `reconcile.py`, `calibrate.py`, `peak_shape.py`, `top200.py`, `run_grid.py`, `observed.py` | `outputs/runs/<run_id>/`, ending with `DONE.txt` or `FAILED.txt` |
 | grid | `run_grid.py` | `credit_table.csv` (one row per LP), `crossings.csv` (p*), `dispatch_d2.parquet`, `run_grid.log` |
 | LP | `credit.py` | `min_top_k`, `min_top_k_no_new_peaks`, `shave_peak`, `capacity_credit` (numpy only) |
+| observed | `observed.py` | `observed_vs_ceiling.csv`: what the batteries Generation_MD can see delivered at the peak, against the ceiling |
+| publish | `publish.py` | gate G6, then `outputs/current/` with `run_manifest.json`, `dim_winter.csv`, `dim_p.csv`, `pbi_dispatch.parquet` |
+| figures | `figures.py` | `memo/fig_credit_curve.png`, `memo/fig_p_star_by_winter.png` |
+| memo | `memo/memo.qmd` | `memo/memo.pdf` (Quarto, Typst; `quarto render memo/memo.qmd --to typst`) |
 
 The grid takes load **before** the batteries already on the grid
 (`l_* + bess_mw`), treats a d-hour battery as delivering P × d MWh to the
@@ -97,6 +104,7 @@ daylight-saving days have 46 or 50 half-hours.
 | G3 | reconcile | NI supply − NI GXP offtake within 6–11% of supply each month | warning |
 | G4 | calibrate | wind and solar peak factors within 2 pp of SOSA 2026 | stop; `--accept-gap REASON` records why and carries on |
 | G5 | run_grid | every LP optimal; replayed dispatch reproduces H100; state of charge, power and energy within bounds; no off-window half-hour charged above the H100 line; CC never rises with P; CC never falls as duration grows (1 h ≤ 1.4 h ≤ 2 h ≤ 4 h) | stop after writing `credit_table.csv` and `crossings.csv` for inspection |
+| G6 | publish | DONE.txt and no FAILED.txt; every output present with its contract columns; every LP through G5; one dispatch series per saved LP | do not publish; `outputs/current` keeps the previous version |
 
 A run that finishes leaves `DONE.txt` in its folder; one stopped by a gate
 or any other error leaves `FAILED.txt`. Run folders are named
@@ -118,7 +126,8 @@ uv run bess all --accept-gap "<reason; see RESULTS.md>"
 Steps can also run one at a time: `bess ingest`, `bess stage`, `bess series`,
 `bess calibrate`, `bess grid` (calibrate, then the LP grid, about 6 minutes
 on 6 workers), `bess analyse` (everything after series, including the grid:
-about 7 minutes). Tests run offline on synthetic fixtures:
+about 7 minutes), `bess publish` (G6, then `outputs/current`) and
+`bess figures`. Tests run offline on synthetic fixtures:
 
 ```bash
 uv run pytest -q

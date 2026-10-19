@@ -1,0 +1,77 @@
+{
+  "run_id": "20261019T032856Z_d29a686",
+  "code_tag": "d29a686",
+  "published_at": "2026-10-19T03:39:07+00:00",
+  "git_head_at_publish": "0c4c1e7",
+  "config_sha256": "23734dc8e26eab042bc5e8dc3fa7c7f3726bcbc159cc2bed088ca6ba5434bbdb",
+  "inputs": {
+    "files": 200,
+    "bytes": 286133240,
+    "manifest_sha256": "8924deedbb054c4007f9081781b4e395af1b9ab01f01d4cf58ae84336d8e02e4"
+  },
+  "python": "3.12.14",
+  "headline_p_star_mw": {
+    "gross_mean": 497.0,
+    "gross_min_of_winters": 233.6,
+    "net_mean": 434.2,
+    "net_min_of_winters": 265.3
+  },
+  "files": {
+    "calibration.csv": {
+      "bytes": 6240,
+      "sha256": "5cf45bbda88a8934242714e469e76cc20713d224d87797f72242e0b1c4c302e6",
+      "rows": 48
+    },
+    "calibration.md": {
+      "bytes": 5339,
+      "sha256": "104c14ef99e1a110eafd9e006df619dd8ae146792006161bf6220441d652a5d9"
+    },
+    "credit_table.csv": {
+      "bytes": 300975,
+      "sha256": "b531ce307897e177c147680a058e6b4bc9090738c044e06c3078cf26ccb3d9dc",
+      "rows": 1218
+    },
+    "crossings.csv": {
+      "bytes": 55949,
+      "sha256": "20faefecf7388be4bb6f90b0138bda5a5f8509a31a90c14a0e07162bec758478",
+      "rows": 290
+    },
+    "dispatch_d2.parquet": {
+      "bytes": 8528922,
+      "sha256": "6977c21445d13f1687c7f57510e1ed2550e52f8f64c8fc6011124554c53eef73",
+      "rows": 842016
+    },
+    "DONE.txt": {
+      "bytes": 9,
+      "sha256": "d15a4568d162bb448949dd440c8a47f0721a6ec98c9d3fd842114f265b6bdd33"
+    },
+    "observed_vs_ceiling.csv": {
+      "bytes": 578,
+      "sha256": "126d62ea229f0300cc311b197eb948808ade0740670ee3b236baf92f6a18279d",
+      "rows": 6
+    },
+    "peak_shape.csv": {
+      "bytes": 95891,
+      "sha256": "c57d20c669ff68082e6aa662b522e3d4e4ab5397a31f58b51ee5a033bd900131",
+      "rows": 1792
+    },
+    "peak_shape.png": {
+      "bytes": 122110,
+      "sha256": "ce26dffc2b63332927f31f38ca0ba4696a914218c9a7ab8ac673ea26e810e86c"
+    },
+    "reconcile.csv": {
+      "bytes": 9443,
+      "sha256": "8d1951433afffe0560e6c564ca0c706926649fa8b4d8ad8a6ff199d790b4c31a",
+      "rows": 66
+    },
+    "run_grid.log": {
+      "bytes": 175625,
+      "sha256": "cede561a661a8af23935a11a1afb8458b96ba741e546c41c3f829cafa2f101fb"
+    },
+    "top200_summary.csv": {
+      "bytes": 2372,
+      "sha256": "4eb487cbf23c3607efd8d26494ebcc1344a3cba698436487418a0c9d3c354b13",
+      "rows": 12
+    }
+  }
+}

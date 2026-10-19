@@ -1,0 +1,7 @@
+winter,winter_complete,units_counted,nameplate_mw,fleet_in_force_mw,k,observed_mean_mw,observed_factor,ceiling_p_mw,ceiling_cc,ceiling_availability,observed_over_ceiling
+2021,True,none,0.0,1.0,200,,,,,,
+2022,True,none,0.0,0.0,200,,,,,,
+2023,True,none,0.0,0.0,200,,,,,,
+2024,True,none,0.0,35.0,200,,,,,,
+2025,True,Ruakākā,100.0,135.0,200,2.46142,0.0246142,135.0,0.7903712592592624,0.8179530370369086,0.030092436711484854
+2026,False,Ruakākā+Rotohiko,135.0,335.0,200,25.583810000000003,0.18950970370370374,135.0,0.7131897777777811,0.7545419999997264,0.25115858852624834
