@@ -10,13 +10,20 @@ each extra MW holds the peak down by less. At what fleet size does the flat
 This repo rebuilds six North Island winters (2021–2026) from public Electricity
 Authority EMI data and works out the most a battery fleet of a given size could
 lower H100, the mean of the 200 tightest winter-daytime half-hours. The
-battery has perfect foresight, so this is a ceiling. SOSA's 60% is a
-behavioural factor taken from market offers; the two multiply, they do not
-compete.
+battery has perfect foresight, so this is a ceiling. SOSA's 60% also covers
+availability and behaviour (SOSA 2026 kept SOSA 2025's figure and checked it
+against Rotohiko's offers with a state-of-charge model). The headline reads
+the ceiling directly against 60% (reading a); RESULTS.md also gives the
+ratio reading (b), which treats the two as multiplying, and SOSA's own
+availability-style score (c).
 
-Status: Days 1–2 of the plan are built (data, quality gates, calibration
-against SOSA, peak shape, top-200 comparison). The LP grid, publishing,
-Power BI and memo are Days 3–4. Numbers are in [RESULTS.md](RESULTS.md).
+Status: Days 1–3 of the plan are built (data, quality gates, calibration
+against SOSA, peak shape, top-200 comparison, and the 1,218-LP credit grid
+with p*). Publishing, Power BI and the memo are Day 4. Numbers are in
+[RESULTS.md](RESULTS.md). Headline: on the 2021–2025 average, a two-hour
+fleet's physical ceiling falls to 60% at about 500 MW on gross demand and
+430 MW on net, against about 335 MW on the grid once Huntly's battery is
+commissioned; single winters range from 234 to 642 MW (gross).
 
 ## Data
 
@@ -51,7 +58,7 @@ What the data turned out to say:
 ## Pipeline
 
 ```
-ingest → stage → series → [G3 reconcile] → [G4 calibrate] → peak_shape, top200 → (Day 3) run_grid
+ingest → stage → series → [G3 reconcile] → [G4 calibrate] → peak_shape, top200 → run_grid [G5]
 ```
 
 | Step | Module | Output |
@@ -59,8 +66,21 @@ ingest → stage → series → [G3 reconcile] → [G4 calibrate] → peak_shape
 | ingest | `ingest.py` | `data/raw/<dataset>/*.csv`, `data/manifest.csv` |
 | stage | `stage.py` | `data/staging/generation.parquet`, `hvdc.parquet`, `quarantine.parquet`, `quality_report.csv` |
 | series | `series.py` | `data/series/ni_halfhourly.parquet` (one row per half-hour) |
-| analyse | `reconcile.py`, `calibrate.py`, `peak_shape.py`, `top200.py` | `outputs/runs/<run_id>/` |
-| LP | `credit.py` | `shave_peak`, `min_top_k`, `top_k_mean`, `capacity_credit` (numpy only) |
+| analyse | `reconcile.py`, `calibrate.py`, `peak_shape.py`, `top200.py`, then `run_grid.py` | `outputs/runs/<run_id>/`, ending with `DONE.txt` or `FAILED.txt` |
+| grid | `run_grid.py` | `credit_table.csv` (one row per LP), `crossings.csv` (p*), `dispatch_d2.parquet`, `run_grid.log` |
+| LP | `credit.py` | `min_top_k`, `min_top_k_no_new_peaks`, `shave_peak`, `capacity_credit` (numpy only) |
+
+The grid takes load **before** the batteries already on the grid
+(`l_* + bess_mw`), treats a d-hour battery as delivering P × d MWh to the
+grid, lets it run on every half-hour of the winter, and forbids charging that
+would lift a half-hour outside 07:00–22:00 above the H100 line (see
+RESULTS.md §5). `scripts/trace_pipeline.py` runs every step into
+`outputs/trace/<run_id>/`, logs how the data changes shape at each one, then
+checks that it reproduces the latest finished run (about 8 minutes):
+
+```bash
+uv run python -I scripts/trace_pipeline.py
+```
 
 North Island series: `l_gross_mw = gen_ni_mw + hvdc_north_mw`, where
 `gen_ni_mw` is all North Island Generation_MD injection except batteries, and
@@ -76,8 +96,12 @@ daylight-saving days have 46 or 50 half-hours.
 | G2 | stage | six row rules: date parses; TP count matches the DST calendar; kWh ≥ 0; POC maps to an island; (date, POC, network, unit) unique; fuel code known | quarantine the row; stop if > 1% of a source is rejected |
 | G3 | reconcile | NI supply − NI GXP offtake within 6–11% of supply each month | warning |
 | G4 | calibrate | wind and solar peak factors within 2 pp of SOSA 2026 | stop; `--accept-gap REASON` records why and carries on |
+| G5 | run_grid | every LP optimal; replayed dispatch reproduces H100; state of charge, power and energy within bounds; no off-window half-hour charged above the H100 line; CC never rises with P; CC never falls as duration grows (1 h ≤ 1.4 h ≤ 2 h ≤ 4 h) | stop after writing `credit_table.csv` and `crossings.csv` for inspection |
 
-A run stopped at a gate leaves `FAILED.txt` in its run folder.
+A run that finishes leaves `DONE.txt` in its folder; one stopped by a gate
+or any other error leaves `FAILED.txt`. Run folders are named
+`<UTC time>_<git sha>`, with `-dirty` when `src/`, `scripts/`, `config.yaml`,
+`pyproject.toml` or `uv.lock` had uncommitted or untracked changes.
 
 ## Reproduce
 
@@ -92,7 +116,9 @@ uv run bess all --accept-gap "<reason; see RESULTS.md>"
 ```
 
 Steps can also run one at a time: `bess ingest`, `bess stage`, `bess series`,
-`bess calibrate`, `bess analyse`. Tests run offline on synthetic fixtures:
+`bess calibrate`, `bess grid` (calibrate, then the LP grid, about 6 minutes
+on 6 workers), `bess analyse` (everything after series, including the grid:
+about 7 minutes). Tests run offline on synthetic fixtures:
 
 ```bash
 uv run pytest -q

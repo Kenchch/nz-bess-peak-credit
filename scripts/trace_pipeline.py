@@ -3,13 +3,15 @@
     uv run python -I scripts/trace_pipeline.py
 
 Everything is written under outputs/trace/<run_id>/ (staging, series and the
-analysis outputs), so data/ and outputs/runs/ are never touched. At the end
-the trace copies are compared with the committed pipeline outputs, so the log
-doubles as a reproducibility check.
+analysis outputs, including the full LP grid), so data/ and outputs/runs/ are
+never touched. At the end each trace copy is compared with the latest pipeline
+run that wrote the same file, so the log doubles as a reproducibility check.
+The grid makes this take about 7 minutes.
 
-    trace.log         full log: per step, input and output shape, columns,
-                      dtypes, nulls, ranges, sample rows, what changed
-    data_lineage.md   one table, one row per step
+    trace.log              full log: per step, input and output shape, columns,
+                           dtypes, nulls, ranges, sample rows, what changed
+    analysis/run_grid.log  every LP of the grid, with its result and checks
+    data_lineage.md        one table, one row per step
 """
 import datetime as dt
 import logging
@@ -23,7 +25,8 @@ import numpy as np
 import pandas as pd
 
 from bess import OUTPUTS, RAW, SERIES, STAGING, load_config
-from bess import calibrate, credit, ingest, peak_shape, reconcile, series, stage, top200
+from bess.cli import git_tag
+from bess import calibrate, credit, ingest, peak_shape, reconcile, run_grid, series, stage, top200
 
 SAMPLE_MONTH = "202507"
 ACCEPT_GAP = "trace run: the solar 2024 gap accepted in RESULTS.md"
@@ -36,6 +39,8 @@ lineage = []
 # ---------------------------------------------------------------- formatting
 
 def setup(out):
+    if hasattr(sys.stdout, "reconfigure"):     # a cp1252 console cannot print the Chinese log
+        sys.stdout.reconfigure(encoding="utf-8", errors="backslashreplace")
     out.mkdir(parents=True)
     log.setLevel(logging.INFO)
     fmt = logging.Formatter("%(asctime)s  %(message)s", "%H:%M:%S")
@@ -301,14 +306,16 @@ def step_top200(cfg, staging, series_path, out):
            "~6,400/冬季 -> 200 -> 1", "两种口径各取 top-200, 比重叠、早晚、风光系数")
 
 
-def step_credit(cfg, series_path, winter=2025, p_mw=335, hours=2):
-    header(8, 9, "credit (Day 3 预览)", "credit.py",
-           "LP: 电池让 H100 最低 (run_grid 尚未实现, 这里只跑一组)")
+def step_grid(cfg, series_path, out, winter=2025, p_mw=335, hours=2):
+    header(8, 9, "run_grid", "run_grid.py + credit.py",
+           "G5 LP 网格: 每组参数一个 LP, 再汇总成查表和平衡点 p*")
     s = pd.read_parquet(series_path)
     w = s[s.winter.eq(winter).fillna(False)].reset_index(drop=True)
-    load = w.l_gross_mw.to_numpy()
-    in_window = w.in_wcm_window.to_numpy()
-    array(f"load = {winter} 冬季 l_gross_mw", load)
+    log.info(f"  一个 LP 的内部结构 ({winter} 冬季, gross, window all, P = {p_mw} MW, {hours} h):")
+    load = run_grid.winter_load(w, "gross", "base", cfg)
+    in_window = run_grid.window_mask(w, "all")
+    array(f"load = l_gross_mw + bess_mw (加回现有电池)", load)
+    log.info(f"  加回电池后需求最多升高 {w.bess_mw.max():.1f} MW, 冬季平均 {w.bess_mw.mean():.2f} MW")
     array("in_window (07:00-22:00)", in_window)
 
     captured = {}
@@ -323,10 +330,13 @@ def step_credit(cfg, series_path, winter=2025, p_mw=335, hours=2):
         return res
 
     k = cfg["k_top"]
+    e_rated, e_stored = run_grid.stored_energy(p_mw, hours, 1.0, cfg)
+    log.info(f"  电量口径 {cfg['credit'].get('rated_energy')}: 额定 {e_rated:,.0f} MWh 送上电网, "
+             f"储能需装 {e_stored:,.1f} MWh (= 额定 / sqrt(eta))")
     before = credit.top_k_mean(load[in_window], k)
     credit.linprog = spy
     try:
-        after, battery = credit.min_top_k(load, in_window, p_mw, p_mw * hours, k,
+        after, battery = credit.min_top_k(load, in_window, p_mw, e_stored, k,
                                           eta=cfg["eta_roundtrip"])
     finally:
         credit.linprog = real_linprog
@@ -337,21 +347,42 @@ def step_credit(cfg, series_path, winter=2025, p_mw=335, hours=2):
     log.info(f"  HiGHS: {captured['status']}, {captured['solve_s']:.2f} s")
     array("battery (放电为正, 充电为负) MW", battery)
     cc = (before - after) / p_mw
-    log.info(f"  H100 前 {before:,.1f} MW -> 后 {after:,.1f} MW; CC = {cc:.1%} "
-             f"(P = {p_mw} MW, {hours} h)")
-    log.info("  注意: 预览数字, 尚未把现有电池放电 bess_mw 加回需求, 不是正式结果")
-    change(f"{len(load):,} 个负荷值 -> {captured['nv']:,} 个变量的稀疏 LP -> 一条 {len(battery):,} "
-           "长的充放电曲线 -> 一个标量 CC")
-    record("credit", "credit.py", f"一个冬季 {len(load):,} 个半小时",
-           f"battery {len(battery):,} 个值 -> CC 1 个数", "向量 -> LP -> 标量",
-           f"{captured['nv']:,} 变量; {captured['solve_s']:.2f} s")
+    log.info(f"  第 1 轮 (不限制充电): H100 前 {before:,.1f} MW -> 后 {after:,.1f} MW; CC = {cc:.1%}")
+    line = credit.kth_highest((load - battery)[in_window], k)
+    charge = np.clip(-battery, 0, None)
+    lifted = credit.lifted_peaks(load, in_window, charge, battery, line)
+    log.info(f"  H100 线 (第 {k} 高) {line:,.1f} MW; 窗口外被充电推到线以上的半小时: {lifted}")
+    after2, battery2, _, info = credit.min_top_k_no_new_peaks(
+        load, in_window, p_mw, e_stored, k, eta=cfg["eta_roundtrip"])
+    log.info(f"  min_top_k_no_new_peaks: {info['passes']} 轮 (分组收敛 {info['converged']}), "
+             f"CC {cc:.1%} -> "
+             f"{(before - after2) / p_mw:.1%}; 窗口外新峰 "
+             f"{credit.lifted_peaks(load, in_window, np.clip(-battery2, 0, None), battery2, info['line_mw'])}")
+    change(f"{len(load):,} 个负荷值 -> {captured['nv']:,} 个变量的稀疏 LP (必要时加充电上限再解) -> "
+           f"一条 {len(battery):,} 长的充放电曲线 -> 一个标量 CC")
+
+    log.info("")
+    jobs = run_grid.plan(cfg, sorted(int(x) for x in s.winter.dropna().unique()))
+    log.info(f"  完整网格: {len(jobs):,} 个 LP, 每个是 (冬季, 口径, 窗口, 敏感性, P, d) 的一个组合; "
+             f"每次的输入、结果和 G5 检查记在 {out / 'run_grid.log'}")
+    table, cross = timed(run_grid.run, cfg, series_path=series_path, out=out)
+    frame("credit_table.csv (一行 = 一个 LP)", table, max_cols=12)
+    frame("crossings.csv (一行 = 一条曲线一种统计)", cross, max_cols=11)
+    disp = pd.read_parquet(out / "dispatch_d2.parquet")
+    frame("dispatch_d2.parquet (一行 = 一个半小时 x 一个 P x 一个口径)", disp)
+    change(f"{len(jobs):,} 组参数 x 每组约 1 万个半小时 -> {len(table):,} 行结果 (每个 LP 一行, 序列"
+           f"本身被压成 H100 前后两个数) -> 按曲线汇总、插值成 {len(cross)} 行 p*; d = 2 h 的充放电"
+           f"曲线另存 {len(disp):,} 行供 Power BI 画图")
+    record("run_grid", "run_grid.py + credit.py", f"series 6 个冬季, {len(jobs):,} 组参数",
+           f"credit_table {len(table):,} 行, crossings {len(cross)} 行, dispatch {len(disp):,} 行",
+           "~1 万/LP -> 1 行 -> p*", f"{captured['nv']:,} 变量/LP; G5 全部检查")
 
 
 def step_not_built():
-    header(9, 9, "run_grid / publish / observed / figures", "Day 3-4", "尚未实现")
-    for mod in ("run_grid", "publish", "observed", "figures"):
+    header(9, 9, "publish / observed / figures", "Day 4", "尚未实现")
+    for mod in ("publish", "observed", "figures"):
         log.info(f"  {mod}.py: 只有说明和 NotImplementedError, 本次不运行")
-    record("run_grid 等", "Day 3-4", "-", "-", "-", "尚未实现")
+    record("publish 等", "Day 4", "-", "-", "-", "尚未实现")
 
 
 # ---------------------------------------------------------------- checks
@@ -363,17 +394,22 @@ def compare_with_committed(out):
     log.info("=" * 78)
     pairs = [(out / "staging" / f, STAGING / f) for f in ("generation.parquet", "hvdc.parquet")]
     pairs.append((out / "series" / "ni_halfhourly.parquet", SERIES / "ni_halfhourly.parquet"))
-    runs = sorted(p for p in (OUTPUTS / "runs").iterdir() if not p.name.endswith("_nogit"))
-    last = runs[-1] if runs else None
-    if last:
-        pairs += [(out / "analysis" / f, last / f) for f in
-                  ("reconcile.csv", "calibration.csv", "peak_shape.csv", "top200_summary.csv")]
+    root = OUTPUTS / "runs"
+    # Only runs that finished (DONE.txt, written by cli.guarded) count as results
+    runs = sorted(p for p in root.iterdir() if (p / "DONE.txt").exists()) if root.is_dir() else []
+    log.info(f"  可比对的已完成运行: {[r.name for r in runs][-3:] or '无'}")
+    for f in ("reconcile.csv", "calibration.csv", "peak_shape.csv", "top200_summary.csv",
+              "credit_table.csv", "crossings.csv", "dispatch_d2.parquet"):
+        have = [r / f for r in runs if (r / f).exists()]       # latest run that wrote this file
+        pairs.append((out / "analysis" / f, have[-1] if have else out / "missing" / f))
     for new, old in pairs:
         if not old.exists():
             log.info(f"  {old.name}: 没有可比对的旧文件")
             continue
         read = pd.read_parquet if new.suffix == ".parquet" else pd.read_csv
         a, b = read(new), read(old)
+        # wall-clock time differs from run to run
+        a, b = a.drop(columns="solve_s", errors="ignore"), b.drop(columns="solve_s", errors="ignore")
         if a.equals(b):         # fast path; assert_frame_equal takes minutes on 8M rows
             log.info(f"  {old.relative_to(old.parents[2])}: 完全相同 ({len(a):,} 行)")
             continue
@@ -394,7 +430,7 @@ def write_lineage(out):
 
 
 def main():
-    run_id = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    run_id = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_" + git_tag()
     out = OUTPUTS / "trace" / run_id
     setup(out)
     staging, series_dir, analysis = out / "staging", out / "series", out / "analysis"
@@ -412,10 +448,10 @@ def main():
     step_calibrate(cfg, staging, series_path, analysis)
     step_peak_shape(cfg, series_path, analysis)
     step_top200(cfg, staging, series_path, analysis)
-    step_credit(cfg, series_path)
+    step_grid(cfg, series_path, analysis)
     step_not_built()
-    compare_with_committed(out)
     write_lineage(out)
+    compare_with_committed(out)
     log.info("")
     log.info(f"完成, 共 {time.perf_counter() - t0:,.0f} s; 日志 {out / 'trace.log'}")
 

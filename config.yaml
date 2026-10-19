@@ -8,9 +8,16 @@ grid:
   d_h: [1, 2, 4]
   basis: [gross, net]
   window: [all, AM, PM]
-sensitivities:             # 只在 d = 2h 上跑
-  usable70: {soc_max_frac: 0.7}
+credit:
+  add_back_bess: true      # load before the batteries already on the grid (l_* + bess_mw)
+  rated_energy: delivered  # P x d MWh reach the grid, so the store holds P x d / sqrt(eta)
+  base_winters: [2021, 2022, 2023, 2024, 2025]
+  check_winters: [2026]    # incomplete winter, Glenbrook's battery invisible: cross-check only
+  workers: null            # null = CPU count - 1
+sensitivities:             # 只在 d = 2h 上跑; optional basis / window / k_top per sensitivity
+  usable70: {soc_max_frac: 0.7}          # a 1.4 h battery, in effect
   solar3x: {solar_scale: 3.0, basis: [net]}
+  top50: {k_top: 50, window: [all]}      # the 25 tightest hours instead of 100
 sosa_reference:
   bess_factor: {le_2h: 0.60, gt_2h: 0.80}
   wind_cf: {2024: 0.314, 2025: 0.272}
