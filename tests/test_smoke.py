@@ -145,6 +145,9 @@ def test_publish_swaps_in_a_checked_run_and_figures_draw_from_it(run, tmp_path, 
     m = json.loads((current / "run_manifest.json").read_text(encoding="utf-8"))
     assert m["run_id"] == out.name and m["files"]["credit_table.csv"]["rows"] == 32
     assert set(pd.read_csv(current / "dim_winter.csv").winter_set) == {"base"}
+    pbi = pd.read_parquet(current / "pbi_dispatch.parquet")
+    assert pbi.ts_local.dt.tz is None and len(pbi) == len(pd.read_parquet(out / "dispatch_d2.parquet"))
+    assert pbi.time_of_day.iloc[0] == "00:00"          # local midnight, not UTC
     publish.run(GRID_CFG, run_dir=out, current=current)       # second publish swaps cleanly
     assert not (tmp_path / "current.old").exists() and not (tmp_path / "current.tmp").exists()
     figures.run(GRID_CFG, current=current, out=tmp_path / "memo")

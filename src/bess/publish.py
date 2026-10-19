@@ -3,8 +3,10 @@
 A run folder is publishable when it has DONE.txt, no FAILED.txt, every file
 in CONTRACT with at least the listed columns, every LP optimal and through G5,
 and a dispatch table of the expected size. Publishing copies the folder into
-outputs/current.tmp, adds run_manifest.json (what produced it) and two small
-dimension tables for Power BI, then swaps it into place: a reader of
+outputs/current.tmp, adds run_manifest.json (what produced it) and the
+Power BI helpers (two small dimension tables, and pbi_dispatch.parquet: the
+dispatch with naive New Zealand local time, because Power Query cannot apply
+NZ daylight saving to a UTC timestamp), then swaps it into place: a reader of
 outputs/current sees the previous version in full or the new one in full.
 """
 import datetime as dt
@@ -137,6 +139,17 @@ def dimensions(cfg):
     return {"dim_winter.csv": winters, "dim_p.csv": fleet}
 
 
+def pbi_dispatch(run_dir):
+    """dispatch_d2 with local wall-clock time, date and trading period for Power BI."""
+    d = pd.read_parquet(run_dir / "dispatch_d2.parquet")
+    local = pd.to_datetime(d.ts_local, utc=True).dt.tz_convert("Pacific/Auckland")
+    out = d.drop(columns="ts_local")
+    out.insert(0, "ts_local", local.dt.tz_localize(None))
+    out.insert(1, "date", local.dt.date)
+    out.insert(2, "time_of_day", local.dt.strftime("%H:%M"))
+    return out
+
+
 def run(cfg=None, run_dir=None, current=CURRENT):
     cfg = cfg or load_config()
     run_dir = run_dir or latest_done()
@@ -151,6 +164,7 @@ def run(cfg=None, run_dir=None, current=CURRENT):
     shutil.copytree(run_dir, tmp)
     for name, table in dimensions(cfg).items():
         table.to_csv(tmp / name, index=False)
+    pbi_dispatch(run_dir).to_parquet(tmp / "pbi_dispatch.parquet", index=False)
     (tmp / "run_manifest.json").write_text(
         json.dumps(manifest(run_dir, cfg), indent=2) + "\n", encoding="utf-8")
     if current.exists():

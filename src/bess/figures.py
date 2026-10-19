@@ -47,8 +47,8 @@ def credit_curve(table, cross, cfg, path):
             ax.plot([r.p_star_mw], [level * 100], marker="o", markersize=7, color=colour,
                     markeredgecolor="white", markeredgewidth=1.5, zorder=5)
             ax.annotate(f"p* ≈ {r.p_star_mw:,.0f} MW", (r.p_star_mw, level * 100),
-                        xytext=(6, 8 if basis == "gross" else -14), textcoords="offset points",
-                        color=INK, fontsize=8.5)
+                        xytext=(8, 8) if basis == "gross" else (-88, -16),
+                        textcoords="offset points", color=INK, fontsize=8.5)
     ax.axhline(level * 100, color=GREY, linestyle="--", linewidth=1)
     ax.text(1500, level * 100 + 1.2, "SOSA 2026: 60% for batteries of 2 h or less",
             ha="right", color=MUTED, fontsize=8)
@@ -89,14 +89,15 @@ def p_star_by_winter(cross, cfg, path):
             ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 12, f"{b.get_height():.0f}",
                     ha="center", fontsize=7.5, color=MUTED)
     ax.axhline(FLEET_2026, color=GREY, linestyle=":", linewidth=1)
-    ax.text(len(winters) - 0.45, FLEET_2026 + 12, "~335 MW fleet", ha="right", color=MUTED,
-            fontsize=8)
+    ax.text(-0.55, FLEET_2026 + 12, "~335 MW fleet", ha="left", color=MUTED, fontsize=8)
+    if pd.notna(c.p_star_mw.max()):          # room above the bars for the legend
+        ax.set_ylim(0, c.p_star_mw.max() * 1.3)
     ax.set_xticks(x, [f"{w}" + (" (to Sep,\ncross-check)" if w in check else "") for w in winters])
     ax.set_ylabel("p*: fleet size where the\nceiling falls to 60% (MW)")
-    ax.set_title("Each winter's answer: the spread is wide, the coldest years bind first",
+    ax.set_title("Each winter on its own: the spread is wide, and the worst winter binds first",
                  loc="left", color=INK, fontsize=10.5, fontweight="bold")
     ax.grid(axis="x", visible=False)
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="upper center", ncol=2, fontsize=8)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)
