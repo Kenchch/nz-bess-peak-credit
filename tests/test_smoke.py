@@ -1,9 +1,14 @@
 """A synthetic winter through stage -> series -> reconcile -> calibrate -> analysis -> grid."""
+import json
+import shutil
+
 import pandas as pd
 import pytest
 from pandas.api import types
 
-from bess import calibrate, load_config, peak_shape, reconcile, run_grid, series, stage, top200
+from bess import (calibrate, figures, load_config, observed, peak_shape, publish, reconcile,
+                  run_grid, series, stage, top200)
+from bess import GateError
 from synth import write_raw
 
 CFG = {**load_config(), "period": {"start": "2024-06", "end": "2024-07"},
@@ -39,6 +44,9 @@ def run(tmp_path_factory):
     peak_shape.run(CFG, series_path=sp, out=out)
     top200.run(CFG, out=out, **paths)
     run_grid.run(GRID_CFG, series_path=sp, out=out)
+    observed.run(GRID_CFG, series_path=sp, out=out, **{k: v for k, v in paths.items()
+                                                        if k != "series_path"})
+    (out / "DONE.txt").write_text("analyse\n", encoding="utf-8")
     return sp, out
 
 
@@ -117,3 +125,41 @@ def test_outputs_have_expected_columns(run):
     assert top.overlap.between(0, 1).all()
     cal = pd.read_csv(out / "calibration.csv")
     assert cal.primary.sum() == 2
+
+
+def test_observed_counts_the_visible_battery(run):
+    _, out = run
+    o = pd.read_csv(out / "observed_vs_ceiling.csv")
+    assert list(o.columns) == observed.COLUMNS
+    r = o.iloc[0]
+    # synthetic Ruakākā discharges 50 MW 18:00-20:00 every day; nameplate 100 MW
+    assert r.units_counted == "Ruakākā" and r.nameplate_mw == 100
+    assert 0 < r.observed_factor <= 0.5 and r.ceiling_availability > 0
+
+
+def test_publish_swaps_in_a_checked_run_and_figures_draw_from_it(run, tmp_path, monkeypatch):
+    _, out = run
+    current = tmp_path / "current"
+    monkeypatch.setattr(publish, "OUTPUTS", tmp_path)
+    publish.run(GRID_CFG, run_dir=out, current=current)
+    m = json.loads((current / "run_manifest.json").read_text(encoding="utf-8"))
+    assert m["run_id"] == out.name and m["files"]["credit_table.csv"]["rows"] == 32
+    assert set(pd.read_csv(current / "dim_winter.csv").winter_set) == {"base"}
+    publish.run(GRID_CFG, run_dir=out, current=current)       # second publish swaps cleanly
+    assert not (tmp_path / "current.old").exists() and not (tmp_path / "current.tmp").exists()
+    figures.run(GRID_CFG, current=current, out=tmp_path / "memo")
+    assert (tmp_path / "memo" / "fig_credit_curve.png").stat().st_size > 10_000
+    assert (tmp_path / "memo" / "fig_p_star_by_winter.png").stat().st_size > 10_000
+
+
+def test_publish_refuses_a_run_that_breaks_its_contract(run, tmp_path):
+    _, out = run
+    bad = tmp_path / "bad_run"
+    shutil.copytree(out, bad)
+    t = pd.read_csv(bad / "crossings.csv").drop(columns="p_star_mw")
+    t.to_csv(bad / "crossings.csv", index=False)
+    (bad / "FAILED.txt").write_text("x", encoding="utf-8")
+    with pytest.raises(GateError, match="G6") as e:
+        publish.run(GRID_CFG, run_dir=bad, current=tmp_path / "current")
+    assert "FAILED.txt present" in str(e.value) and "p_star_mw" in str(e.value)
+    assert not (tmp_path / "current").exists()

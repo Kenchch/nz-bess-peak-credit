@@ -1,10 +1,11 @@
-"""bess ingest | stage | series | calibrate | grid | analyse | all
+"""bess ingest | stage | series | calibrate | grid | analyse | publish | figures | all
 
 Each analysis run writes into outputs/runs/<run_id>/ and ends with DONE.txt
 or FAILED.txt. `grid` runs calibrate first in the same folder, so the LP grid
 never runs past a failed G4; `analyse` (and `all`) include the grid, about
-7 minutes.
-Publishing a run folder to outputs/current (gate G6) comes with publish.py.
+7 minutes. `publish` checks the latest finished run against its contracts
+(gate G6) and swaps it into outputs/current; `figures` draws the memo figures
+from outputs/current. `all` runs every step in that order.
 """
 import argparse
 import datetime as dt
@@ -52,12 +53,13 @@ def grid(cfg, run_dir, accept_gap):
 
 
 def analyse(cfg, run_dir, accept_gap):
-    from . import peak_shape, reconcile, run_grid, top200
+    from . import observed, peak_shape, reconcile, run_grid, top200
     reconcile.run(cfg, out=run_dir)
     calibrate(cfg, run_dir, accept_gap)
     peak_shape.run(cfg, out=run_dir)
     top200.run(cfg, out=run_dir)
     run_grid.run(cfg, out=run_dir)
+    observed.run(cfg, out=run_dir)
     print(f"outputs: {run_dir}")
 
 
@@ -78,7 +80,7 @@ def guarded(step, cfg, accept_gap):
 def main(argv=None):
     p = argparse.ArgumentParser(prog="bess")
     p.add_argument("step", choices=["ingest", "stage", "series", "calibrate", "grid", "analyse",
-                                    "all"])
+                                    "publish", "figures", "all"])
     p.add_argument("--config", help="path to config.yaml")
     p.add_argument("--update-manifest", action="store_true",
                    help="ingest: accept files EMI has revised since they were pinned")
@@ -103,6 +105,12 @@ def main(argv=None):
             guarded(grid, cfg, a.accept_gap)
         if a.step in ("analyse", "all"):
             guarded(analyse, cfg, a.accept_gap)
+        if a.step in ("publish", "all"):
+            from . import publish
+            publish.run(cfg)
+        if a.step in ("figures", "all"):
+            from . import figures
+            figures.run(cfg)
     except GateError as e:
         print(f"STOPPED at gate: {e}", file=sys.stderr)
         return 2

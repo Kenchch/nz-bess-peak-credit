@@ -11,6 +11,8 @@ data/series/
 
 # Every run writes here; outputs/current points at the last good one
 outputs/runs/
+outputs/current.tmp/
+outputs/current.old/
 
 # Trace runs (scripts/trace_pipeline.py): copies of staging and series
 outputs/trace/
