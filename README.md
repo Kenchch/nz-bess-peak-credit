@@ -27,6 +27,8 @@ fleet's physical ceiling falls to 60% at about 500 MW on gross demand and
 430 MW on net, against about 335 MW on the grid once Huntly's battery is
 commissioned; single winters range from 234 to 642 MW (gross).
 
+![Power BI report, page 1: capacity credit against fleet size, with the 60% and 335 MW lines](powerbi/credit_curve.png)
+
 ## Data
 
 All files come from EMI (`https://www.emi.ea.govt.nz/Wholesale/Datasets/…`,
