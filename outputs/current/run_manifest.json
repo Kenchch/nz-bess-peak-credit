@@ -1,8 +1,8 @@
 {
   "run_id": "20261019T032856Z_d29a686",
   "code_tag": "d29a686",
-  "published_at": "2026-10-19T03:39:07+00:00",
-  "git_head_at_publish": "0c4c1e7",
+  "published_at": "2026-10-19T07:14:37+00:00",
+  "git_head_at_publish": "3ae5639",
   "config_sha256": "23734dc8e26eab042bc5e8dc3fa7c7f3726bcbc159cc2bed088ca6ba5434bbdb",
   "inputs": {
     "files": 200,
