@@ -3,6 +3,7 @@ import logging
 import os
 import subprocess
 import sys
+import warnings
 
 import pandas as pd
 import pytest
@@ -35,6 +36,12 @@ def test_paths_in_logs_are_relative_to_the_repository(tmp_path):
     assert logs.rel(tmp_path / "x") == str(tmp_path / "x")
 
 
+def test_log_times_are_utc():
+    record = logging.LogRecord("bess", logging.INFO, __file__, 1, "x", None, None)
+    record.created = 0.0                               # 1970-01-01 00:00:00 UTC
+    assert logs.FORMAT.format(record).startswith("1970-01-01T00:00:00Z  INFO     x")
+
+
 def test_console_is_added_once():
     logs.console()
     logs.console()
@@ -58,6 +65,7 @@ def read(path):
 def test_run_log_keeps_every_step_with_its_level(outputs, monkeypatch):
     def accept(cfg, out, accept_gap):
         logging.getLogger("bess.calibrate").warning(f"calibrate (G4): gap accepted: {accept_gap}")
+        warnings.warn("Tight layout not applied", UserWarning)    # as matplotlib does
 
     monkeypatch.setattr(calibrate, "run", accept)
     monkeypatch.setattr(run_grid, "run", lambda cfg, out: None)
@@ -67,6 +75,7 @@ def test_run_log_keeps_every_step_with_its_level(outputs, monkeypatch):
     assert f"run {folder.name}: bess grid --accept-gap known cause" in text
     assert "calibrate: start" in text and "run_grid: done in" in text
     assert "WARNING  calibrate (G4): gap accepted: known cause" in text
+    assert "UserWarning: Tight layout not applied" in text
     assert f"run {folder.name}: DONE" in text
     assert "INFO     bess grid --accept-gap known cause" in read(outputs / "bess.log")
 

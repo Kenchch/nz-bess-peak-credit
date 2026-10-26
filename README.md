@@ -114,15 +114,16 @@ and the traceback. Run folders are named
 `<UTC time>_<git sha>`, with `-dirty` when `src/`, `scripts/`, `config.yaml`,
 `pyproject.toml` or `uv.lock` had uncommitted or untracked changes.
 
-Logs carry a level, so `grep -E "WARNING|ERROR"` finds every gate that warned,
-was overridden or failed:
+Logs carry a level and a UTC time, and include Python warnings from pandas or
+matplotlib, so `grep -E "WARNING|ERROR"` finds every gate that warned, was
+overridden or failed:
 
 | Log | Holds |
 |---|---|
 | `<run folder>/run.log` | the command, every step with its time, and everything the steps logged |
-| `<run folder>/run_grid.log` | the LP grid on its own: every LP and every G5 check |
+| `<run folder>/run_grid.log` | the LP grid on its own: every LP, every G5 check, and the traceback of any LP that raised |
 | `data/ingest.log` | every download, retry and re-download, and the old and new SHA-256 of a file accepted with `--update-manifest`; commit it with `data/manifest.csv` |
-| `outputs/publish_log.csv` | every publish and every G6 refusal (`run_manifest.json` only keeps the last publish, and lists the G3 and G4 warnings the run passed with) |
+| `outputs/publish_log.csv` | every publish, every G6 refusal and every publish that failed part-way (`run_manifest.json` only keeps the last publish, and lists the G3 and G4 warnings the run passed with) |
 | `outputs/bess.log` | every `bess` command on this machine, with tracebacks (not committed) |
 
 ## Reproduce

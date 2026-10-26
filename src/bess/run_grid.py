@@ -45,7 +45,9 @@ Outputs in the run folder:
 """
 import logging
 import os
+import textwrap
 import time
+import traceback
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import numpy as np
@@ -174,7 +176,8 @@ def solve(job):
             load, win, p, e, k, dt_h=DT_H, eta=eta, tidy=job["keep_dispatch"])
     except Exception as exc:                    # report it in the row; never kill the grid
         row.update(h100_after=np.nan, cc=np.nan, status=f"{type(exc).__name__}: {exc}",
-                   g5_ok=False, failed_checks="solve", solve_s=time.perf_counter() - t0)
+                   g5_ok=False, failed_checks="solve", solve_s=time.perf_counter() - t0,
+                   traceback=traceback.format_exc())   # for run_grid.log; not a table column
         return row, None
     row.update(h100_after=after, cc=(row["h100_before"] - after) / p,
                cc_uncapped=(row["h100_before"] - info["h100_uncapped"]) / p,
@@ -390,6 +393,8 @@ def _run(cfg, series_path, out, workers):
             f"{'' if row.get('converged', True) else ', split not converged'})  "
             f"H100 {row['h100_before']:,.1f} -> {row['h100_after']:,.1f}  "
             f"{row['solve_s']:5.2f}s  {verdict}")
+        if row.get("traceback"):
+            log.warning(textwrap.indent(row.pop("traceback").rstrip(), "    "))
 
     table = add_ratio(pd.DataFrame(rows))
     table = table.sort_values(["sensitivity", "basis", "window", "d_h", "winter", "p_mw"])

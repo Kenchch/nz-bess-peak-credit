@@ -11,8 +11,9 @@ outputs/current sees the previous version in full or the new one in full.
 
 run_manifest.json lists the warnings the run passed with (G3 months outside
 the band, a G4 gap accepted with --accept-gap), so they travel with the
-published numbers. Each publish overwrites the manifest, so every publish and
-every refusal is also appended to outputs/publish_log.csv.
+published numbers. Each publish overwrites the manifest, so every publish,
+every refusal and every publish that failed part-way is also appended to
+outputs/publish_log.csv.
 """
 import csv
 import datetime as dt
@@ -203,20 +204,24 @@ def run(cfg=None, run_dir=None, current=CURRENT):
         raise GateError(f"G6: {run_dir.name} not published: " + "; ".join(found))
     tmp = current.with_name(current.name + ".tmp")
     old = current.with_name(current.name + ".old")
-    for p in (tmp, old):
-        if p.exists():
-            shutil.rmtree(p)
-    shutil.copytree(run_dir, tmp)
-    for name, table in dimensions(cfg).items():
-        table.to_csv(tmp / name, index=False)
-    pbi_dispatch(run_dir).to_parquet(tmp / "pbi_dispatch.parquet", index=False)
-    (tmp / "run_manifest.json").write_text(
-        json.dumps(manifest(run_dir, cfg), indent=2) + "\n", encoding="utf-8")
-    if current.exists():
-        current.rename(old)
-    tmp.rename(current)
-    if old.exists():
-        shutil.rmtree(old)
+    try:
+        for p in (tmp, old):
+            if p.exists():
+                shutil.rmtree(p)
+        shutil.copytree(run_dir, tmp)
+        for name, table in dimensions(cfg).items():
+            table.to_csv(tmp / name, index=False)
+        pbi_dispatch(run_dir).to_parquet(tmp / "pbi_dispatch.parquet", index=False)
+        (tmp / "run_manifest.json").write_text(
+            json.dumps(manifest(run_dir, cfg), indent=2) + "\n", encoding="utf-8")
+        if current.exists():
+            current.rename(old)
+        tmp.rename(current)
+        if old.exists():
+            shutil.rmtree(old)
+    except Exception as e:               # passed G6 but did not land: say so in the history
+        record(current, run_dir.name, "failed", f"{type(e).__name__}: {e}")
+        raise
     passed_with = gate_warnings(current)
     record(current, run_dir.name, "published", "; ".join(passed_with))
     log.info(f"publish (G6): {run_dir.name} -> {logs.rel(current)}")

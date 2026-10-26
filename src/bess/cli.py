@@ -108,6 +108,7 @@ def main(argv=None):
     a = p.parse_args(args)
     logs.utf8_streams()
     logs.console()
+    logs.capture_warnings()
     cfg = load_config(a.config)
     command = " ".join(args)
 

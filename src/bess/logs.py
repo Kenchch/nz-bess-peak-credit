@@ -9,7 +9,9 @@ Each module logs to a child of the "bess" logger. What ends up where:
     data/ingest.log         what ingest downloaded, retried or found revised, appended
 
 Records carry their level, so `grep -E "WARNING|ERROR"` finds every gate that
-warned, was overridden or failed.
+warned, was overridden or failed. Python warnings (pandas, matplotlib) are
+logged too, once capture_warnings() has run. Times are UTC, like run folder
+names and publish_log.csv.
 """
 import logging
 import sys
@@ -21,8 +23,18 @@ from . import ROOT
 
 log = logging.getLogger("bess")
 log.setLevel(logging.INFO)
-LINE, DATE = "%(asctime)s  %(levelname)-7s  %(message)s", "%Y-%m-%d %H:%M:%S"
-FORMAT = logging.Formatter(LINE, DATE)
+WARNINGS = logging.getLogger("py.warnings")      # where logging.captureWarnings sends them
+LINE, DATE = "%(asctime)s  %(levelname)-7s  %(message)s", "%Y-%m-%dT%H:%M:%SZ"
+
+
+def formatter(cls=logging.Formatter):
+    """LINE with UTC times."""
+    f = cls(LINE, DATE)
+    f.converter = time.gmtime
+    return f
+
+
+FORMAT = formatter()
 
 
 def utf8_streams():
@@ -33,6 +45,16 @@ def utf8_streams():
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="backslashreplace")
+
+
+def capture_warnings():
+    """Send Python warnings through logging, so they reach run.log and bess.log.
+
+    Off, then on: logging only installs its hook when it has none saved, and a
+    test framework that restores warnings.showwarning leaves a stale one.
+    """
+    logging.captureWarnings(False)
+    logging.captureWarnings(True)
 
 
 class _Brief(logging.Formatter):
@@ -63,22 +85,28 @@ def console():
     """Show bess's records on the console, once however often it is called."""
     if not any(isinstance(h, _Console) for h in log.handlers):
         h = _Console()
-        h.setFormatter(_Brief(LINE, DATE))
+        h.setFormatter(formatter(_Brief))
         log.addHandler(h)
+        WARNINGS.addHandler(h)
 
 
 @contextmanager
 def to_file(path, logger=log):
-    """Append logger's records (and its children's) to path for the length of the block."""
+    """Append logger's records (and its children's) to path for the length of the block.
+
+    The "bess" logger brings Python warnings with it; a step's own logger does not."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     h = logging.FileHandler(path, encoding="utf-8")
     h.setFormatter(FORMAT)
-    logger.addHandler(h)
+    loggers = [logger, WARNINGS] if logger is log else [logger]
+    for lg in loggers:
+        lg.addHandler(h)
     try:
         yield
     finally:
-        logger.removeHandler(h)
+        for lg in loggers:
+            lg.removeHandler(h)
         h.close()
 
 

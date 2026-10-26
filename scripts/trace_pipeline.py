@@ -42,9 +42,10 @@ lineage = []
 def setup(out):
     logs.utf8_streams()          # a cp1252 pipe cannot print the Chinese log or Ruakākā
     logs.console()               # the steps' own lines, as `bess` shows them
+    logs.capture_warnings()
     out.mkdir(parents=True)
     log.setLevel(logging.INFO)
-    fmt = logging.Formatter("%(asctime)s  %(message)s", "%H:%M:%S")
+    fmt = logs.formatter()       # UTC, with the level, like every bess log
     for h in (logging.FileHandler(out / "trace.log", encoding="utf-8"),
               logging.StreamHandler(sys.stdout)):
         h.setFormatter(fmt)

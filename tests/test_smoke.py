@@ -173,6 +173,21 @@ def test_publish_refuses_a_run_that_breaks_its_contract(run, tmp_path):
     assert refusal.result == "refused" and "FAILED.txt present" in refusal.detail
 
 
+def test_a_publish_that_fails_part_way_is_in_the_history(run, tmp_path, monkeypatch):
+    _, out = run
+
+    def full(run_dir):
+        raise OSError("disk full")
+
+    monkeypatch.setattr(publish, "pbi_dispatch", full)
+    with pytest.raises(OSError):
+        publish.run(GRID_CFG, run_dir=out, current=tmp_path / "current")
+    (failed,) = pd.read_csv(tmp_path / "publish_log.csv").itertuples()
+    assert (failed.run_id, failed.result) == (out.name, "failed")
+    assert failed.detail == "OSError: disk full"
+    assert not (tmp_path / "current").exists()
+
+
 def test_g3_warns_when_a_month_leaves_the_band(run, monkeypatch, caplog):
     sp, out = run
     monkeypatch.setattr(reconcile, "BAND", (0.5, 0.6))

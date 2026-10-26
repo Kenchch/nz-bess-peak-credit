@@ -176,6 +176,8 @@ def test_g5_stops_the_run_after_writing_its_outputs(tmp_path, monkeypatch):
     assert "not optimal" in log and "fake infeasible" in log
     assert any("WARNING" in line and "not optimal:" in line for line in log.splitlines())
     assert any("WARNING" in line and "G5 FAIL" in line for line in log.splitlines())
+    assert "Traceback (most recent call last)" in log and "RuntimeError: fake infeasible" in log
+    assert "traceback" not in t.columns                    # kept in the log, not the table
     x = pd.read_csv(tmp_path / "crossings.csv")
     assert set(x.p_star_note) == {"incomplete"}
     (tmp_path / "run_grid.log").unlink()          # the handler is closed after run()
