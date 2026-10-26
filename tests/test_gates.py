@@ -39,9 +39,11 @@ def raw(tmp_path):
 CFG = {**load_config(), "period": {"start": "2024-06", "end": "2024-06"}}
 
 
-def test_g2_stops_above_reject_limit_and_keeps_old_tables(raw):
+def test_g2_stops_above_reject_limit_and_keeps_old_tables(raw, caplog):
     out = raw / "staging"
     stage.run(CFG, raw=raw / "raw", out=out)
+    assert ("stage: hvdc: 2 POCs are not NSPs and were placed on an island by site code: "
+            "['BEN2201', 'HAY2201']") in caplog.text
     before = (out / "generation.parquet").read_bytes()
 
     path = raw / "raw" / "generation_md" / "202406_Generation_MD.csv"

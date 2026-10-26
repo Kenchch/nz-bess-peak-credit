@@ -12,11 +12,15 @@ into that island's AC grid from the link and "X" is energy taken from it. At
 HAY2201 (Haywards, North Island) "I" is therefore south -> north; it matches
 "X" at BEN2201 (Benmore) less about 3% link losses.
 """
+import logging
+
 import numpy as np
 import pandas as pd
 
 from . import SERIES, STAGING, TZ, GateError, load_config
 from .stage import periods_in_day
+
+log = logging.getLogger(__name__)
 
 HVDC_NI_POC = "HAY2201"
 KWH_PER_MW = 500.0
@@ -116,7 +120,7 @@ def run(cfg=None, staging=STAGING, out=SERIES):
     s.to_parquet(tmp, index=False)
     tmp.replace(out / "ni_halfhourly.parquet")
     w = s[s.winter.notna()]
-    print(f"series: {len(s):,} half-hours, winters "
-          f"{sorted(w.winter.unique().tolist())}, "
-          f"max l_gross {s.l_gross_mw.max():,.0f} MW")
+    log.info(f"series: {len(s):,} half-hours, winters "
+             f"{sorted(w.winter.unique().tolist())}, "
+             f"max l_gross {s.l_gross_mw.max():,.0f} MW")
     return s

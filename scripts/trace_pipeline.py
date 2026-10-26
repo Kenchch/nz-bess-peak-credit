@@ -26,7 +26,8 @@ import pandas as pd
 
 from bess import OUTPUTS, RAW, SERIES, STAGING, load_config
 from bess.cli import git_tag
-from bess import calibrate, credit, ingest, peak_shape, reconcile, run_grid, series, stage, top200
+from bess import (calibrate, credit, ingest, logs, peak_shape, reconcile, run_grid, series,
+                  stage, top200)
 
 SAMPLE_MONTH = "202507"
 ACCEPT_GAP = "trace run: the solar 2024 gap accepted in RESULTS.md"
@@ -39,8 +40,8 @@ lineage = []
 # ---------------------------------------------------------------- formatting
 
 def setup(out):
-    if hasattr(sys.stdout, "reconfigure"):     # a cp1252 console cannot print the Chinese log
-        sys.stdout.reconfigure(encoding="utf-8", errors="backslashreplace")
+    logs.utf8_streams()          # a cp1252 pipe cannot print the Chinese log or Ruakākā
+    logs.console()               # the steps' own lines, as `bess` shows them
     out.mkdir(parents=True)
     log.setLevel(logging.INFO)
     fmt = logging.Formatter("%(asctime)s  %(message)s", "%H:%M:%S")

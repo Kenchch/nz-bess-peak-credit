@@ -9,10 +9,14 @@ they fall, and what wind and solar delivered in them.
 wind_cf / solar_cf use the North Island farms and nameplate matched in
 calibrate.renewables, so they are comparable with calibration.csv.
 """
+import logging
+
 import pandas as pd
 
 from . import load_config
 from .calibrate import renewables
+
+log = logging.getLogger(__name__)
 
 BASES = {"gross": "l_gross_mw", "net": "l_net_mw"}
 
@@ -49,6 +53,6 @@ def run(cfg=None, out=None, **paths):
         table.to_csv(out / "top200_summary.csv", index=False)
     for r in table[table.basis == "gross"].itertuples():
         net = table[(table.winter == r.winter) & (table.basis == "net")].iloc[0]
-        print(f"top200: {r.winter} overlap {r.overlap:.0%}; wind cf gross {r.wind_cf:.1%} "
-              f"vs net {net.wind_cf:.1%}; PM share {r.share_pm:.0%} vs {net.share_pm:.0%}")
+        log.info(f"top200: {r.winter} overlap {r.overlap:.0%}; wind cf gross {r.wind_cf:.1%} "
+                 f"vs net {net.wind_cf:.1%}; PM share {r.share_pm:.0%} vs {net.share_pm:.0%}")
     return table

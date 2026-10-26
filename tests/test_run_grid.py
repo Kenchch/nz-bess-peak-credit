@@ -174,6 +174,8 @@ def test_g5_stops_the_run_after_writing_its_outputs(tmp_path, monkeypatch):
     assert t.status.str.contains("fake infeasible").sum() == 1
     log = (tmp_path / "run_grid.log").read_text(encoding="utf-8")
     assert "not optimal" in log and "fake infeasible" in log
+    assert any("WARNING" in line and "not optimal:" in line for line in log.splitlines())
+    assert any("WARNING" in line and "G5 FAIL" in line for line in log.splitlines())
     x = pd.read_csv(tmp_path / "crossings.csv")
     assert set(x.p_star_note) == {"incomplete"}
     (tmp_path / "run_grid.log").unlink()          # the handler is closed after run()

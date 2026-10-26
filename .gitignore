@@ -13,6 +13,9 @@ data/series/
 outputs/runs/
 outputs/current.tmp/
 outputs/current.old/
+# Every bess command on this machine (cli.main); data/ingest.log and
+# outputs/publish_log.csv are kept, like the manifest
+outputs/bess.log
 
 # Trace runs (scripts/trace_pipeline.py): copies of staging and series
 outputs/trace/

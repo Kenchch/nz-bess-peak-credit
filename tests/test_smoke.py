@@ -150,6 +150,9 @@ def test_publish_swaps_in_a_checked_run_and_figures_draw_from_it(run, tmp_path, 
     assert pbi.time_of_day.iloc[0] == "00:00"          # local midnight, not UTC
     publish.run(GRID_CFG, run_dir=out, current=current)       # second publish swaps cleanly
     assert not (tmp_path / "current.old").exists() and not (tmp_path / "current.tmp").exists()
+    history = pd.read_csv(tmp_path / "publish_log.csv")      # the manifest only keeps the last
+    assert history.result.tolist() == ["published", "published"]
+    assert set(history.run_id) == {out.name} and isinstance(m["warnings"], list)
     figures.run(GRID_CFG, current=current, out=tmp_path / "memo")
     assert (tmp_path / "memo" / "fig_credit_curve.png").stat().st_size > 10_000
     assert (tmp_path / "memo" / "fig_p_star_by_winter.png").stat().st_size > 10_000
@@ -166,3 +169,13 @@ def test_publish_refuses_a_run_that_breaks_its_contract(run, tmp_path):
         publish.run(GRID_CFG, run_dir=bad, current=tmp_path / "current")
     assert "FAILED.txt present" in str(e.value) and "p_star_mw" in str(e.value)
     assert not (tmp_path / "current").exists()
+    (refusal,) = pd.read_csv(tmp_path / "publish_log.csv").itertuples()
+    assert refusal.result == "refused" and "FAILED.txt present" in refusal.detail
+
+
+def test_g3_warns_when_a_month_leaves_the_band(run, monkeypatch, caplog):
+    sp, out = run
+    monkeypatch.setattr(reconcile, "BAND", (0.5, 0.6))
+    reconcile.run(CFG, series_path=sp, raw=out.parent / "raw")
+    (r,) = [r for r in caplog.records if r.name == "bess.reconcile"]
+    assert r.levelname == "WARNING" and "2 of 2 months outside 50%-60%" in r.getMessage()

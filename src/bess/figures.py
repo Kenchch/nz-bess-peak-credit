@@ -8,9 +8,13 @@ fig_p_star_by_winter.png  where each winter's two-hour curve falls to 60%
 Colours are the first two slots of a colour-blind-checked categorical palette
 (blue, orange); reference lines are grey and every series is also labelled.
 """
+import logging
+
 import pandas as pd
 
-from . import OUTPUTS, ROOT, load_config
+from . import OUTPUTS, ROOT, load_config, logs
+
+log = logging.getLogger(__name__)
 
 GROSS, NET, GREY, INK, MUTED = "#2a78d6", "#eb6834", "#8a8984", "#0b0b0b", "#52514e"
 COLOURS = {"gross": GROSS, "net": NET}
@@ -112,5 +116,6 @@ def run(cfg=None, current=OUTPUTS / "current", out=ROOT / "memo"):
     out.mkdir(parents=True, exist_ok=True)
     credit_curve(table, cross, cfg, out / "fig_credit_curve.png")
     p_star_by_winter(cross, cfg, out / "fig_p_star_by_winter.png")
-    print(f"figures: {out / 'fig_credit_curve.png'}, {out / 'fig_p_star_by_winter.png'}")
+    log.info(f"figures: {logs.rel(out / 'fig_credit_curve.png')}, "
+             f"{logs.rel(out / 'fig_p_star_by_winter.png')}")
     return out

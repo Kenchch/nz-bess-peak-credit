@@ -61,6 +61,7 @@ def test_hvdc_poles_map_to_islands_by_site(islands):
     assert (rule == 0).all()
     assert long.groupby("poc").island.first().to_dict() == {"BEN2201": "SI", "HAY2201": "NI"}
     assert len(long) == 4 * 50
+    assert stage.site_code_pocs(long.poc, islands) == ["BEN2201", "HAY2201"]
 
 
 def test_batteries_are_their_own_fuel(staged):

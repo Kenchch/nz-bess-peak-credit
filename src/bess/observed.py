@@ -17,6 +17,8 @@ Generation_MD is energy only. Batteries earn much of their peak value as
 FIR / SIR reserve, which never shows up as energy, so observed_factor is a
 lower bound on what they contribute, not a behavioural factor on its own.
 """
+import logging
+
 import numpy as np
 import pandas as pd
 
@@ -25,6 +27,8 @@ from .calibrate import load_fleet
 from .ingest import REFERENCE
 from .series import KWH_PER_MW
 from .stage import island_map
+
+log = logging.getLogger(__name__)
 
 UNITS = {"BRB0331": "Ruakākā", "HLY0331": "Rotohiko"}
 MIN_DAY_SHARE = 0.5
@@ -92,8 +96,8 @@ def run(cfg=None, series_path=SERIES / "ni_halfhourly.parquet", staging=STAGING,
     if out is not None:
         table.to_csv(out / "observed_vs_ceiling.csv", index=False)
     for r in table[table.units_counted != "none"].itertuples():
-        print(f"observed: {r.winter} {r.units_counted} ({r.nameplate_mw:.0f} MW of "
-              f"{r.fleet_in_force_mw:.0f} MW in force): {r.observed_mean_mw:.1f} MW at the top "
-              f"{k} = {r.observed_factor:.1%} of nameplate; ceiling availability "
-              f"{r.ceiling_availability:.1%} at {r.ceiling_p_mw:.0f} MW")
+        log.info(f"observed: {r.winter} {r.units_counted} ({r.nameplate_mw:.0f} MW of "
+                 f"{r.fleet_in_force_mw:.0f} MW in force): {r.observed_mean_mw:.1f} MW at the "
+                 f"top {k} = {r.observed_factor:.1%} of nameplate; ceiling availability "
+                 f"{r.ceiling_availability:.1%} at {r.ceiling_p_mw:.0f} MW")
     return table

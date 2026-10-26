@@ -12,10 +12,14 @@ most duration_h because the load is not flat above the line. Both are
 summarised as P50 and P90 across days, for all winter days and for the days
 that hold at least one of that winter's top-200 half-hours.
 """
+import logging
+
 import numpy as np
 import pandas as pd
 
 from . import SERIES, load_config
+
+log = logging.getLogger(__name__)
 
 DELTAS = np.arange(50, 801, 50)
 BASES = {"gross": "l_gross_mw", "net": "l_net_mw"}
@@ -117,6 +121,6 @@ def run(cfg=None, series_path=SERIES / "ni_halfhourly.parquet", out=None):
         for window in WINDOWS:
             d = {stat: depth_for_hours(table, 2, winter="all", days="top200", basis=basis,
                                        window=window, stat=stat) for stat in STATS}
-            print(f"peak_shape: 2 h of storage shaves {d['p50']:.0f} MW (P50 day) / "
-                  f"{d['p90']:.0f} MW (P90 day) off the {basis} {window} peak")
+            log.info(f"peak_shape: 2 h of storage shaves {d['p50']:.0f} MW (P50 day) / "
+                     f"{d['p90']:.0f} MW (P90 day) off the {basis} {window} peak")
     return table

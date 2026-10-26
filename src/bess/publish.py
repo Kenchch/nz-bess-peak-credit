@@ -8,18 +8,28 @@ Power BI helpers (two small dimension tables, and pbi_dispatch.parquet: the
 dispatch with naive New Zealand local time, because Power Query cannot apply
 NZ daylight saving to a UTC timestamp), then swaps it into place: a reader of
 outputs/current sees the previous version in full or the new one in full.
+
+run_manifest.json lists the warnings the run passed with (G3 months outside
+the band, a G4 gap accepted with --accept-gap), so they travel with the
+published numbers. Each publish overwrites the manifest, so every publish and
+every refusal is also appended to outputs/publish_log.csv.
 """
+import csv
 import datetime as dt
 import hashlib
 import json
+import logging
 import platform
 import shutil
 import subprocess
 
 import pandas as pd
 
-from . import DATA, OUTPUTS, ROOT, GateError, load_config
+from . import DATA, OUTPUTS, ROOT, GateError, load_config, logs
+from .reconcile import BAND
 from .run_grid import COLUMNS as CREDIT_COLUMNS
+
+log = logging.getLogger(__name__)
 
 DISPATCH = ["ts_local", "winter", "basis", "p_mw", "load_mw", "battery_mw", "load_after_mw"]
 CONTRACT = {
@@ -92,14 +102,43 @@ def problems(run_dir, cfg):
     return found
 
 
-def manifest(run_dir, cfg):
-    def git(*a):
-        try:
-            return subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True,
-                                  check=True).stdout.strip()
-        except (OSError, subprocess.CalledProcessError):
-            return None
+def git(*a):
+    try:
+        return subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True,
+                              check=True).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
 
+
+def gate_warnings(run_dir):
+    """The gates the run passed with a warning or an override."""
+    found = []
+    rec = pd.read_csv(run_dir / "reconcile.csv")
+    out_of_band = rec[~rec.in_band.astype(bool)]
+    if len(out_of_band):
+        found.append(f"G3: {len(out_of_band)} of {len(rec)} months outside "
+                     f"{BAND[0]:.0%}-{BAND[1]:.0%}: {out_of_band.month.tolist()}")
+    cal = pd.read_csv(run_dir / "calibration.csv")
+    gaps = cal[cal.primary.astype(bool) & ~cal.within_tol.astype(bool)]
+    for r in gaps.itertuples():
+        found.append(f"G4: {r.year} {r.tech} gap {r.diff_pp:+.2f} pp accepted with "
+                     "--accept-gap; see calibration.md")
+    return found
+
+
+def record(current, run_id, result, detail=""):
+    """Append one line to publish_log.csv next to outputs/current."""
+    path = current.parent / "publish_log.csv"
+    new = not path.exists()
+    with open(path, "a", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        if new:
+            w.writerow(["at_utc", "run_id", "git_head", "result", "detail"])
+        w.writerow([dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), run_id,
+                    git("rev-parse", "--short", "HEAD"), result, detail])
+
+
+def manifest(run_dir, cfg):
     inputs = pd.read_csv(DATA / "manifest.csv")
     crossings = pd.read_csv(run_dir / "crossings.csv")
     head = crossings[(crossings.sensitivity == "base") & (crossings.window == "all")
@@ -123,6 +162,7 @@ def manifest(run_dir, cfg):
         "headline_p_star_mw": {f"{r.basis}_{r.stat}": (None if pd.isna(r.p_star_mw)
                                                        else round(float(r.p_star_mw), 1))
                                for r in head.itertuples()},
+        "warnings": gate_warnings(run_dir),
         "files": files,
     }
 
@@ -152,9 +192,14 @@ def pbi_dispatch(run_dir):
 
 def run(cfg=None, run_dir=None, current=CURRENT):
     cfg = cfg or load_config()
-    run_dir = run_dir or latest_done()
+    try:
+        run_dir = run_dir or latest_done()
+    except GateError as e:
+        record(current, "", "refused", str(e))
+        raise
     found = problems(run_dir, cfg)
     if found:
+        record(current, run_dir.name, "refused", "; ".join(found))
         raise GateError(f"G6: {run_dir.name} not published: " + "; ".join(found))
     tmp = current.with_name(current.name + ".tmp")
     old = current.with_name(current.name + ".old")
@@ -172,5 +217,9 @@ def run(cfg=None, run_dir=None, current=CURRENT):
     tmp.rename(current)
     if old.exists():
         shutil.rmtree(old)
-    print(f"publish (G6): {run_dir.name} -> {current}")
+    passed_with = gate_warnings(current)
+    record(current, run_dir.name, "published", "; ".join(passed_with))
+    log.info(f"publish (G6): {run_dir.name} -> {logs.rel(current)}")
+    for w in passed_with:
+        log.warning(f"publish: passed with {w}")
     return current

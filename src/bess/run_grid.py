@@ -51,7 +51,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 
-from . import SERIES, GateError, load_config
+from . import SERIES, GateError, load_config, logs
 from .credit import kth_highest, lifted_peaks, min_top_k_no_new_peaks, top_k_mean
 
 BASES = {"gross": "l_gross_mw", "net": "l_net_mw"}
@@ -66,16 +66,12 @@ log = logging.getLogger("bess.run_grid")
 
 
 def get_logger(out):
-    """Log to out/run_grid.log and to the console, replacing earlier handlers."""
+    """Log to out/run_grid.log, replacing earlier handlers; the console and run.log get the
+    same records through the "bess" logger (logs.console, cli.guarded)."""
     close_logger()
-    log.setLevel(logging.INFO)
-    log.propagate = False
-    fmt = logging.Formatter("%(asctime)s  %(message)s", "%H:%M:%S")
-    handlers = [logging.StreamHandler()]
     if out is not None:
-        handlers.append(logging.FileHandler(out / "run_grid.log", encoding="utf-8"))
-    for h in handlers:
-        h.setFormatter(fmt)
+        h = logging.FileHandler(out / "run_grid.log", encoding="utf-8")
+        h.setFormatter(logs.FORMAT)
         log.addHandler(h)
     return log
 
@@ -349,7 +345,7 @@ def _run(cfg, series_path, out, workers):
     s = s[s.winter.notna()].reset_index(drop=True)
     winters = sorted(int(w) for w in s.winter.unique())
     by_winter = {wi: s[s.winter == wi].reset_index(drop=True) for wi in winters}
-    log.info(f"input {series_path}: {len(s):,} winter half-hours, winters {winters}")
+    log.info(f"input {logs.rel(series_path)}: {len(s):,} winter half-hours, winters {winters}")
     for wi, w in by_winter.items():
         sizes = {wn: int(window_mask(w, wn).sum()) for wn in WINDOWS}
         top = w.loc[window_mask(w, "all")].nlargest(cfg["k_top"], "l_gross_mw")
@@ -386,13 +382,14 @@ def _run(cfg, series_path, out, workers):
                 "p_mw": job["p_mw"], "load_mw": job["load"], "battery_mw": battery,
                 "load_after_mw": job["load"] - battery}))
         verdict = "ok" if row["g5_ok"] else f"G5 FAIL [{row['failed_checks']}] {row['status']}"
-        log.info(f"  [{i:>4}/{len(payloads)}] {row['winter']} {row['basis']:<5} "
-                 f"{row['window']:<3} {row['sensitivity']:<8} P={row['p_mw']:>5} "
-                 f"d={row['d_h']} k={row['k']}  CC {row['cc']:6.3f} "
-                 f"(uncapped {row.get('cc_uncapped', np.nan):.3f}, {row.get('passes', 0)} pass"
-                 f"{'' if row.get('converged', True) else ', split not converged'})  "
-                 f"H100 {row['h100_before']:,.1f} -> {row['h100_after']:,.1f}  "
-                 f"{row['solve_s']:5.2f}s  {verdict}")
+        say = log.info if row["g5_ok"] else log.warning
+        say(f"  [{i:>4}/{len(payloads)}] {row['winter']} {row['basis']:<5} "
+            f"{row['window']:<3} {row['sensitivity']:<8} P={row['p_mw']:>5} "
+            f"d={row['d_h']} k={row['k']}  CC {row['cc']:6.3f} "
+            f"(uncapped {row.get('cc_uncapped', np.nan):.3f}, {row.get('passes', 0)} pass"
+            f"{'' if row.get('converged', True) else ', split not converged'})  "
+            f"H100 {row['h100_before']:,.1f} -> {row['h100_after']:,.1f}  "
+            f"{row['solve_s']:5.2f}s  {verdict}")
 
     table = add_ratio(pd.DataFrame(rows))
     table = table.sort_values(["sensitivity", "basis", "window", "d_h", "winter", "p_mw"])
@@ -405,7 +402,7 @@ def _run(cfg, series_path, out, workers):
     mono, dur = monotone_violations(table), duration_violations(table)
     log.info(f"  solver: {int(optimal.sum()):,}/{len(table):,} optimal")
     for r in table[~optimal].head(10).itertuples():
-        log.info(f"    not optimal: {r.winter} {r.basis} {r.window} {r.sensitivity} "
+        log.warning(f"    not optimal: {r.winter} {r.basis} {r.window} {r.sensitivity} "
                  f"P={r.p_mw} d={r.d_h}: {r.status}")
     log.info(f"  replayed H100 vs LP objective: max error {table.h100_replay_err_mw.max():.2e} MW "
              f"(tolerance {TOL_MW})")
@@ -415,7 +412,7 @@ def _run(cfg, series_path, out, workers):
     log.info(f"  energy: min slack {table.energy_slack_mwh.min():,.3f} MWh (>= 0 means "
              "delivered <= sqrt(eta) E + eta x charged)")
     for r in lp_fail.head(10).itertuples():
-        log.info(f"    failed: {r.winter} {r.basis} {r.window} {r.sensitivity} P={r.p_mw} "
+        log.warning(f"    failed: {r.winter} {r.basis} {r.window} {r.sensitivity} P={r.p_mw} "
                  f"d={r.d_h}: {r.failed_checks}")
     drop = (table.cc_uncapped - table.cc) * 100
     changed = drop > TOL_CC * 100
@@ -431,10 +428,10 @@ def _run(cfg, series_path, out, workers):
                  f"/{len(g)} LPs, by {dg.max():.2f} pp at most")
     log.info(f"  CC curves: {table.groupby(GROUP).ngroups:,}, monotone violations {len(mono)}")
     for v in mono[:20]:
-        log.info(f"    {v}")
+        log.warning(f"    {v}")
     log.info(f"  duration order (1 h <= usable70 <= 2 h <= 4 h): violations {len(dur)}")
     for v in dur[:20]:
-        log.info(f"    {v}")
+        log.warning(f"    {v}")
     avail = table.dropna(subset=["cc_availability"])
     if len(avail):
         log.info(f"  availability score (saved dispatch only, {len(avail)} LPs): exceeds CC by "

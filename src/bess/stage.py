@@ -18,12 +18,15 @@ than gates.max_reject_rate of a source's rows are rejected, the run stops and
 the previous staging tables are left as they were.
 """
 import json
+import logging
 
 import numpy as np
 import pandas as pd
 
 from . import RAW, STAGING, TZ, GateError, load_config
 from .ingest import REFERENCE, months
+
+log = logging.getLogger(__name__)
 
 TP_COLS = [f"TP{i}" for i in range(1, 51)]
 RULES = {1: "date", 2: "tp_count", 3: "negative_kwh", 4: "unknown_poc",
@@ -224,6 +227,16 @@ def run(cfg=None, raw=RAW, out=STAGING, nsp_path=None):
         tmp.replace(out / f"{source}.parquet")
 
     for _, t in totals.iterrows():
-        print(f"stage: {t.source}: {t.rows_in:,} rows, {t.rejected:,} quarantined "
-              f"({t.reject_rate:.3%})")
+        log.info(f"stage: {t.source}: {t.rows_in:,} rows, {t.rejected:,} quarantined "
+                 f"({t.reject_rate:.3%})")
+    for source, table in tables.items():
+        by_site = site_code_pocs(table.poc, islands)
+        if by_site:
+            log.info(f"stage: {source}: {len(by_site)} POCs are not NSPs and were placed on "
+                     f"an island by site code: {by_site[:10]}{' ...' if len(by_site) > 10 else ''}")
     return report
+
+
+def site_code_pocs(pocs, islands):
+    """The POCs that island_of placed by their three-letter site code, not an NSP row."""
+    return sorted(set(pd.Series(pocs, dtype=str).unique()) - islands.keys())

@@ -20,6 +20,8 @@ counts (in both numerator and denominator) only while it has nameplate in the
 fleet file and rows in Generation_MD at its POC that day; farms missing from
 either side are listed in calibration.md.
 """
+import logging
+
 import numpy as np
 import pandas as pd
 
@@ -27,6 +29,8 @@ from . import RAW, SERIES, STAGING, TZ, GateError, load_config
 from .ingest import REFERENCE
 from .series import KWH_PER_MW
 from .stage import island_map, island_of
+
+log = logging.getLogger(__name__)
 
 TECHS = ("wind", "solar")
 FLEET_FUEL = {"WIN": "wind", "SOL": "solar", "ELE": "battery"}
@@ -224,12 +228,13 @@ def run(cfg=None, out=None, accept_gap=None, **paths):
         write_note(out / "calibration.md", cal, left_out, accept_gap)
     p = cal[cal.primary]
     for r in p.itertuples():
-        print(f"calibrate: {r.year} {r.tech:5s} ours {r.cf:6.2%}  SOSA {r.sosa_cf:6.2%}  "
-              f"gap {r.diff_pp:+.2f} pp")
+        (log.info if r.within_tol else log.warning)(
+            f"calibrate: {r.year} {r.tech:5s} ours {r.cf:6.2%}  SOSA {r.sosa_cf:6.2%}  "
+            f"gap {r.diff_pp:+.2f} pp")
     if not p.within_tol.all():
         tol = cfg["gates"]["calibration_tol_pp"]
         if not accept_gap:
             raise GateError(f"G4: calibration gap above {tol} pp; see calibration.md. "
                             "Re-run with --accept-gap REASON once the cause is understood.")
-        print(f"calibrate: gap above {tol} pp accepted: {accept_gap}")
+        log.warning(f"calibrate (G4): gap above {tol} pp accepted: {accept_gap}")
     return cal

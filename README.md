@@ -109,9 +109,21 @@ daylight-saving days have 46 or 50 half-hours.
 | G6 | publish | DONE.txt and no FAILED.txt; every output present with its contract columns; every LP through G5; one dispatch series per saved LP | do not publish; `outputs/current` keeps the previous version |
 
 A run that finishes leaves `DONE.txt` in its folder; one stopped by a gate
-or any other error leaves `FAILED.txt`. Run folders are named
+or any other error leaves `FAILED.txt`, with the error, the step it came from
+and the traceback. Run folders are named
 `<UTC time>_<git sha>`, with `-dirty` when `src/`, `scripts/`, `config.yaml`,
 `pyproject.toml` or `uv.lock` had uncommitted or untracked changes.
+
+Logs carry a level, so `grep -E "WARNING|ERROR"` finds every gate that warned,
+was overridden or failed:
+
+| Log | Holds |
+|---|---|
+| `<run folder>/run.log` | the command, every step with its time, and everything the steps logged |
+| `<run folder>/run_grid.log` | the LP grid on its own: every LP and every G5 check |
+| `data/ingest.log` | every download, retry and re-download, and the old and new SHA-256 of a file accepted with `--update-manifest`; commit it with `data/manifest.csv` |
+| `outputs/publish_log.csv` | every publish and every G6 refusal (`run_manifest.json` only keeps the last publish, and lists the G3 and G4 warnings the run passed with) |
+| `outputs/bess.log` | every `bess` command on this machine, with tracebacks (not committed) |
 
 ## Reproduce
 

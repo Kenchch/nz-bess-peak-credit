@@ -10,12 +10,16 @@ below a GXP, whose output serves local load without crossing the grid exit.
 It should be a small, steady share of supply; a month outside the band points
 at a missing file, a unit error or a sign error in the HVDC series.
 """
+import logging
+
 import numpy as np
 import pandas as pd
 
 from . import RAW, SERIES, load_config
 from .ingest import REFERENCE, months
 from .stage import check, island_map, island_of
+
+log = logging.getLogger(__name__)
 
 # Band for (supply - offtake) / supply, set from the 2021-04..2026-09 run:
 # every month landed between 6.8% and 10.0% (mean 8.3%, sd 0.7 pp), so the
@@ -61,9 +65,11 @@ def run(cfg=None, series_path=SERIES / "ni_halfhourly.parquet", raw=RAW, out=Non
     if out is not None:
         rec.to_csv(out / "reconcile.csv", index=False)
     bad = rec[~rec.in_band]
-    print(f"reconcile (G3): gap {rec.gap_share.min():.1%}..{rec.gap_share.max():.1%} of supply; "
-          f"{len(bad)} of {len(rec)} months outside {BAND[0]:.0%}-{BAND[1]:.0%}"
-          + (f": {bad.month.tolist()}" if len(bad) else "")
-          + f"; sd {rec.gap_share.std():.2%} vs {rec.gap_share_if_hvdc_flipped.std():.2%} "
-            "with the HVDC sign flipped")
+    # G3 never stops the run, so a month outside the band must at least stand out in the log
+    (log.warning if len(bad) else log.info)(
+        f"reconcile (G3): gap {rec.gap_share.min():.1%}..{rec.gap_share.max():.1%} of supply; "
+        f"{len(bad)} of {len(rec)} months outside {BAND[0]:.0%}-{BAND[1]:.0%}"
+        + (f": {bad.month.tolist()}" if len(bad) else "")
+        + f"; sd {rec.gap_share.std():.2%} vs {rec.gap_share_if_hvdc_flipped.std():.2%} "
+          "with the HVDC sign flipped")
     return rec
