@@ -48,6 +48,7 @@ import os
 import textwrap
 import time
 import traceback
+import warnings
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import numpy as np
@@ -161,7 +162,19 @@ def lp_checks(load, win, p, e, k, eta, h100_after, det):
 
 
 def solve(job):
-    """One LP. Runs in a worker process, so it only sees plain arrays."""
+    """One LP. Runs in a worker process, so it only sees plain arrays.
+
+    A worker process logs nowhere, so warnings raised while solving travel back
+    in the row ("warnings"), like a traceback; run() logs both and drops them."""
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        row, battery = _solve(job)
+    if caught:
+        row["warnings"] = sorted({f"{w.category.__name__}: {w.message}" for w in caught})
+    return row, battery
+
+
+def _solve(job):
     t0 = time.perf_counter()
     load, win, k, eta = job["load"], job["win"], job["k"], job["eta"]
     p, e = job["p_mw"], job["e_stored_mwh"]
@@ -395,6 +408,8 @@ def _run(cfg, series_path, out, workers):
             f"{row['solve_s']:5.2f}s  {verdict}")
         if row.get("traceback"):
             log.warning(textwrap.indent(row.pop("traceback").rstrip(), "    "))
+        for w in row.pop("warnings", []):
+            log.warning(f"    {w}")
 
     table = add_ratio(pd.DataFrame(rows))
     table = table.sort_values(["sensitivity", "basis", "window", "d_h", "winter", "p_mw"])
@@ -463,7 +478,8 @@ def _run(cfg, series_path, out, workers):
         who = f" (winter {r['worst_winter']})" if r["stat"] == "min_of_winters" else ""
         log.info(f"p*: {r['basis']:<5} {r['winters']:<5} {r['stat']:<14} (n={r['n_winters']}) "
                  f"d=2h window all: falls to {r['sosa_factor']:.0%} at {p_star}{who}; CC {curve}")
-    log.info(f"run_grid: done in {time.perf_counter() - t_start:,.0f} s")
+    log.info(f"run_grid: {len(table):,} LPs solved and checked in "
+             f"{time.perf_counter() - t_start:,.0f} s")
 
     not_optimal = int((~optimal).sum())
     if not_optimal or len(lp_fail) or mono or dur:

@@ -144,7 +144,8 @@ def test_crossings_per_winter_mean_and_lowest():
     assert four.sosa_factor == 0.8 and four.p_star_mw == pytest.approx(135 + 0.05 / 0.1 * 200)
 
 
-def test_g5_stops_the_run_after_writing_its_outputs(tmp_path, monkeypatch):
+def small_grid(tmp_path):
+    """Two LPs (P = 35 and 335 MW, 2 h, gross, window all) on 40 synthetic days, in-process."""
     from conftest import synthetic_winter
     load, win = synthetic_winter(days=40)
     n = len(load)
@@ -160,6 +161,11 @@ def test_g5_stops_the_run_after_writing_its_outputs(tmp_path, monkeypatch):
     cfg = {**CFG, "grid": {"p_mw": [35, 335], "d_h": [2], "basis": ["gross"], "window": ["all"]},
            "sensitivities": {}, "credit": {**CFG["credit"], "base_winters": [2024],
                                            "check_winters": [], "workers": 1}}
+    return cfg, sp
+
+
+def test_g5_stops_the_run_after_writing_its_outputs(tmp_path, monkeypatch):
+    cfg, sp = small_grid(tmp_path)
     real = run_grid.min_top_k_no_new_peaks
 
     def flaky(load, win, p, *a, **kw):
@@ -181,3 +187,21 @@ def test_g5_stops_the_run_after_writing_its_outputs(tmp_path, monkeypatch):
     x = pd.read_csv(tmp_path / "crossings.csv")
     assert set(x.p_star_note) == {"incomplete"}
     (tmp_path / "run_grid.log").unlink()          # the handler is closed after run()
+
+
+def test_warnings_raised_while_solving_reach_the_log(tmp_path, monkeypatch):
+    import warnings
+    cfg, sp = small_grid(tmp_path)
+    real = run_grid.min_top_k_no_new_peaks
+
+    def noisy(*a, **kw):
+        warnings.warn("divide by zero encountered in a fake solver", RuntimeWarning)
+        return real(*a, **kw)
+
+    monkeypatch.setattr(run_grid, "min_top_k_no_new_peaks", noisy)
+    table, _ = run_grid.run(cfg, series_path=sp, out=tmp_path)
+    log = (tmp_path / "run_grid.log").read_text(encoding="utf-8")
+    noted = [line for line in log.splitlines()
+             if "RuntimeWarning: divide by zero encountered in a fake solver" in line]
+    assert len(noted) == 2 and all("WARNING" in line for line in noted)    # one per LP
+    assert "warnings" not in table.columns and table.status.eq("optimal").all()
