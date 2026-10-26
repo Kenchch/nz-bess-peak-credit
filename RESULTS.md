@@ -1,10 +1,10 @@
 # Results
 
-Sections 1–4 (Days 1–2) were first built by `uv run bess all` from an empty
+Sections 1–4 were first built by `uv run bess all` from an empty
 `data/` (every download matched its pin in `data/manifest.csv`).
 
 Everything below now comes from one run of `uv run bess analyse --accept-gap …`
-on commit d29a686, after a four-part review of the Day 3 work:
+on commit d29a686, after a four-part review of the §5 credit grid:
 `outputs/runs/20261019T032856Z_d29a686/`, published by gate G6 to `outputs/current/` (which is
 committed, with `run_manifest.json` recording the code, config and input
 hashes). Every LP, check and timing is in `run_grid.log`. A trace run
@@ -86,8 +86,8 @@ by about 360 MW, but only about 230 MW on the widest tenth of days**
 350 / 210 MW, morning 400 / 180 MW). Winter by winter, the median evening
 figure runs from 265 MW (2026) to 420 MW (2022). At roughly the 2026 fleet size
 (~335 MW), two hours covers a median evening peak but not the widest tenth.
-That is the shape behind a falling credit curve; Day 3's LP will put numbers
-on it. Figure: `outputs/runs/20261018T062143Z_93f56cf/peak_shape.png`.
+That is the shape behind a falling credit curve; the LP in §5 puts numbers
+on it. Figure: [`outputs/current/peak_shape.png`](outputs/current/peak_shape.png).
 
 ## 4. Top 200 on gross vs net demand
 
@@ -113,7 +113,7 @@ Mercury's submission pointed at: on a net basis wind's peak factor would be
 nearer 13–16% than SOSA's 29.3%. In every winter 64–78% of the top 200 fall
 in the evening (16:00–22:00).
 
-## 5. Battery capacity credit (Day 3)
+## 5. Battery capacity credit
 
 For each winter, a battery fleet of P MW and d hours charges and discharges
 on every half-hour from 1 April (starting full) to minimise H100, the mean of
@@ -275,7 +275,7 @@ The saved dispatch (`dispatch_d2.parquet`) comes from a tidy second pass. It
 keeps the same H100 and uses the least charge plus discharge, so it shows no
 cycling that the objective cannot see.
 
-## 6. What the visible batteries actually delivered (Day 4)
+## 6. What the visible batteries actually delivered
 
 Generation_MD carries two grid batteries as their own units: Ruakākā (100 MW /
 200 MWh) and Rotohiko (35 MW / 35 MWh). Glenbrook (100 MW, from December 2025)
@@ -320,8 +320,8 @@ rests on their reserve role and on availability, not on discharge.
    before November 2025.
 6. **Peak shape is a one-window view.** It assumes a full battery at the start
    of each window, no losses, no recharging inside the window, and is capped
-   by the window's length (5 h morning, 6 h evening). The chronological LP on
-   Day 3 drops these simplifications.
+   by the window's length (5 h morning, 6 h evening). The chronological LP in
+   §5 drops these simplifications.
 7. **History is not the future.** Demand growth, electrification and
    time-of-use pricing will change peak shapes; 2026 is an incomplete winter.
 8. **The credit is a ceiling.** It assumes perfect foresight, one aggregate

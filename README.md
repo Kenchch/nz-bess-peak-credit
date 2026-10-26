@@ -73,8 +73,8 @@ ingest → stage → series → [G3 reconcile] → [G4 calibrate] → peak_shape
 | series | `series.py` | `data/series/ni_halfhourly.parquet` (one row per half-hour) |
 | analyse | `reconcile.py`, `calibrate.py`, `peak_shape.py`, `top200.py`, `run_grid.py`, `observed.py` | `outputs/runs/<run_id>/`, ending with `DONE.txt` or `FAILED.txt` |
 | grid | `run_grid.py` | `credit_table.csv` (one row per LP), `crossings.csv` (p*), `dispatch_d2.parquet`, `run_grid.log` |
-| LP | `credit.py` | `min_top_k`, `min_top_k_no_new_peaks`, `shave_peak`, `capacity_credit` (numpy only) |
-| observed | `observed.py` | `observed_vs_ceiling.csv`: what the batteries Generation_MD can see delivered at the peak, against the ceiling |
+| LP | `credit.py` | `min_top_k`, `min_top_k_no_new_peaks`, `shave_peak`, `capacity_credit` (NumPy + SciPy `linprog`, HiGHS) |
+| observed | `observed.py` | `observed_vs_ceiling.csv`: what Generation_MD shows the batteries delivering at the peak, against the ceiling |
 | publish | `publish.py` | gate G6, then `outputs/current/` with `run_manifest.json`, `dim_winter.csv`, `dim_p.csv`, `pbi_dispatch.parquet` |
 | figures | `figures.py` | `memo/fig_credit_curve.png`, `memo/fig_p_star_by_winter.png` |
 | memo | `memo/memo.qmd` | `memo/memo.pdf` (Quarto, Typst; `quarto render memo/memo.qmd --to typst`) |
