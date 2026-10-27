@@ -1,4 +1,4 @@
-"""Day 3: the LP grid (architecture 3, 4.2, 4.3; gate G5).
+"""The LP grid (architecture 3, 4.2, 4.3; gate G5).
 
 For every winter x basis x window x P x d, plus the sensitivities at d = 2 h,
 solve credit.min_top_k_no_new_peaks and record how far a battery fleet of

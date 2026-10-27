@@ -90,8 +90,12 @@ def p_star_by_winter(cross, cfg, path):
             if w in check:
                 b.set_hatch("///")
                 b.set_alpha(0.6)
-            ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 12, f"{b.get_height():.0f}",
-                    ha="center", fontsize=7.5, color=MUTED)
+            if np.isfinite(b.get_height()):  # no p* (curve never reaches 60% in the grid): no bar
+                ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 12,
+                        f"{b.get_height():.0f}", ha="center", fontsize=7.5, color=MUTED)
+    # Fixed x range: with no p* at all there are no bars to autoscale on, the axis shrinks
+    # to +-0.05 and the fleet label at -0.55 lands outside the figure (tight_layout gives up)
+    ax.set_xlim(x[0] - 0.66, x[-1] + 0.66)
     ax.axhline(FLEET_2026, color=GREY, linestyle=":", linewidth=1)
     ax.text(-0.55, FLEET_2026 + 12, "~335 MW fleet", ha="left", color=MUTED, fontsize=8)
     if pd.notna(c.p_star_mw.max()):          # room above the bars for the legend

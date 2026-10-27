@@ -1,6 +1,10 @@
 """A synthetic winter through stage -> series -> reconcile -> calibrate -> analysis -> grid."""
+import importlib.util
 import json
+import logging
+import re
 import shutil
+import warnings
 
 import pandas as pd
 import pytest
@@ -8,7 +12,7 @@ from pandas.api import types
 
 from bess import (calibrate, figures, load_config, observed, peak_shape, publish, reconcile,
                   run_grid, series, stage, top200)
-from bess import GateError
+from bess import GateError, ROOT
 from synth import write_raw
 
 CFG = {**load_config(), "period": {"start": "2024-06", "end": "2024-07"},
@@ -153,7 +157,10 @@ def test_publish_swaps_in_a_checked_run_and_figures_draw_from_it(run, tmp_path, 
     history = pd.read_csv(tmp_path / "publish_log.csv")      # the manifest only keeps the last
     assert history.result.tolist() == ["published", "published"]
     assert set(history.run_id) == {out.name} and isinstance(m["warnings"], list)
-    figures.run(GRID_CFG, current=current, out=tmp_path / "memo")
+    with warnings.catch_warnings():
+        # The synthetic curves never reach 60% (no p* at all): that must still lay out
+        warnings.simplefilter("error")
+        figures.run(GRID_CFG, current=current, out=tmp_path / "memo")
     assert (tmp_path / "memo" / "fig_credit_curve.png").stat().st_size > 10_000
     assert (tmp_path / "memo" / "fig_p_star_by_winter.png").stat().st_size > 10_000
 
@@ -194,3 +201,52 @@ def test_g3_warns_when_a_month_leaves_the_band(run, monkeypatch, caplog):
     reconcile.run(CFG, series_path=sp, raw=out.parent / "raw")
     (r,) = [r for r in caplog.records if r.name == "bess.reconcile"]
     assert r.levelname == "WARNING" and "2 of 2 months outside 50%-60%" in r.getMessage()
+
+
+def load_trace():
+    path = ROOT / "scripts" / "trace_pipeline.py"
+    spec = importlib.util.spec_from_file_location("trace_pipeline", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_the_trace_runs_observed_publish_and_figures(run, tmp_path, caplog):
+    sp, out = run
+    trace = load_trace()
+    trace.lineage.clear()
+    caplog.set_level("INFO", logger="trace")
+    analysis = tmp_path / "analysis"
+    shutil.copytree(out, analysis)
+    raw = out.parent / "raw"
+    table = trace.step_observed(GRID_CFG, out.parent / "staging", sp, analysis,
+                                fleet_path=next((raw / "fleet").iterdir()),
+                                nsp_path=next((raw / "nsp").iterdir()))
+    assert list(table.columns) == observed.COLUMNS
+    current = trace.step_publish(GRID_CFG, analysis, tmp_path)
+    assert json.loads((current / "run_manifest.json").read_text(encoding="utf-8"))["run_id"] == \
+        "analysis"
+    trace.step_figures(GRID_CFG, tmp_path)
+    assert len(list((tmp_path / "figures").glob("*.png"))) == 2
+    assert [r["step"] for r in trace.lineage] == ["observed", "publish", "figures"]
+    said = caplog.text
+    assert "[9/11] observed" in said and "[10/11] publish" in said and "[11/11] figures" in said
+    assert "G6 contracts: all met" in said
+
+
+def test_the_trace_log_skips_each_lp_but_keeps_the_grid_summary():
+    keep = load_trace().not_an_lp_line
+
+    def rec(name, level, msg):
+        return logging.LogRecord(name, level, __file__, 1, msg, None, None)
+
+    assert not keep(rec("bess.run_grid", logging.INFO, "  [  12/1218] 2021 gross all ok"))
+    assert keep(rec("bess.run_grid", logging.WARNING, "  [  12/1218] 2021 G5 FAIL"))
+    assert keep(rec("bess.run_grid", logging.INFO, "p*: gross base mean falls to 60% at 497 MW"))
+    assert keep(rec("bess.stage", logging.INFO, "  [not a grid line]"))
+
+
+def test_the_trace_speaks_english():
+    text = (ROOT / "scripts" / "trace_pipeline.py").read_text(encoding="utf-8")
+    assert not re.findall(r"[\u3000-\u303f\u4e00-\u9fff\uff00-\uffef]", text)
+    assert "NotImplementedError" not in text            # every step is built now

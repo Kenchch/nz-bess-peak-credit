@@ -83,9 +83,11 @@ The grid takes load **before** the batteries already on the grid
 (`l_* + bess_mw`), treats a d-hour battery as delivering P × d MWh to the
 grid, lets it run on every half-hour of the winter, and forbids charging that
 would lift a half-hour outside 07:00–22:00 above the H100 line (see
-RESULTS.md §5). `scripts/trace_pipeline.py` runs every step into
-`outputs/trace/<run_id>/`, logs how the data changes shape at each one, then
-checks that it reproduces the latest finished run (about 8 minutes):
+RESULTS.md §5). `scripts/trace_pipeline.py` runs every step, from the G1
+check through observed, publish and figures, into `outputs/trace/<run_id>/`
+(never `outputs/current` or `memo/`), logs how the data changes shape at each
+one, then checks that it reproduces the latest finished run and the published
+Power BI tables (about 8 minutes):
 
 ```bash
 uv run python -I scripts/trace_pipeline.py
