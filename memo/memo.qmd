@@ -55,8 +55,8 @@ a wider slice of the peak. By 1,000 MW the ceiling is 43%.
   is the most robust reading: the ratio barely moves when the energy
   convention or the basis changes.
 - *SOSA's own scoring.* SOSA scores wind and solar by mean output over the
-  original top 200. Scored that way, the same dispatch rates 3–6 points
-  higher, and p\* moves out to about 600 MW. The gap is the shoulder hours
+  original top 200. Scored that way, the same dispatch rates 1–6 points
+  higher, most around p\*, and p\* moves out to about 600 MW. The gap is the shoulder hours
   that rise into the top 200 once the peak is flattened. H100 counts them;
   per-period scoring does not.
 
@@ -90,8 +90,11 @@ a wider slice of the peak. By 1,000 MW the ceiling is 43%.
   reshape the peaks.
 
 **Reproducibility.** Every number above can be traced to a run. The
-200 input files are pinned by SHA-256, and six quality gates stop a run rather
-than publish a doubtful result: calibration against SOSA's published wind and
-solar factors, and replay checks on all 1,218 LPs among them. A trace script
+200 input files are pinned by SHA-256, and six quality gates check every run.
+Four stop it outright, among them replay checks on all 1,218 LPs. The energy
+reconciliation only warns, and no month fell outside its band. The calibration
+against SOSA's published wind and solar factors stops a run unless the gap is
+explained: 2024 solar is 3.5 points off and was accepted, for the reason given
+in RESULTS.md, since solar barely shows in the winter peak. A trace script
 rebuilds every output from the raw files and confirms they match exactly.
 Code, results and limitations are at github.com/Kenchch/nz-bess-peak-credit.
