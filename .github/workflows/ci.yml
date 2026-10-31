@@ -1,5 +1,14 @@
 name: ci
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  # Weekly too, so a change in the runner images or uv (neither is pinned)
+  # shows up on its own rather than on the next unrelated push
+  schedule:
+    - cron: "17 7 * * 1"
+permissions:
+  contents: read
 jobs:
   test:
     # Windows too: the pipeline is run there, and a cp1252 pipe once broke it
@@ -8,9 +17,13 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
-      - run: uv sync
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      # Exactly uv.lock: fails if it no longer matches pyproject.toml
+      - run: uv sync --locked
       # Offline: synthetic fixtures only, no EMI downloads
       - run: uv run pytest -q
