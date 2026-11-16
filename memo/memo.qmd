@@ -43,7 +43,11 @@ always full, so they can only deliver less.
 **Why the credit falls.** Even a 35 MW battery reaches only 82%, not 100%. The
 top 200 half-hours fall on 35–46 days, often four or five on the same day, so
 the coldest days need more than two hours of cover. Every extra MW must cover
-a wider slice of the peak. By 1,000 MW the ceiling is 43%.
+a wider slice of the peak. By 1,000 MW the ceiling is 43%. Those are averages
+over the whole fleet; the last MW added earn less. The MW that take the fleet
+from 335 to 500 MW lower H100 by **at most 46%** of their nameplate each
+(35–38% in a winter like 2021), so every two-hour battery built beyond
+today's fleet already sits below the 60% it is given.
 
 **Three readings of the same result.**
 

@@ -195,6 +195,32 @@ Even a 35 MW fleet does not reach 100%. The top 200 half-hours fall on 35–46
 days, four or five a day at the median and up to 18. A two-hour battery
 cannot cover the longest of those days.
 
+### The next battery: marginal credit
+
+CC above is the average over the whole fleet, which is what a flat factor
+applied to every battery should be compared with. A battery added to a fleet
+that already exists only gets the extra fall in H100. Per MW added between
+grid points, two-hour batteries, NI-WCM window (computed from
+`credit_table.csv` as the change in `h100_before − h100_after` over the
+change in P):
+
+| Fleet grows from → to | 0 → 35 | 35 → 135 | 135 → 335 | 335 → 500 | 500 → 750 | 750 → 1,000 | 1,000 → 1,500 MW |
+|---|---|---|---|---|---|---|---|
+| Gross, 2021–2025 mean | 81.8% | 75.0% | 59.8% | 46.1% | 31.7% | 20.1% | 15.0% |
+| Net, 2021–2025 mean | 77.4% | 70.8% | 57.4% | 45.8% | 35.3% | 22.8% | 15.9% |
+| Gross, 2021 (lowest) | 73.8% | 63.3% | 45.6% | 35.4% | 22.7% | 14.0% | 13.8% |
+| Gross, 2026 (check) | 76.3% | 69.6% | 59.3% | 51.0% | 41.2% | 25.6% | 14.8% |
+
+**The marginal ceiling reaches 60% well before the average does.** The MW
+that take the fleet from 135 to 335 MW (Glenbrook and Huntly, roughly) add
+about 60% each at best on gross demand and 57% on net. The next 165 MW
+after that add at most 46%, and 35–38% in a winter like 2021. So the average
+ceiling stays above 60% until about 500 MW only because the first 135 MW
+earned more than 60%; every two-hour MW built beyond today's fleet lowers
+H100 by less than the factor it is given. These are averages over each block
+of the P grid, not slopes at a point, and they are ceilings with the same
+one-way reading as (a).
+
 ### Durations, windows and sensitivities
 
 These are 2021–2025 means. "below" means below the factor even at 35 MW.
